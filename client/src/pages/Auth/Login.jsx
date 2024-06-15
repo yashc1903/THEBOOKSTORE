@@ -2,13 +2,14 @@ import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import Layout from '../../components/Layout'
 import axios from 'axios'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate,useLocation } from 'react-router-dom'
 import {toast} from 'react-hot-toast'
 import { useAuth } from '../../context/auth'
 
 
 function Login() {
     const navigate = useNavigate();
+    const location = useLocation();
     const [email,setEmail]= useState('');
     const [password,setPassword]=useState('');
     const [auth,setAuth]= useAuth()
@@ -25,7 +26,7 @@ function Login() {
                     token:res.data.token
                 })
                 localStorage.setItem('auth',JSON.stringify(res.data))
-                navigate('/')
+                navigate(location.state || '/')
             }else{
                 toast.error(res.data.message)
             }
@@ -105,7 +106,7 @@ function Login() {
                     <input className="mr-2 h-6 w-6" id="remember-me" type="checkbox"/>
                     Remember me
                     </label>
-                    <Link className="text-xl text-blue-500 hover:underline mb-0.5" to={''}>Forgot password?</Link>
+                    <Link className="text-xl text-blue-500 hover:underline mb-0.5" to={'/forgot-password'}>Forgot password?</Link>
                 </div>
                 <div className='w-full' >
                     <button className=' w-full bg-purple-800 h-20  rounded-lg text-white text-3xl mt-10'type='submit' > Sign In </button>
