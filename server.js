@@ -4,7 +4,8 @@ import morgan from 'morgan';
 import connectDB from './config/db.js';
 import authRoutes from './routes/authRoute.js'
 import cors from 'cors'
-import safeBuffer from 'safe-buffer'
+import categoryRoutes from './routes/categoryRoutes.js'
+
 //configuring env
 dotenv.config()
 
@@ -25,7 +26,7 @@ app.use(cors());
 
 //routes
 app.use('/',authRoutes)
-
+app.use('/category',categoryRoutes)
 //rest api
 app.get('/',(req,res)=>{
     res.send({
