@@ -15,7 +15,7 @@ router.get('/get-product/:slug',getSingleProductController) // get a product || 
 
 router.get('/product-photo/:pid',productPhotoController) // get image || method get
 
-router.delete('/product/:pid',deleteProductController) // delete product || method delete
+router.delete('/delete-product/:pid',deleteProductController) // delete product || method delete
 
 
 export default router
