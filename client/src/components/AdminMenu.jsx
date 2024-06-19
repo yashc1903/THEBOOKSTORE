@@ -23,6 +23,11 @@ function AdminMenu() {
                 <div className="text-xl w-full active:bg-indigo-500  font-semibold border p-4"><NavLink to='/dashboard/admin/users'  > Users</NavLink></div>
             </div>
         </li>
+        <li  className="py-4 ">
+            <div className="flex w-56 space-x-4">
+                <div className="text-xl w-full active:bg-indigo-500  font-semibold border p-4"><NavLink to='/dashboard/admin/products'  > Products</NavLink></div>
+            </div>
+        </li>
       </ul>
     </div>
     </>
