@@ -4,12 +4,10 @@ import AdminMenu from '../../components/AdminMenu'
 import toast from 'react-hot-toast'
 import axios from 'axios'
 import { Select } from 'antd'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate,useParams } from 'react-router-dom'
 
-const {Option} = Select
-
-function CreateProduct() {
-  const [categories,setCategories ] = useState([])
+function UpdateProduct() {
+    const [categories,setCategories ] = useState([])
   const [photo,setPhoto]  =useState('')
   const [name,setName]  =useState('')
   const [description,setDescription]  =useState('')
@@ -18,9 +16,11 @@ function CreateProduct() {
   const [category,setCategory]  =useState('')
   const [quantity,setQuantity]  =useState('')
   const [shipping,setShipping]  =useState('')
+  const [id,setId] = useState('')
   const navigate =useNavigate()
+  const params = useParams()
 
-  const handleCreate = async(e) => {
+  const handleUpdate = async(e) => {
     e.preventDefault();
     try {
       const productData = new FormData()
@@ -29,17 +29,18 @@ function CreateProduct() {
       productData.append("author",author)
       productData.append("price",price)
       productData.append("category",category)
-      productData.append("photo",photo)
+      photo   && productData.append("photo",photo)
       productData.append("quantity",quantity)
       productData.append('shipping',shipping)
-      const {data} = axios.post('http://localhost:8080/product/create-product',productData)
+      const {data} = axios.put(`http://localhost:8080/product//update-product/${id}`,productData)
       if(data?.success){
        
         toast.error(data?.message)
       }
       else{
-        toast.success('Product created Successfully')
+        toast.success('Product updated Successfully')
         navigate('/dashboard/admin/products')
+        
       }
     } catch (error) {
       console.log(error)
@@ -47,6 +48,46 @@ function CreateProduct() {
     }
 
   }
+
+  const handleDelete = async (e) =>{
+    e.preventDefault()
+    try {
+        let answer = window.prompt(`Are You Sure,
+         You want to delete the Product`)
+         if(!answer) return
+        const {data} = await axios.delete(`http://localhost:8080/product/delete-product/${id}`)
+        toast.success('product deleted successfully')
+        navigate('/dashboard/admin/products')
+    } catch (error) {
+        console.log(error)
+        toast.error('something went wrong')
+    }
+  }
+
+  //get single product 
+  const getSingleProduct  = async() =>{
+    try {
+        const {data} = await axios.get(`http://localhost:8080/product/get-product/${params.slug}`)
+        setName (data.product.name)
+        setId(data.product._id)
+        setDescription(data.product.description)
+        setAuthor(data.product.author)
+        setCategory(data.product.category._id)
+        setPrice(data.product.price)
+        setQuantity(data.product.quantity)
+        setShipping(data.product.shipping)
+        setPhoto(data.product.photo)
+    } catch (error) {
+        console.log(error)
+        toast.error('something went wrong')
+    }
+
+  }
+
+  useEffect(()=>{
+    getSingleProduct()
+    //eslint-disable-next-line
+},[])
 
 
   const getAllCategory = async() => {
@@ -64,9 +105,9 @@ function CreateProduct() {
   useEffect(()=>{
     getAllCategory();
   },[])
-  return (
+  
 
-    
+  return (
     <>
         <Layout>
         <div className='flex justify-around items-center'>
@@ -76,18 +117,19 @@ function CreateProduct() {
         </div>
         <div className='flex justify-center items-center border w-1/2 h-screen'>
   <div className='text-center  w-full'>
-    <h1 className='text-3xl mt-4'>Create Product</h1>
+    <h1 className='text-3xl mt-4'>Update Product</h1>
     
-    <div className="mt-2 ">
+    <div className="mt-2 h-10 ">
       <Select
         variant={false}
         placeholder="SELECT A CATEGORY"
         size="large"
         showSearch
-        className="w-full px-4 py-2 bg-white border-4 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+        className="w-full px-4 py-2 bg-white border-4 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-2xl h-full"
         onChange={(value) => {
           setCategory(value);
         }}
+        value={category}
       >
         {categories.map((option) => (
           <Option key={option._id} value={option._id}>
@@ -127,11 +169,13 @@ function CreateProduct() {
     </div>
 
     <div className="flex justify-center mt-4">
-      {photo && (
+      {photo ? (
         <div>
           <img src={URL.createObjectURL(photo)} alt="" className="mt-4" height={'100px'} />
         </div>
-      )}
+      ) : (<div>
+        <img src={`http://localhost:8080/product/product-photo/${id}`} alt="" className="mt-4" height={'100px'} />
+      </div>)}
     </div>
     <div>
       <input type="text" value={name} placeholder='BOOK NAME' className=' text-xl  w-full text-center mt-4 border-4 h-14  text-black' onChange={(e)=>setName(e.target.value) } />
@@ -139,74 +183,19 @@ function CreateProduct() {
       <input type="text" value={author} placeholder="AUTHOR'S NAME" className=' text-xl  w-full text-center mt-4 border-4 h-14  text-black' onChange={(e)=>setAuthor(e.target.value) } />
       <input type="number" value={price} placeholder="PRICE" className=' text-xl  w-full text-center mt-4 border-4 h-14  text-black' onChange={(e)=>setPrice(e.target.value) } />
       <input type="number" value={quantity} placeholder="QUANTITY" className=' text-xl  w-full text-center mt-4 border-4 h-14  text-black' onChange={(e)=>setQuantity(e.target.value) } />
-      <Select variant={false} placeholder = "SELECT SHIPPING" size='large' showSearch className=' text-xl w-full text-center mt-4 border-4 h-14  text-black' onChange={(value)=>{setShipping(value)}} >
+      <Select variant={false} placeholder = "SELECT SHIPPING" size='large' showSearch className=' text-xl w-full text-center mt-4 border-4 h-14  text-black' onChange={(value)=>{setShipping(value)}} value={shipping ? 'Yes' : "No"} >
         <Option value='0' className="text-2xl" > No</Option>
         <Option value='1' className="text-2xl" > Yes </Option>
       </Select>
-      <button className=' mt-2 border-2 rounded-lg bg-emerald-600 text-white p-4 text-2xl' onClick={handleCreate} >CREATE PRODUCT </button>
+      <button className=' mt-2 border-2 rounded-lg bg-emerald-600 hover:bg-emerald-800 text-white p-4 text-2xl' onClick={handleUpdate} >UPDATE PRODUCT </button>
+      <button className=' mt-2 border-2 rounded-lg bg-red-600 hover:bg-red-800 text-white p-4 text-2xl' onClick={handleDelete} >DELETE PRODUCT </button>
     </div>
   </div>
 </div>
       </div>
-    </Layout>
+        </Layout>
     </>
-  );
-};
+  )
+}
 
-export default CreateProduct;
-
-
-// const CreateProduct = () => {
-//   const navigate = useNavigate();
-//   const [categories, setCategories] = useState([]);
-//   const [name, setName] = useState("");
-//   const [description, setDescription] = useState("");
-//   const [price, setPrice] = useState("");
-//   const [category, setCategory] = useState("");
-//   const [quantity, setQuantity] = useState("");
-//   const [shipping, setShipping] = useState("");
-//   const [photo, setPhoto] = useState("");
-
-//   //get all category
-//   const getAllCategory = async () => {
-//     try {
-//       const { data } = await axios.get("/api/v1/category/get-category");
-//       if (data?.success) {
-//         setCategories(data?.category);
-//       }
-//     } catch (error) {
-//       console.log(error);
-//       toast.error("Something wwent wrong in getting catgeory");
-//     }
-//   };
-
-//   useEffect(() => {
-//     getAllCategory();
-//   }, []);
-
-//   //create product function
-//   const handleCreate = async (e) => {
-//     e.preventDefault();
-//     try {
-//       const productData = new FormData();
-//       productData.append("name", name);
-//       productData.append("description", description);
-//       productData.append("price", price);
-//       productData.append("quantity", quantity);
-//       productData.append("photo", photo);
-//       productData.append("category", category);
-//       const { data } = axios.post(
-//         "/api/v1/product/create-product",
-//         productData
-//       );
-//       if (data?.success) {
-//         toast.error(data?.message);
-//       } else {
-//         toast.success("Product Created Successfully");
-//         navigate("/dashboard/admin/products");
-//       }
-//     } catch (error) {
-//       console.log(error);
-//       toast.error("something went wrong");
-//     }
-//   };
+export default UpdateProduct

@@ -25,10 +25,9 @@ app.use(morgan('dev'));
 app.use(cors());
 
 //routes
-app.use('/',authRoutes);
-app.use('/',categoryRoutes);
-app.use('/',productRoutes);
-
+app.use('/',authRoutes)
+app.use('/category',categoryRoutes)
+app.use('/product',productRoutes)
 //rest api
 app.get('/',(req,res)=>{
     res.send({

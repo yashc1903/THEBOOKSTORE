@@ -3,6 +3,7 @@ import { NavLink,Link } from 'react-router-dom'
 import { CiShoppingCart } from "react-icons/ci";
 import { useAuth } from '../context/auth';
 import toast from 'react-hot-toast';
+import SearchInput from './Form/SearchInput';
 
 
 
@@ -55,7 +56,7 @@ function Header() {
                 >
                     <div className="">
                         <ul className='flex flex-col md:flex-row md:mx-6'>
-                            
+                            <SearchInput />
                         <li className="my-2 text-gray-700 text-3xl transition-colors duration-300 transform dark:text-gray-200 hover:text-blue-500 dark:hover:text-blue-400 md:mx-4 md:my-0" >
                             <NavLink to='/'  >Home</NavLink>
                         </li>
