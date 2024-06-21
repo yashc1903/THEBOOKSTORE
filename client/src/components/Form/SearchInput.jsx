@@ -4,13 +4,13 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
 const SearchInput = () => {
-  const { value, setValues } = useSearch();
+  const { value, setValue } = useSearch();
   const navigate = useNavigate();
   const handleSubmit  = async (e) => {
         e.preventDefault()
     try{
         const {data} = await axios.get(`/api/v1/product/search/${value?.keyword}`)
-        setValues({...value, results: data });
+        setValue({...value, results: data });
         navigate("/search");
     } catch (error) {
         console.log(error)
@@ -25,7 +25,7 @@ const SearchInput = () => {
             placeholder="Search" 
             aria-label="Search" 
             value = {value?.keyword}
-            onChange={(e) => setValues({ ...value, keyword: e.target.value})} 
+            onChange={(e) => setValue({ ...value, keyword: e.target.value})} 
             />
             <button className="btn btn-outline-success" type="submit">
             Search

@@ -3,19 +3,20 @@ import { Layout } from 'antd'
 import { useSearch } from '../context/search';
 
 const Search = () => {
-    const {values, setValues} = useSearch();
+  const { value } = useSearch();
+  
   return (
     <Layout title = {'Search results'}>
         <div className="container">
             <div className="text-center">
                 <h1>Search Results</h1>
                 <h6>
-                    {values?.results.length < 1 
+                    {value?.results.length < 1 
                         ? 'No Products Found' 
-                        : `Fount ${values?.results.length}`}
+                        : `Fount ${value?.results.length}`}
                 </h6>
                 <div className="grid   grid-cols-3  gap-4">
-          {values?.results.map((product) => (
+          {value?.results.map((product) => (
               <div
                 key={product._id}
                 className="hover:z-50"
