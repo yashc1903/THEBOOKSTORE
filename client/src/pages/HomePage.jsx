@@ -1,7 +1,7 @@
 import React ,{useState,useEffect} from 'react'
 import Layout from '../components/Layout'
 import {Prices} from '../components/Prices.js'
-import Loader from '../components/Loader.jsx'
+import { useNavigate } from 'react-router-dom'
 
 import axios from 'axios'
 import {Button, Checkbox,Radio} from 'antd'
@@ -17,6 +17,8 @@ function HomePage() {
     const [page,setPage]  = useState(1)
     const [loading,setLoading] = useState(false)
 
+
+    const navigate  =useNavigate()
     //get total count 
 
     
@@ -118,7 +120,7 @@ function HomePage() {
   <Layout>
       <div className="mt-3 p-6 flex flex-wrap md:flex-nowrap">
         <div className="w-full md:w-1/4 bg-gray-100 p-4 rounded-lg shadow-md">
-          <Button className=' p-4 h-10 ml-36 mb-4 text-xl rounded-md text-white bg-gray-600 ' onClick={()=>window.location.reload()}>Reset Filters</Button>
+          <Button className=' p-4 h-14 font-bold ml-36 mb-4 text-xl rounded-md text-white bg-gray-600 ' onClick={()=>window.location.reload()}>Reset Filters</Button>
           <h1 className="text-center text-3xl font-bold text-gray-700 mb-4">
             Filter by Category
           </h1>
@@ -157,6 +159,7 @@ function HomePage() {
               <div
                 key={product._id}
                 className="hover:z-50"
+                
               >
                 <div
                   className="card bg-white border-2 border-gray-800 shadow-lg rounded-lg flex flex-col justify-between p-4 gap-4 h-full transform transition-transform duration-300 hover:scale-110 hover:z-10"
@@ -183,6 +186,10 @@ function HomePage() {
                       <span className="text-gray-600">Rs</span>
                       {` ${product.price}`}
                     </div>
+                    <button className="w-36 h-10 rounded-md p-6 py-2  border-2 border-black font-sm text-gray-800 bg-transparent cursor-pointer transition-all duration-300 relative  shadow-inner shadow-gray-300 hover:shadow-none focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500"
+                    onClick={()=>navigate(`/product/${product.slug}`)}>
+                      More Details
+                    </button>
                     <button className="card-btn border-2 hover:scale-110 border-gray-800 rounded p-2 transition-all duration-300 hover:border-blue-500">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -223,6 +230,7 @@ function HomePage() {
           </div>
         </div>
       </div>
+     
     </Layout>
 </>
   )
