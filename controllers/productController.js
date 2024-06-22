@@ -1,5 +1,6 @@
 import slugify from 'slugify'
 import productModel from '../models/productModel.js'
+import categoryModel from '../models/categoryModel.js'
 import fs from 'fs'
 
 
@@ -231,6 +232,72 @@ export const productListController = async (req,res) => {
         console.log(error)
         res.status(500).send({
             success:false,
+            error,
+            message:"something went wrong"
+        })
+    }
+}
+
+export const searchController  = async (req,res) =>{
+    try {
+        const {keyword} = req.params
+        const results = await productModel.find({
+            $or:[
+                {name:{ $regex: keyword, $options: "i" }},
+                {description:{ $regex: keyword, $options: "i" }}
+            ]
+        }).select("-photo");
+        
+     res.json(results)
+        
+        
+    
+    } catch (error) {
+        console.log(error)
+        res.status(500).send({
+            success:false,
+            error,
+            message :"something went wrong"
+        })
+    }
+}
+
+export const relatedProductsController = async(req,res) => {
+    try {
+        const {pid,cid} = req.params
+        const products = await productModel.find({
+            category:cid,
+            _id: {$ne:pid}
+        }).select('-photo').limit(6).populate('category')
+
+        res.status(200).send({
+            success:true,
+            products
+        })
+
+    } catch (error) {
+        console.log(error)
+        res.st(500).send({
+            success:false,
+            error,
+            message:"something went wrong"
+        })
+    }
+}
+
+export const productCategoryController  =async(req,res) => {
+    try {
+        const category = await categoryModel.findOne({slug:req.params.slug})
+        const products  = await productModel.find({category}).populate('category')
+        res.status(200).send({
+            success:true,
+            category,
+            products
+        })
+    } catch (error) {
+        console.log(error)
+        res.status(500).send({
+            success:true,
             error,
             message:"something went wrong"
         })

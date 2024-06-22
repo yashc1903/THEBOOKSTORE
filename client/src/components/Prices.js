@@ -29,5 +29,10 @@ export const Prices = [
         name:"Rs. 2001 to 10000",
         array:[2001,10000]
     },
+    {
+        _id:6,
+        name:"Rs. 10001 to 20000",
+        array:[10001,20000]
+    },
 
 ]
