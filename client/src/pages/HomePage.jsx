@@ -2,6 +2,7 @@ import React ,{useState,useEffect} from 'react'
 import Layout from '../components/Layout'
 import {Prices} from '../components/Prices.js'
 import { useNavigate } from 'react-router-dom'
+import { useCart } from '../context/cart.jsx'
 
 import axios from 'axios'
 import {Button, Checkbox,Radio} from 'antd'
@@ -16,6 +17,9 @@ function HomePage() {
     const [total,setTotal]  = useState(0)
     const [page,setPage]  = useState(1)
     const [loading,setLoading] = useState(false)
+
+    //cart
+    const [cart,setCart] = useCart()
 
 
     const navigate  =useNavigate()
@@ -183,14 +187,20 @@ function HomePage() {
                   </div>
                   <div className="card-footer flex justify-between items-center mt-auto">
                     <div className="card-price text-xl font-semibold text-gray-800">
-                      <span className="text-gray-600">Rs</span>
+                      <span className="text-gray-600">₹ </span>
                       {` ${product.price}`}
                     </div>
                     <button className="w-36 h-10 rounded-md p-6 py-2  border-2 border-black font-sm text-gray-800 bg-transparent cursor-pointer transition-all duration-300 relative  shadow-inner shadow-gray-300 hover:shadow-none focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500"
                     onClick={()=>navigate(`/product/${product.slug}`)}>
                       More Details
                     </button>
-                    <button className="card-btn border-2 hover:scale-110 border-gray-800 rounded p-2 transition-all duration-300 hover:border-blue-500">
+                    <button 
+                    onClick={()=>{
+                      setCart([...cart,product])
+                      localStorage.setItem('cart',JSON.stringify([...cart,product]))
+                      toast.success(` "${product.name}" added to the cart`)
+                    }}
+                    className="card-btn border-2 hover:scale-110 border-gray-800 rounded p-2 transition-all duration-300 hover:border-blue-500">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 512 512"

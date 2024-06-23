@@ -2,12 +2,15 @@ import React, { useEffect, useState } from 'react'
 import Layout from '../components/Layout'
 import { useParams ,useNavigate} from 'react-router-dom'
 import axios from 'axios'
+import toast from 'react-hot-toast'
+import { useCart } from '../context/cart'
 
 
 
 function CategoryProduct() {
   const [products,setProducts] =  useState([])
   const [category,setCategory] =  useState([])
+  const [cart,setCart] = useCart()
   const params = useParams()
   const navigate = useNavigate()
   const getProductsByCategory = async() => {
@@ -64,7 +67,13 @@ function CategoryProduct() {
                 >
                   More Details
                 </button>
-                <button className="card-btn border-2 hover:scale-110 border-gray-800 rounded p-2 transition-all duration-300 hover:border-blue-500">
+                <button
+                onClick={()=>{
+                  setCart([...cart,product])
+                  localStorage.setItem('cart',JSON.stringify([...cart,product]))
+                  toast.success(` "${product.name}" added to the cart`)
+                }}
+                 className="card-btn border-2 hover:scale-110 border-gray-800 rounded p-2 transition-all duration-300 hover:border-blue-500">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 512 512"
