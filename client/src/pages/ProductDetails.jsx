@@ -2,12 +2,17 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate, useParams } from 'react-router-dom';
 import Layout from '../components/Layout'; // Ensure Layout is properly imported
+import toast from 'react-hot-toast';
+import { useCart } from '../context/cart';
 
 function ProductDetails() {
   const params = useParams();
   const [product, setProduct] = useState([]);
   const [relatedProducts,setRelatedProducts]  =useState([])
+  const [cart,setCart] =useCart()
   const navigate = useNavigate()
+
+  
 
   const getProduct = async () => {
     try {
@@ -51,9 +56,15 @@ function ProductDetails() {
           <h1 className="text-6xl font-semibold mb-4 text-gray-800"><span className=' font-bold'> Name:</span> {product.name}</h1>
           <h1 className="text-4xl mb-4 text-gray-700"> <span className=' font-bold'> Author:</span> {product.author}</h1>
           <h1 className="text-lg mb-4   text-gray-600"> <span className=' font-bold text-xl'>Description:</span> {product.description}</h1>
-          <h1 className="text-4xl font-semibold mb-4 text-gray-800"><span className=' font-bold'> Price:</span> Rs. {product.price}</h1>
+          <h1 className="text-4xl font-semibold mb-4 text-gray-800"><span className=' font-bold'> Price:</span> ₹  {product.price}</h1>
           <h1 className="text-3xl text-gray-700"><span className=' font-bold'> Category:</span> {product.category?.name}</h1>
-          <button className="card-btn border-2 hover:scale-110 border-gray-800 rounded p-2  transition-all duration-300 hover:border-blue-500">
+          <button
+          onClick={()=>{
+            setCart([...cart,product])
+            localStorage.setItem('cart',JSON.stringify([...cart,product]))
+            toast.success(` "${product.name}" added to the cart`)
+          }}
+           className="card-btn border-2 hover:scale-110 border-gray-800 rounded p-2  transition-all duration-300 hover:border-blue-500">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 512 512"
@@ -107,14 +118,20 @@ function ProductDetails() {
                   </div>
                   <div className="card-footer flex justify-between items-center mt-auto">
                     <div className="card-price text-xl font-semibold text-gray-800">
-                      <span className="text-gray-600">Rs</span>
+                      <span className="text-gray-600">₹ </span>
                       {` ${product.price}`}
                     </div>
                     <button className="w-36 h-10 rounded-md p-6 py-2  border-2 border-black font-sm text-gray-800 bg-transparent cursor-pointer transition-all duration-300 relative  shadow-inner shadow-gray-300 hover:shadow-none focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500"
                     onClick={()=>navigate(`/product/${product.slug}`)}>
                       More Details
                     </button>
-                    <button className="card-btn border-2 hover:scale-110 border-gray-800 rounded p-2 transition-all duration-300 hover:border-blue-500">
+                    <button 
+                    onClick={()=>{
+                      setCart([...cart,product])
+                      localStorage.setItem('cart',JSON.stringify([...cart,product]))
+                      toast.success(` "${product.name}" added to the cart`)
+                    }}
+                    className="card-btn border-2 hover:scale-110 border-gray-800 rounded p-2 transition-all duration-300 hover:border-blue-500">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 512 512"

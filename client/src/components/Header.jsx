@@ -5,12 +5,14 @@ import { useAuth } from '../context/auth';
 import toast from 'react-hot-toast';
 import SearchInput from './Form/SearchInput';
 import useCategory from '../hooks/useCategory';
-
+import { useCart } from '../context/cart';
+import { Badge } from 'antd';
 
 
 
 function Header() {
     const [isOpen, setIsOpen] = useState(false);
+    const [cart] = useCart()
     const [categoryIsOpen,setCategoryIsOpen]  =useState(false)
     const categories  =useCategory()
     const [auth,setAuth]=useAuth()
@@ -25,9 +27,9 @@ function Header() {
     }
   return (
     <>
-     <nav className="relative bg-white shadow dark:bg-gray-800">
-      <div className="container px-6 py-4 mx-auto md:flex md:justify-between md:items-center shadow-md">
-        <div className="flex items-center justify-between w-full md:w-auto">
+     <nav className="relative bg-white shadow h-32 dark:bg-gray-800">
+      <div className="container px-6 py-4  mx-auto md:flex md:justify-between md:items-center shadow-md">
+        <div className="flex items-center  justify-between w-full md:w-auto">
           <Link to='/'>
             <div className='flex justify-center items-center'>
               <img className="h-14 sm:h-7" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS8f2qlmQft8PNyJKr6YWqN9X7tz_c3ev5cqQ&s" alt="Logo" />
@@ -93,10 +95,10 @@ function Header() {
             
             {!auth.user ? (
               <>
-                <li className="my-2 text-gray-700 text-3xl transition-colors duration-300 transform dark:text-gray-200 hover:text-blue-500 dark:hover:text-blue-400 md:mx-4 md:my-0">
-                  <NavLink to='/register'>Sign up</NavLink>
+                <li className="my-2 text-gray-700  text-3xl  transition-colors duration-300 transform dark:text-white hover:text-blue-500 dark:hover:text-blue-400 md:mx-4 md:my-0">
+                  <NavLink to='/register'>SignUp</NavLink>
                 </li>
-                <li className="my-2 text-gray-700 text-3xl transition-colors duration-300 transform dark:text-gray-200 hover:text-blue-500 dark:hover:text-blue-400 md:mx-4 md:my-0">
+                <li className="my-2 text-gray-700 text-3xl transition-colors duration-300 transform dark:text-white hover:text-blue-500 dark:hover:text-blue-400 md:mx-4 md:my-0">
                   <NavLink to='/login'>Login</NavLink>
                 </li>
               </>
@@ -141,7 +143,13 @@ function Header() {
                 )}
               </div>
             )}
-            <li className='flex'> <CiShoppingCart className='inline-block w-10 h-10 text-white' /> <span className="text-white">0</span> </li>
+            <Badge count={cart.length} showZero>
+                <NavLink to={'/cart'}>
+
+             <CiShoppingCart className='inline-block w-10 h-10 text-white   ' /> 
+                </NavLink>
+
+            </Badge>
           </ul>
           
             
