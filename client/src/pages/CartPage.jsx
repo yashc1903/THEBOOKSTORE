@@ -38,18 +38,17 @@ function CartPage() {
         <div className="min-w-full text-center p-4">
             <h1 className="text-4xl font-bold mb-4">Your Cart</h1>
             <h1 className="text-2xl mb-4">
-                {auth?.token && auth?.user?.name} {cart?.length >= 1 ? `You have ${cart.length} items in the cart` : 'Your cart is empty'}
+               <span className=' text-emerald-600 text-3xl'>{auth?.token && auth?.user?.name} </span>  {cart?.length >= 1 ? `You have ${cart.length} items in the cart` : 'Your cart is empty'}
             </h1>
-            <h1 className="text-2xl mb-6">
-                {cart?.length > 1 ? `You have ${cart.length} items in the cart` : 'Your cart is empty'}
-            </h1>
+            
         </div>
 
         <div className="min-w-full flex min-h-screen p-4">
             <div className="w-full md:w-1/2 text-center p-4">
+            <h1 className="text-4xl font-bold mb-4">Cart Items</h1>
                 <div>
                     {cart?.map(item => (
-                        <div className="flex flex-col md:flex-row items-center justify-between p-4 mb-4 rounded-md shadow-md w-full bg-white" key={item._id}>
+                        <div className="flex flex-col md:flex-row items-center justify-between p-4 mb-4 rounded-md shadow-2xl w-full bg-white" key={item._id}>
                             <img src={`http://localhost:8080/product/product-photo/${item._id}`} alt={item.name} className="h-48 w-full md:w-1/3 rounded-md mb-4 md:mb-0 mr-0 md:mr-4" />
                             <div className="flex flex-col text-start w-full md:w-2/3">
                                 <ul>
