@@ -45,7 +45,7 @@ function CartPage() {
 
         <div className="min-w-full flex min-h-screen p-4">
             <div className="w-full md:w-1/2 text-center p-4">
-            <h1 className="text-4xl font-bold mb-4">Cart Items</h1>
+            <h2 className="text-4xl font-bold mb-4">Cart Items</h2>
                 <div>
                     {cart?.map(item => (
                         <div className="flex flex-col md:flex-row items-center justify-between p-4 mb-4 rounded-md shadow-2xl w-full bg-white" key={item._id}>
@@ -70,10 +70,36 @@ function CartPage() {
                 </div>
             </div>
             <div className="w-full md:w-1/2 text-center p-4 bg-white rounded-md shadow-md">
-                <h1 className="text-4xl font-bold mb-4">Cart Summary</h1>
+                <h3 className="text-4xl font-bold mb-4">Cart Summary</h3>
                 <p className="text-xl mb-4">TOTAL | CHECKOUT | PAYMENT</p>
                 <hr className="mb-4" />
-                <h1 className="text-3xl font-bold">Total: ₹ {totalPrice()} </h1>
+                <h4 className="text-3xl font-bold">Total: ₹ {totalPrice()} </h4>
+                {auth?.user?.address ? (
+                    <>
+                    <div className="mb-3">
+                        <h4>Current Address</h4>
+                        <h5>{auth?.user?.address}</h5>
+                        <button className="btn btn-outline-warning"
+                        onClick={() => navigate("/dashboard/user/profile")}
+                        >Update Address</button>
+                        </div>
+                        </>
+                ) : (
+                    <div className="mb-3">
+                    {
+                        auth?.token ?(
+                            <button className="btn btn-outline-warning" onClick={() => navigate("/dashboard/user/profile")}> Update Address</button> 
+                        ) :(
+                            <button className="btn btn-outline-warning" onClick={() => navigate("/login", {
+                                state: "/cart",
+                            })
+                        }
+                        >
+                            please login to checkout</button>
+                        )
+                    }
+                    </div>
+                    )}
             </div>
         </div>   
     </Layout>
@@ -82,3 +108,4 @@ function CartPage() {
 }
 
 export default CartPage
+            
