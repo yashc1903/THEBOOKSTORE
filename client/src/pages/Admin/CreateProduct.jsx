@@ -71,12 +71,12 @@ function CreateProduct() {
     
     <>
         <Layout>
-        <div className='flex justify-around items-center'>
-        <div>
+        <div className='flex justify-around items-center w-full min-h-screen '>
+        <div className=' w-1/3  static'>
 
-        <AdminMenu/>
+        <AdminMenu className="" />
         </div>
-        <div className='flex justify-center items-center border w-1/2 h-screen'>
+        <div className='flex justify-center items-center border w-2/3 h-screen'>
   <div className='text-center  w-full'>
     <h1 className='text-3xl mt-4'>Create Product</h1>
     

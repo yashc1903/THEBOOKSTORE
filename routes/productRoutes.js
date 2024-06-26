@@ -6,6 +6,7 @@ import formidable from "express-formidable"
 const router  = express.Router()
 
 router.post('/create-product',requireSignIn,isAdmin,formidable(),createProductController)//create product || method post
+router.post('/sell-product',requireSignIn,formidable(),createProductController)//create product || method post
 
 router.put('/update-product/:pid',requireSignIn,isAdmin,formidable(),updateProductController)
 

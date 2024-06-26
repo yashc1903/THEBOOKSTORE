@@ -4,10 +4,16 @@ import { useSearch } from '../context/search'
 import { useCart } from '../context/cart'
 import { useNavigate } from 'react-router-dom'
 import toast from 'react-hot-toast'
+import { useAuth } from '../context/auth'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faHeart } from '@fortawesome/free-regular-svg-icons';
+import { useWishlist } from '../context/wishllist.jsx'
 
 function Search() {
     const [values,setValues] = useSearch()
     const [cart , setCart] = useCart()
+    const [auth] = useAuth()
+    const [wishlist,setWishlist] = useWishlist()
     const navigate = useNavigate()
   return (
     <>
@@ -54,6 +60,21 @@ function Search() {
                     onClick={()=>navigate(`/product/${product.slug}`)}>
                       More Details
                     </button>
+                    <div className="inline-block" key={product._id}>
+                      <FontAwesomeIcon
+                      icon={ faHeart }
+                      className={`cursor-pointer  `}
+                      size="2xl"
+                      onClick={()=>{
+                                
+                                setWishlist([...wishlist,product])
+                              localStorage.setItem('wishlist',JSON.stringify([...wishlist,product]))
+                              toast.success(` "${product.name}" added to the wishlist`)
+                             }}
+                       />
+                    </div>
+                    {auth?.user?.role !== 1 && 
+                    
                     <button
                     onClick={()=>{
                       setCart([...cart,product])
@@ -80,6 +101,8 @@ function Search() {
                         ></path>
                       </svg>
                     </button>
+                    }
+
                   </div>
                 </div>
               </div>

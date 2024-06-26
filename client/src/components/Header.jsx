@@ -1,18 +1,20 @@
 import React, { useState } from 'react'
 import { NavLink,Link } from 'react-router-dom'
-import { CiShoppingCart } from "react-icons/ci";
+import { CiShoppingCart,CiHeart  } from "react-icons/ci";
 import { useAuth } from '../context/auth';
 import toast from 'react-hot-toast';
 import SearchInput from './Form/SearchInput';
 import useCategory from '../hooks/useCategory';
 import { useCart } from '../context/cart';
 import { Badge } from 'antd';
+import { useWishlist } from '../context/wishllist';
 
 
 
 function Header() {
     const [isOpen, setIsOpen] = useState(false);
     const [cart] = useCart()
+    const [wishlist] = useWishlist()
     const [categoryIsOpen,setCategoryIsOpen]  =useState(false)
     const categories  =useCategory()
     const [auth,setAuth]=useAuth()
@@ -27,8 +29,8 @@ function Header() {
     }
   return (
     <>
-     <nav className="relative bg-white shadow h-32 dark:bg-gray-800">
-      <div className="container px-6 py-4  mx-auto md:flex md:justify-between md:items-center shadow-md">
+     <nav className="relative bg-white  h-32 dark:bg-gray-800">
+      <div className="container px-6 py-4  mx-auto md:flex md:justify-between md:items-center ">
         <div className="flex items-center  justify-between w-full md:w-auto">
           <Link to='/'>
             <div className='flex justify-center items-center'>
@@ -43,11 +45,12 @@ function Header() {
         </div>
 
         <div className={`absolute inset-x-0 z-20 w-full px-8 py-4 transition-all duration-300 ease-in-out bg-white dark:bg-gray-800 md:mt-0 md:p-0 md:top-0 md:relative md:bg-transparent md:w-auto md:opacity-100 md:translate-x-0 md:flex md:items-center`}>
-          <ul className='flex flex-col md:flex-row md:mx-6'>
+          <ul className='flex  md:flex-row justify-center items-center '>
             <li className="inline-block text-white text-3xl  transition-colors duration-300 transform dark:text-white hover:text-blue-500 dark:hover:text-blue-400 md:mx-4 md:my-0">
               <NavLink to='/' exact = "true">Home</NavLink>
             </li>
-
+            <li className="inline-block text-white text-3xl  transition-colors duration-300 transform dark:text-white hover:text-blue-500 dark:hover:text-blue-400 md:mx-4 md:my-0">
+              
             <div className="relative inline-block w-full">
       <button
         onClick={() => setCategoryIsOpen(!categoryIsOpen)}
@@ -91,14 +94,15 @@ function Header() {
         </div>
       )}
     </div>
-
-            
+            </li>
+            <li className=" text-white text-3xl  transition-colors duration-300 transform dark:text-white hover:text-blue-500 dark:hover:text-blue-400 -ml-10 ">
+              
             {!auth.user ? (
               <>
-                <li className="my-2 text-gray-700  text-3xl  transition-colors duration-300 transform dark:text-white hover:text-blue-500 dark:hover:text-blue-400 md:mx-4 md:my-0">
+                <li className="my-2 text-gray-700  text-3xl  transition-colors duration-300 transform dark:text-white hover:text-blue-500 dark:hover:text-blue-400 ">
                   <NavLink to='/register'>SignUp</NavLink>
                 </li>
-                <li className="my-2 text-gray-700 text-3xl transition-colors duration-300 transform dark:text-white hover:text-blue-500 dark:hover:text-blue-400 md:mx-4 md:my-0">
+                <li className=" text-gray-700 text-3xl transition-colors duration-300 transform dark:text-white hover:text-blue-500 dark:hover:text-blue-400 ">
                   <NavLink to='/login'>Login</NavLink>
                 </li>
               </>
@@ -122,8 +126,9 @@ function Header() {
                     </svg>
                 </button>
                 {isOpen && (
+                  
                   <div
-                    className="absolute right-0 z-20 w-48 py-2 mt-2 origin-top-right bg-white rounded-md shadow-xl dark:bg-gray-800"
+                    className="absolute right-0 z-20 w-48 py-2 mt-2  bg-white rounded-md shadow-xl dark:bg-gray-800"
                     onMouseLeave={() => setIsOpen(false)}
                   >
                     <NavLink
@@ -143,13 +148,28 @@ function Header() {
                 )}
               </div>
             )}
-            <Badge count={cart.length} showZero>
-                <NavLink to={'/cart'}>
-
-             <CiShoppingCart className='inline-block w-10 h-10 text-white   ' /> 
+            </li>
+            <li className="inline-block text-white text-3xl  transition-colors duration-300 transform dark:text-white hover:text-blue-500 dark:hover:text-blue-400 ">
+            <Badge count={wishlist.length} showZero className='-ml-10'>
+                <NavLink to={'/wishlist'}>
+              <CiHeart className="   w-10 h-10 text-white "   /> 
                 </NavLink>
-
             </Badge>
+            </li>
+
+            <li className="inline-block text-white text-3xl  transition-colors duration-300 transform dark:text-white hover:text-blue-500 dark:hover:text-blue-400 ">
+              
+             { auth?.user?.role !== 1 &&
+            <Badge count={cart.length} showZero className='-ml-28'>
+                <NavLink to={'/cart'}>
+              <CiShoppingCart className="  w-10 h-10 text-white "   /> 
+                </NavLink>
+            </Badge>
+                }
+            </li>
+
+            
+
           </ul>
           
             

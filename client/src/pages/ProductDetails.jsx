@@ -4,13 +4,20 @@ import { useNavigate, useParams } from 'react-router-dom';
 import Layout from '../components/Layout'; // Ensure Layout is properly imported
 import toast from 'react-hot-toast';
 import { useCart } from '../context/cart';
+import { useAuth } from '../context/auth';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faHeart } from '@fortawesome/free-regular-svg-icons';
+import { useWishlist } from '../context/wishllist.jsx'
 
 function ProductDetails() {
   const params = useParams();
   const [product, setProduct] = useState([]);
   const [relatedProducts,setRelatedProducts]  =useState([])
+  const [auth] = useAuth()
   const [cart,setCart] =useCart()
   const navigate = useNavigate()
+
+  const [wishlist,setWishlist] = useWishlist()
 
   
 
@@ -58,6 +65,9 @@ function ProductDetails() {
           <h1 className="text-lg mb-4   text-gray-600"> <span className=' font-bold text-xl'>Description:</span> {product.description}</h1>
           <h1 className="text-4xl font-semibold mb-4 text-gray-800"><span className=' font-bold'> Price:</span> ₹  {product.price}</h1>
           <h1 className="text-3xl text-gray-700"><span className=' font-bold'> Category:</span> {product.category?.name}</h1>
+          {
+            auth?.user?.role !== 1 && 
+
           <button
           onClick={()=>{
             setCart([...cart,product])
@@ -84,6 +94,22 @@ function ProductDetails() {
                         ></path>
                       </svg>
                     </button>
+                    
+          }
+          <div className="inline-block ml-4" key={product._id}>
+                      <FontAwesomeIcon
+                      icon={ faHeart }
+                      className={`cursor-pointer  `}
+                      size="3x"
+                      onClick={()=>{
+                                
+                                setWishlist([...wishlist,product])
+                              localStorage.setItem('wishlist',JSON.stringify([...wishlist,product]))
+                              toast.success(` "${product.name}" added to the wishlist`)
+                             }}
+                       />
+                    </div>
+          
         </div>
       </div>
       <hr  className=' border-t-4  border-black ml-4 mr-4 mt-4'/>
@@ -125,6 +151,22 @@ function ProductDetails() {
                     onClick={()=>navigate(`/product/${product.slug}`)}>
                       More Details
                     </button>
+                    <div className="inline-block" key={product._id}>
+                      <FontAwesomeIcon
+                      icon={ faHeart }
+                      className={`cursor-pointer  `}
+                      size="2xl"
+                      onClick={()=>{
+                                
+                                setWishlist([...wishlist,product])
+                              localStorage.setItem('wishlist',JSON.stringify([...wishlist,product]))
+                              toast.success(` "${product.name}" added to the wishlist`)
+                             }}
+                       />
+                    </div>
+
+                    {auth?.user?.role !== 1 && 
+                    
                     <button 
                     onClick={()=>{
                       setCart([...cart,product])
@@ -151,6 +193,7 @@ function ProductDetails() {
                         ></path>
                       </svg>
                     </button>
+                    }
                   </div>
                 </div>
               </div>

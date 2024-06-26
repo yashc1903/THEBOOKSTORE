@@ -7,13 +7,13 @@ function Users() {
 
     <>
         <Layout>
-        <div className='flex justify-around items-center'>
-        <div>
+        <div className='flex justify-center min-h-screen min-w-full  items-center'>
+        <div className=' w-1/3'>
 
       <AdminMenu/>
         </div>
-        <div className='border w-1/2 h-96 '>
-          <h1 className='text-3xl w-full mt-10'>All Users</h1>
+        <div className=' w-2/3 border min-h-full '>
+          <h1 className='text-3xl w-full mt-10 text-center'>All Users</h1>
          
         </div>
       </div>
