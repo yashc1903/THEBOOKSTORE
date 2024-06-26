@@ -4,6 +4,10 @@ import { useParams ,useNavigate} from 'react-router-dom'
 import axios from 'axios'
 import toast from 'react-hot-toast'
 import { useCart } from '../context/cart'
+import { useAuth } from '../context/auth'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faHeart } from '@fortawesome/free-regular-svg-icons';
+import { useWishlist } from '../context/wishllist.jsx'
 
 
 
@@ -11,6 +15,8 @@ function CategoryProduct() {
   const [products,setProducts] =  useState([])
   const [category,setCategory] =  useState([])
   const [cart,setCart] = useCart()
+  const [auth,setAuth] = useAuth()
+  const [wishlist,setWishlist] = useWishlist()
   const params = useParams()
   const navigate = useNavigate()
   const getProductsByCategory = async() => {
@@ -67,6 +73,22 @@ function CategoryProduct() {
                 >
                   More Details
                 </button>
+                <div className="inline-block" key={product._id}>
+                      <FontAwesomeIcon
+                      icon={ faHeart }
+                      className={`cursor-pointer  `}
+                      size="2xl"
+                      onClick={()=>{
+                                
+                                setWishlist([...wishlist,product])
+                              localStorage.setItem('wishlist',JSON.stringify([...wishlist,product]))
+                              toast.success(` "${product.name}" added to the wishlist`)
+                             }}
+                       />
+                    </div>
+
+                { auth?.user?.role !== 1 && 
+
                 <button
                 onClick={()=>{
                   setCart([...cart,product])
@@ -85,6 +107,7 @@ function CategoryProduct() {
                     <path d="m158.08 165.49a15 15 0 0 1 -14.23-10.26l-25.71-77.23h-47.44a15 15 0 1 1 0-30h58.3a15 15 0 0 1 14.23 10.26l29.13 87.49a15 15 0 0 1 -14.23 19.74z"></path>
                   </svg>
                 </button>
+                }
               </div>
             </div>
           </div>

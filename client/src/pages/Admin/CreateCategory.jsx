@@ -95,11 +95,11 @@ function CreateCategory() {
   return (
     <>
   <Layout>
-    <div className="flex flex-col md:flex-row justify-around items-start md:items-center">
-      <div className="w-full md:w-1/4 p-4">
-        <AdminMenu />
+    <div className="flex flex-col md:flex-row justify-center items-center md:items-center">
+      <div className="w-1/3 p-4 ">
+        <AdminMenu  className= "mx-auto"/>
       </div>
-      <div className="flex flex-col justify-center items-center border w-full md:w-1/2 p-6">
+      <div className="flex flex-col justify-center items-center border w-2/3 p-6">
         <div className="text-center w-full">
           <h1 className="text-3xl mt-10">Manage Category</h1>
           <div className="mt-4">

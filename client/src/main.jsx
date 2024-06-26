@@ -7,6 +7,7 @@ import { AuthProvider } from './context/auth'
 import 'antd/dist/reset.css'
 import { SearchProvider } from './context/search.jsx'
 import { CartProvider } from './context/cart.jsx'
+import { WishlistProvider } from './context/wishllist.jsx'
 
 
 ReactDOM.createRoot(document.getElementById('root')).render(
@@ -14,11 +15,13 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   
     <AuthProvider>
       <SearchProvider>
-        <CartProvider>
-          <BrowserRouter>
-            <App />
-          </BrowserRouter>
-        </CartProvider>
+        <WishlistProvider>
+          <CartProvider>
+            <BrowserRouter>
+              <App />
+            </BrowserRouter>
+          </CartProvider>
+        </WishlistProvider>
       </SearchProvider>
     </AuthProvider>
 

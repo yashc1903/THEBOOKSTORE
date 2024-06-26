@@ -74,6 +74,41 @@ function CartPage() {
                 <p className="text-xl mb-4">TOTAL | CHECKOUT | PAYMENT</p>
                 <hr className="mb-4" />
                 <h1 className="text-3xl font-bold">Total: ₹ {totalPrice()} </h1>
+                {auth?.user?.address ? (
+        <>
+          <div className="bg-white shadow-md rounded p-6">
+            <h1 className="text-xl font-bold mb-2">Current Address</h1>
+            <h1 className="text-lg mb-4">{auth?.user?.address}</h1>
+            <button 
+              onClick={() => navigate(`/dashboard/user/profile`)} 
+              className="bg-blue-500 text-white font-semibold py-2 px-4 rounded hover:bg-blue-700 transition-colors"
+            >
+              Update Address
+            </button>
+          </div>
+        </>
+      ) : (
+        <>
+          <div className="bg-white shadow-md rounded p-6">
+            {auth?.token ? (
+              <button 
+                onClick={() => navigate(`/dashboard/user/profile`)} 
+                className="bg-blue-500 text-white font-semibold py-2 px-4 rounded hover:bg-blue-700 transition-colors"
+              >
+                Update Address
+              </button>
+            ) : (
+              <button 
+                onClick={() => navigate("/login", { state: '/cart' })} 
+                className="bg-yellow-500 text-white font-semibold py-2 px-4 rounded hover:bg-red-700 transition-colors"
+              >
+                Please Login to Checkout
+              </button>
+            )}
+          </div>
+        </>
+      )}
+
             </div>
         </div>   
     </Layout>

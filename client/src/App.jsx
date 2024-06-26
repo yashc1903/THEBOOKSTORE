@@ -26,6 +26,8 @@ import ProductDetails from './pages/ProductDetails'
 import Categories from './pages/Categories'
 import CategoryProduct from './pages/CategoryProduct'
 import CartPage from './pages/CartPage'
+import SellProduct from './pages/user/SellProduct'
+import WishlistPage from './pages/WishlistPage'
 
 
 
@@ -46,11 +48,13 @@ function App() {
         <Route path='/search' element={<Search/>}/>
         <Route path='/categories' element={<Categories/>}/>
         <Route path='/cart' element={<CartPage/>}/>
+        <Route path='/wishlist' element={<WishlistPage/>}/>
         <Route path='/category/:slug' element={<CategoryProduct/>}/>
         <Route path='/dashboard' element={<PrivateRoute/>}>
           <Route path='user' element={<Dashboard/>}/>
           <Route path='user/profile' element={<Profile/>}/>
           <Route path='user/orders' element={<Orders/>}/>
+          <Route path='user/sell-product' element={<SellProduct/>}/>
         </Route>
         <Route path='/dashboard' element={<AdminRoute/>}>
           <Route path='admin' element={<AdminDashboard/>}/>

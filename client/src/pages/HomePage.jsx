@@ -1,12 +1,17 @@
 import React ,{useState,useEffect} from 'react'
 import Layout from '../components/Layout'
 import {Prices} from '../components/Prices.js'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useCart } from '../context/cart.jsx'
-
+import { CiHeart } from "react-icons/ci";
 import axios from 'axios'
 import {Button, Checkbox,Radio} from 'antd'
 import toast from 'react-hot-toast'
+import { useAuth } from '../context/auth.jsx'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faHeart } from '@fortawesome/free-regular-svg-icons';
+import { useWishlist } from '../context/wishllist.jsx'
+
 
 function HomePage() {
     
@@ -17,9 +22,14 @@ function HomePage() {
     const [total,setTotal]  = useState(0)
     const [page,setPage]  = useState(1)
     const [loading,setLoading] = useState(false)
+    const [auth,setAuth]=  useAuth()
+    
+
+  
 
     //cart
     const [cart,setCart] = useCart()
+    const [wishlist,setWishlist] = useWishlist()
 
 
     const navigate  =useNavigate()
@@ -194,6 +204,22 @@ function HomePage() {
                     onClick={()=>navigate(`/product/${product.slug}`)}>
                       More Details
                     </button>
+                   
+                    <div className="inline-block" key={product._id}>
+                      <FontAwesomeIcon
+                      icon={ faHeart }
+                      className={`cursor-pointer  `}
+                      size="2xl"
+                      onClick={()=>{
+                                
+                                setWishlist([...wishlist,product])
+                              localStorage.setItem('wishlist',JSON.stringify([...wishlist,product]))
+                              toast.success(` "${product.name}" added to the wishlist`)
+                             }}
+                       />
+                    </div>
+                    
+                    {auth?.user?.role !== 1 && 
                     <button 
                     onClick={()=>{
                       setCart([...cart,product])
@@ -220,6 +246,7 @@ function HomePage() {
                         ></path>
                       </svg>
                     </button>
+                    }
                   </div>
                 </div>
               </div>

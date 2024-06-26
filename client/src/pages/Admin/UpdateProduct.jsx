@@ -110,12 +110,12 @@ function UpdateProduct() {
   return (
     <>
         <Layout>
-        <div className='flex justify-around items-center'>
-        <div>
+        <div className='flex justify-center items-center min-h-screen min-w-full'>
+        <div className=' w-1/3'>
 
         <AdminMenu/>
         </div>
-        <div className='flex justify-center items-center border w-1/2 h-screen'>
+        <div className='flex justify-center items-center border w-2/3 h-screen'>
   <div className='text-center  w-full'>
     <h1 className='text-3xl mt-4'>Update Product</h1>
     
