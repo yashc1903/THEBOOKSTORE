@@ -1,13 +1,12 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React from 'react';
+import { Link } from 'react-router-dom';
 
 function Footer() {
   return (
-    <>
-     <footer className="bg-white dark:bg-gray-900">
-      <div className="container px-6 py-8 mx-auto">
+    <footer className="bg-white dark:bg-gray-900">
+      <div className="container px-4 py-1 mx-auto">
         <div className="flex flex-col items-center text-center">
-          <Link to='/'>
+        <Link to='/'>
             <div className='flex justify-center items-center'>
 
             <img
@@ -19,48 +18,45 @@ function Footer() {
             </div>
           </Link>
 
-          <div className="flex flex-wrap justify-center mt-6 -mx-4">
+
+          <div className="flex flex-wrap justify-center mt-1">
             <Link
               to='/about'
-              className="mx-4 text-sm text-gray-600 transition-colors duration-300 hover:text-blue-500 dark:text-gray-300 dark:hover:text-blue-400"
-              aria-label="Home"
+              className="mx-1 text-sm text-gray-600 transition-colors duration-300 hover:text-blue-500 dark:text-gray-300 dark:hover:text-blue-400"
+              aria-label="About"
             >
               About
             </Link>
 
             <Link
               to='/contact'
-              className="mx-4 text-sm text-gray-600 transition-colors duration-300 hover:text-blue-500 dark:text-gray-300 dark:hover:text-blue-400"
-              aria-label="About"
+              className="mx-1 text-sm text-gray-600 transition-colors duration-300 hover:text-blue-500 dark:text-gray-300 dark:hover:text-blue-400"
+              aria-label="Contact"
             >
               Contact
             </Link>
 
-            
-
             <Link
               to="/privacy"
-              className="mx-4 text-sm text-gray-600 transition-colors duration-300 hover:text-blue-500 dark:text-gray-300 dark:hover:text-blue-400"
+              className="mx-1 text-sm text-gray-600 transition-colors duration-300 hover:text-blue-500 dark:text-gray-300 dark:hover:text-blue-400"
               aria-label="Privacy"
             >
               Privacy Policy
             </Link>
-
-            
           </div>
         </div>
 
-        <hr className="my-6 border-gray-200 md:my-10 dark:border-gray-700" />
+        <hr className="my-1 border-gray-200 dark:border-gray-700" />
 
         <div className="flex flex-col items-center sm:flex-row sm:justify-between">
           <p className="text-sm text-gray-500 dark:text-gray-300">
             © Copyright 2024. All Rights Reserved.
           </p>
 
-          <div className="flex -mx-2">
+          <div className="flex -mx-1">
             <a
               href="#"
-              className="mx-2 text-gray-600 transition-colors duration-300 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400"
+              className="mx-1 text-gray-600 transition-colors duration-300 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400"
               aria-label="Reddit"
             >
               <svg
@@ -75,7 +71,7 @@ function Footer() {
 
             <a
               href="#"
-              className="mx-2 text-gray-600 transition-colors duration-300 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400"
+              className="mx-1 text-gray-600 transition-colors duration-300 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400"
               aria-label="Facebook"
             >
               <svg
@@ -90,7 +86,7 @@ function Footer() {
 
             <a
               href="#"
-              className="mx-2 text-gray-600 transition-colors duration-300 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400"
+              className="mx-1 text-gray-600 transition-colors duration-300 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400"
               aria-label="Github"
             >
               <svg
@@ -106,8 +102,7 @@ function Footer() {
         </div>
       </div>
     </footer>
-    </>
-  )
+  );
 }
 
-export default Footer
+export default Footer;
