@@ -1,30 +1,24 @@
-import { useState,useContext,createContext,useEffect } from "react";
+import { useState, useContext, createContext, useEffect } from "react";
 
+const WishlistContext = createContext();
 
+const WishlistProvider = ({ children }) => {
+  const [wishlist, setWishlist] = useState([]);
 
-const WishlistContext= createContext()
+  useEffect(() => {
+    let existingWishlistItem = localStorage.getItem("wishlist");
+    if (existingWishlistItem) setWishlist(JSON.parse(existingWishlistItem));
+  }, []);
 
-
-
-
-const WishlistProvider = ({children}) => {
-    const [wishlist,setWishlist] = useState([])
-
-    useEffect(()=>{
-        let existingWishlistItem = localStorage.getItem('wishlist')
-        if(existingWishlistItem) setWishlist(JSON.parse(existingWishlistItem))
-    },[])
-    
-    return (
-        <WishlistContext.Provider value={[wishlist,setWishlist]}>
-            {children}
-        </WishlistContext.Provider>
-    )
-    
-}
+  return (
+    <WishlistContext.Provider value={[wishlist, setWishlist]}>
+      {children}
+    </WishlistContext.Provider>
+  );
+};
 
 //custom hook
 
-const useWishlist = ()=> useContext(WishlistContext)
+const useWishlist = () => useContext(WishlistContext);
 
-export{useWishlist,WishlistProvider}
+export { useWishlist, WishlistProvider };
