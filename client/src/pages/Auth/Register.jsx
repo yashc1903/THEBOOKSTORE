@@ -38,11 +38,11 @@ function Register() {
         <Layout>
         <div className='flex min-h-screen justify-center mx-auto'>
           <div className=' w-full ' >
-              <div className='pt-20 pl-32 w-full '>
-                  <h1 className='text-5xl text-purple-900 font-semibold '>Sign up</h1>
+              <div className='pt-7 pl-32 w-full '>
+                  <h1 className='text-5xl text-purple-900 font-semibold '>Sign Up</h1>
                   <h1 className='text-3xl text-gray-400 mt-6' > Connect & Collect..!</h1>
               </div>
-              <div className=' pt-20 pl-32 w-full'>
+              <div className=' pt-5 pl-32 w-full'>
                   <form className=" w-full max-w-[540px]" onSubmit={handleSubmit} >
                       
                       <div className="relative mb-6">
@@ -198,7 +198,7 @@ function Register() {
                           <button type='submit' className=' w-full bg-purple-800 h-20  rounded-lg text-white text-3xl mt-10'> Sign Up </button>
                       </div>
                       <div className="flex justify-center text-2xl  mx-auto">
-                          <p className="text-black text-center  mt-4"> Already have an account? <Link className=" text-blue-500 -200 hover:underline mt-4 text-2xl" to={'/login'} >Sign in</Link></p>
+                          <p className="text-black text-center  mt-4"> Already have an account? <Link className=" text-blue-500 -200 hover:underline mt-4 text-2xl" to={'/login'} >Login</Link></p>
                       </div>
 
                   </form>
