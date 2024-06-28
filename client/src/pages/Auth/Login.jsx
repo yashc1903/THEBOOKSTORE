@@ -42,11 +42,11 @@ function Login() {
         <Layout>
         <div className="flex min-h-screen justify-center mx-auto items-center">
     <div className=' w-full ' >
-        <div className='pt-20 pl-32 w-full '>
-            <h1 className='text-5xl text-purple-900 font-semibold '>Sign in</h1>
+        <div className='pt-7 pl-32 w-full '>
+            <h1 className='text-5xl text-purple-900 font-semibold '>Login</h1>
             <h1 className='text-3xl text-gray-400 mt-6' > Connect & Collect..!</h1>
         </div>
-        <div className=' pt-20 pl-32 w-full'>
+        <div className=' pt-5 pl-32 w-full'>
             <form className=" w-full max-w-[540px]" onSubmit={handleSubmit} >
                 
                 <div className="relative mb-6">
@@ -109,7 +109,7 @@ function Login() {
                     <Link className="text-xl text-blue-500 hover:underline mb-0.5" to={'/forgot-password'}>Forgot password?</Link>
                 </div>
                 <div className='w-full' >
-                    <button className=' w-full bg-purple-800 h-20  rounded-lg text-white text-3xl mt-10'type='submit' > Sign In </button>
+                    <button className=' w-full bg-purple-800 h-20  rounded-lg text-white text-3xl mt-10'type='submit' >Login</button>
                 </div>
                 <div className="flex items-center justify-between mt-4">
                     <span className=" border-b border-gray-600 w-2/4"></span>
@@ -135,11 +135,11 @@ function Login() {
                         <path opacity=".1" d="M15.7885132,5.890686C14.6939087,5.1806641,13.4018555,4.75,12,4.75c-3.8659668,0-7,3.1339722-7,7 c0,0.0421753,0.0005674,0.0751343,0.0012999,0.1171875C5.0687437,8.0595093,8.1762085,5,12,5 c1.4018555,0,2.6939087,0.4306641,3.7885132,1.140686c0.1675415,0.1088867,0.3403931,0.2111206,0.4978027,0.333374 l3.637146-3.4699707l-3.637146,3.2199707C16.1289062,6.1018066,15.9560547,5.9995728,15.7885132,5.890686z"></path>
                         <path opacity=".2" d="M12,0.25c2.9750366,0,5.6829224,1.0983887,7.7792969,2.8916016l0.144165-0.1375122 l-0.110014-0.0958166C17.7089558,1.0843592,15.00354,0,12,0C5.3725586,0,0,5.3725586,0,12 c0,0.0421753,0.0058594,0.0828857,0.0062866,0.125C0.0740356,5.5558472,5.4147339,0.25,12,0.25z" fill="#FFF"></path>
                         </svg>
-                        <span className="ml-2 text-2xl text-gray-500">Sign in with Google</span>
+                        <span className="ml-2 text-2xl text-gray-500">Login with Google</span>
                     </button>
                 </div>
                 <div className="flex justify-center text-2xl  mx-auto">
-                    <p className="text-black text-center  mt-4"> Are you new user?  <Link className=" text-blue-500 -200 hover:underline mt-4 text-2xl" to={'/register'} >Sign up</Link></p>
+                    <p className="text-black text-center  mt-4"> Are you new user?  <Link className=" text-blue-500 -200 hover:underline mt-4 text-2xl" to={'/register'} >Sign Up</Link></p>
                 </div>
             </form>
         </div>
