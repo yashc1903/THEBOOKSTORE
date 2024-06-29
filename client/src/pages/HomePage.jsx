@@ -115,7 +115,9 @@ function HomePage() {
   <Layout>
       <div className="mt-3 p-6 flex flex-wrap md:flex-nowrap">
         <div className="w-full md:w-1/4 bg-gray-100 p-4 rounded-lg shadow-md">
-          <Button className=' p-4 h-10 ml-36 mb-4 text-xl rounded-md text-white bg-gray-600 ' onClick={()=>window.location.reload()}>Reset Filters</Button>
+         <div className="flex justify-center">
+          <Button className="p-4 h-14 font-bold mb-4 text-xl rounded-md text-white bg-gray-600" onClick={() => window.location.reload()}> Reset Filters</Button>
+         </div>
           <h1 className="text-center text-3xl font-bold text-gray-700 mb-4">
             Filter by Category
           </h1>
