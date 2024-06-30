@@ -25,6 +25,7 @@ function Header() {
     localStorage.removeItem("auth");
     toast.success("Logged Out Successfullt");
   };
+
   return (
     <>
       <nav className="relative bg-white h-28 dark:bg-gray-800 flex items-center justify-between px-8">
@@ -144,8 +145,6 @@ function Header() {
                   >
                     Logout
                   </NavLink>
-                   
-
                 </div>
               )}
             </div>

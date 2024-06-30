@@ -74,7 +74,7 @@ function SellProduct() {
             <UserMenu className="" />
           </div>
           <div className="flex justify-center items-center -mt-32 flex-col w-2/3 ">
-          <h1 className="text-3xl mt-4 font-semibold text-center -mt-10">SELL YOUR BOOK</h1>
+          <h1 className="text-3xl  font-semibold text-center -mt-10">SELL YOUR BOOK</h1>
             <div className="text-center  w-full">
               
 
