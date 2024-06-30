@@ -42,19 +42,19 @@ function Register() {
   return (
     <>
       <Layout>
-        <div className="flex min-h-screen justify-center mx-auto">
-          <div className=" w-full ">
-            <div className="pt-20 pl-32 w-full ">
+        
+          <div className=" min-w-full flex flex-col justify-center items-center ">
+            <div className="text-center w-full  mt-10">
               <h1 className="text-5xl text-purple-900 font-semibold ">
-                Sign up
+                Register
               </h1>
               <h1 className="text-3xl text-gray-400 mt-6">
                 {" "}
                 Connect & Collect..!
               </h1>
             </div>
-            <div className=" pt-20 pl-32 w-full">
-              <form className=" w-full max-w-[540px]" onSubmit={handleSubmit}>
+            <div className="  w-full ">
+              <form className=" w-full max-w-[540px] mx-auto" onSubmit={handleSubmit}>
                 <div className="relative mb-6">
                   <input
                     value={name}
@@ -351,7 +351,7 @@ function Register() {
               </form>
             </div>
           </div>
-        </div>
+        
       </Layout>
     </>
   );

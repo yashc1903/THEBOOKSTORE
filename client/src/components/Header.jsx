@@ -27,7 +27,7 @@ function Header() {
   };
   return (
     <>
-      <nav className="relative bg-white h-28 dark:bg-gray-800 flex items-center justify-between px-4 py-4">
+      <nav className="relative bg-white h-28 dark:bg-gray-800 flex items-center justify-between px-8">
         <Link to="/">
           <div className="flex justify-center items-center">
             <img
@@ -45,9 +45,9 @@ function Header() {
           <SearchInput />
         </div>
 
-        <div className="flex items-center space-x-2 md:space-x-4">
+        <div className="flex items-center justify-center space-x-2 md:space-x-4 ">
           <li className="inline-block text-white text-3xl  transition-colors duration-300 transform dark:text-white hover:text-blue-500 dark:hover:text-blue-400 md:mx-4 md:my-0">
-            <NavLink to="/" exact={true}>
+            <NavLink to="/" exact="true">
               Home
             </NavLink>
           </li>
@@ -144,6 +144,8 @@ function Header() {
                   >
                     Logout
                   </NavLink>
+                   
+
                 </div>
               )}
             </div>

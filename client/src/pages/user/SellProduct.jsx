@@ -70,14 +70,15 @@ function SellProduct() {
     <>
       <Layout>
         <div className="flex justify-around items-center w-full min-h-screen ">
-          <div className=" w-1/3  static">
+          <div className=" w-1/3  ">
             <UserMenu className="" />
           </div>
-          <div className="flex justify-center items-center border w-2/3 h-screen">
+          <div className="flex justify-center items-center -mt-32 flex-col w-2/3 ">
+          <h1 className="text-3xl mt-4 font-semibold text-center -mt-10">SELL YOUR BOOK</h1>
             <div className="text-center  w-full">
-              <h1 className="text-3xl mt-4">Create Product</h1>
+              
 
-              <div className="mt-2 ">
+              <div className="mt-10 ">
                 <Select
                   variant={false}
                   placeholder="SELECT A CATEGORY"
