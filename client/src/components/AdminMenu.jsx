@@ -4,42 +4,39 @@ import { NavLink } from "react-router-dom";
 function AdminMenu() {
   return (
     <>
-      <div className="max-w-4xl mx-auto py-8 my-auto ">
+      <div className="max-w-4xl mx-auto py-8 my-auto  top-10">
         <h2 className="text-2xl font-bold mb-4 text-center">ADMIN PANEL</h2>
         <div className="flex justify-center">
           <ul className=" space-y-4">
             <li className="py-4 ">
-              <div className="flex space-x-4 w-56">
-                <button className="text-xl w-full active:bg-indigo-500 font-semibold border p-4">
+              <div className="flex space-x-4 w-56">          
                   <NavLink to="/dashboard/admin/create-category">
                     {" "}
-                    Create Category
+                    <button className="text-xl  active:bg-indigo-500 w-56 font-semibold border p-4">Create Category</button>
                   </NavLink>
-                </button>
               </div>
             </li>
             <li className="py-4">
               <div className="flex space-x-4 w-56">
-                <button className="text-xl w-full active:bg-indigo-500 font-semibold border p-4">
                   <NavLink to="/dashboard/admin/create-product">
                     {" "}
-                    Create Product
+                    <button className="text-xl  active:bg-indigo-500 w-56 font-semibold border p-4">Create Product</button>
                   </NavLink>
-                </button>
+              </div>
+            </li>
+            <li className="py-4 ">
+              <div className="flex w-56 space-x-4">               
+                  <NavLink to="/dashboard/admin/users"> <button className="text-xl  active:bg-indigo-500 w-56 font-semibold border p-4">Users</button></NavLink>
               </div>
             </li>
             <li className="py-4 ">
               <div className="flex w-56 space-x-4">
-                <button className="text-xl w-full active:bg-indigo-500  font-semibold border p-4">
-                  <NavLink to="/dashboard/admin/users"> Users</NavLink>
-                </button>
+                  <NavLink to="/dashboard/admin/products"><button className="text-xl  active:bg-indigo-500 w-56 font-semibold border p-4">Products</button></NavLink>
               </div>
             </li>
             <li className="py-4 ">
               <div className="flex w-56 space-x-4">
-                <button className="text-xl w-full active:bg-indigo-500  font-semibold border p-4">
-                  <NavLink to="/dashboard/admin/products"> Products</NavLink>
-                </button>
+                  <NavLink to="/dashboard/admin/orders"><button className="text-xl  active:bg-indigo-500 w-56 font-semibold border p-4">Orders</button></NavLink>
               </div>
             </li>
           </ul>

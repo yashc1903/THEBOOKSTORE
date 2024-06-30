@@ -4,33 +4,29 @@ import { NavLink } from "react-router-dom";
 function UserMenu() {
   return (
     <>
-      <div className="max-w-4xl mx-auto py-8">
+      <div className="max-w-4xl mx-auto py-8 top-10">
         <h2 className="text-2xl font-bold mb-4 text-center">USER DASHBOARD</h2>
-        <ul className="">
+        <div className="flex justify-center"><ul className="">
           <li className="py-4 ">
             <div className="flex space-x-4 w-56">
-              <button className="text-xl w-full active:bg-indigo-500 font-semibold border p-4">
-                <NavLink to="/dashboard/user/profile">Profile</NavLink>
-              </button>
+                <NavLink to="/dashboard/user/profile">
+                  <button className="text-xl  active:bg-indigo-500 w-56 font-semibold border p-4">Profile</button>
+                </NavLink>
             </div>
           </li>
           <li className="py-4 ">
             <div className="flex space-x-4 w-56">
-              <button className="text-xl w-full active:bg-indigo-500 font-semibold border p-4">
                 <NavLink to="/dashboard/user/sell-product">
-                  Sell Product
+                  <button className="text-xl  active:bg-indigo-500 w-56 font-semibold border p-4">Sell Product</button>
                 </NavLink>
-              </button>
             </div>
           </li>
           <li className="py-4">
             <div className="flex space-x-4 w-56">
-              <button className="text-xl w-full active:bg-indigo-500 font-semibold border p-4">
-                <NavLink to="/dashboard/user/orders"> Orders</NavLink>
-              </button>
+                <NavLink to="/dashboard/user/orders"> <button className="text-xl  active:bg-indigo-500 w-56 font-semibold border p-4">Orders</button></NavLink>
             </div>
           </li>
-        </ul>
+        </ul></div>
       </div>
     </>
   );

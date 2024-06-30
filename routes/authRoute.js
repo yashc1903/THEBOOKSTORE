@@ -1,5 +1,5 @@
 import express from 'express'
-import {registerController,loginController,testController,forgotPasswordController, updateProfileController} from '../controllers/authController.js'
+import {registerController,loginController,testController,forgotPasswordController, updateProfileController, getOrdersController, getAllOrdersController, orderStatusController} from '../controllers/authController.js'
 import { isAdmin, requireSignIn } from '../middlewares/authMiddleware.js';
 
 
@@ -13,6 +13,9 @@ router.post ('/login',loginController) //LOGIN || METHOD POST
 router.post('/forgot-password',forgotPasswordController) // FORGOT-PASSWORD || METHOD POST
 router.get('/test',requireSignIn,isAdmin, testController)
 router.put('/profile',requireSignIn,updateProfileController)
+router.get('/orders',requireSignIn , getOrdersController)
+router.get('/all-orders',requireSignIn ,isAdmin, getAllOrdersController)
+router.put ('/order-status/:orderId',requireSignIn,isAdmin,orderStatusController)
 
 //protected  user route auth
 router.get('/user-auth',requireSignIn,(req,res)=>{

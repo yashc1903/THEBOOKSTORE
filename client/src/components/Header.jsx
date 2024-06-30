@@ -27,14 +27,22 @@ function Header() {
     toast.success('Logged Out Successfully');
   };
 
+
   return (
-    <nav className="relative bg-white h-28 dark:bg-gray-800 flex items-center justify-between px-4 py-4">
-      <Link to='/'>
-        <div className='flex justify-center items-center'>
-          <img className="h-14 sm:h-7" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS8f2qlmQft8PNyJKr6YWqN9X7tz_c3ev5cqQ&s" alt="Logo" />
-          <h1 className='my-2 ml-4 text-gray-700 text-3xl transition-colors duration-300 transform dark:text-gray-200 hover:text-blue-500 dark:hover:text-blue-400 md:mx-2 md:my-0'>THE BOOK STORE</h1>
-        </div>
-      </Link>
+    <>
+      <nav className="relative bg-white h-28 dark:bg-gray-800 flex items-center justify-between px-8">
+        <Link to="/">
+          <div className="flex justify-center items-center">
+            <img
+              className="h-14 sm:h-7"
+              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS8f2qlmQft8PNyJKr6YWqN9X7tz_c3ev5cqQ&s"
+              alt="Logo"
+            />
+            <h1 className="my-2 ml-4 text-gray-700 text-3xl transition-colors duration-300 transform dark:text-gray-200 hover:text-blue-500 dark:hover:text-blue-400 md:mx-2 md:my-0">
+              THE BOOK STORE
+            </h1>
+          </div>
+        </Link>
 
       <div className="flex-1 mx-2">
         <SearchInput />
@@ -66,6 +74,7 @@ function Header() {
           )}
         </div>
 
+
         {!auth.user ? (
           <>
             <NavLink to='/register' className="text-white text-3xl font-bold transition-colors duration-300 transform dark:text-white hover:text-blue-500 dark:hover:text-blue-400">SignUp</NavLink>
@@ -92,12 +101,13 @@ function Header() {
           </div>
         )}
 
-        <Badge count={wishlist.length} showZero>
-          <NavLink to={'/wishlist'}>
-            <CiHeart className="w-10 h-10 text-white" />
-          </NavLink>
-        </Badge>
-
+       {auth?.user?.role !== 1 && (
+            <Badge count={wishlist.length} showZero>
+              <NavLink to={"/wishlist"}>
+                <CiHeart className="w-10 h-10 text-white" />
+              </NavLink>
+            </Badge>
+          )}
         {auth?.user?.role !== 1 && (
           <Badge count={cart.length} showZero>
             <NavLink to={'/cart'}>

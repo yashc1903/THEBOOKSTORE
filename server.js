@@ -1,3 +1,4 @@
+
 import express from 'express'
 import dotenv from 'dotenv'
 import morgan from 'morgan';
@@ -8,8 +9,9 @@ import categoryRoutes from './routes/categoryRoutes.js'
 import productRoutes from './routes/productRoutes.js'
 
 //configuring env
-dotenv.config()
 
+
+dotenv.config();
 //database config
 connectDB();
 

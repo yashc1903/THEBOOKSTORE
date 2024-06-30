@@ -59,8 +59,8 @@ function Profile() {
           <div className=" w-1/3">
             <UserMenu />
           </div>
-          <div className="border w-2/3 min-h-full ">
-            <h1 className="text-3xl w-full mt-10 text-center">Profile</h1>
+          <div className=" w-2/3 min-h-full ">
+            <h1 className="text-3xl w-full mt-10 text-center font-semibold">PROFILE</h1>
             <div class="flex flex-col items-center justify-center  w-full light">
               <div class="w-2/3 bg-white rounded-lg shadow-md p-6">
                 <h2 class="text-2xl font-bold text-gray-800 mb-4 text-center">
