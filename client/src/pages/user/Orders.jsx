@@ -12,7 +12,6 @@ function Orders() {
         <div className="flex flex-col justify-center items-center border w-full md:w-3/4">
           <h1 className="text-3xl mt-4 text-center">Orders</h1>
           <div className="border w-3/4 h-96 mt-4 p-4">
-            {/* Orders content goes here */}
           </div>
         </div>
       </div>
