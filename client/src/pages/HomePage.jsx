@@ -1,15 +1,20 @@
-import React ,{useState,useEffect} from 'react';
-import Layout from '../components/Layout';
-import { useNavigate } from 'react-router-dom';
-import {Prices} from '../components/Prices.js';
-import Loader from '../components/Loader.jsx';
-
+import React ,{useState,useEffect} from 'react'
+import Layout from '../components/Layout'
+import {Prices} from '../components/Prices.js'
+import { Link, useNavigate } from 'react-router-dom'
+import { useCart } from '../context/cart.jsx'
+import { CiHeart } from "react-icons/ci";
 import axios from 'axios'
 import {Button, Checkbox,Radio} from 'antd'
 import toast from 'react-hot-toast'
+import { useAuth } from '../context/auth.jsx'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faHeart } from '@fortawesome/free-regular-svg-icons';
+import { useWishlist } from '../context/wishllist.jsx'
+
 
 function HomePage() {
-    const navigate = useNavigate();
+    
     const [products,setProducts]  =useState([])
     const [categories,setCategories] = useState([])
     const [checked,setChecked] = useState([])
@@ -17,8 +22,22 @@ function HomePage() {
     const [total,setTotal]  = useState(0)
     const [page,setPage]  = useState(1)
     const [loading,setLoading] = useState(false)
+    const [auth,setAuth]=  useAuth()
+    
 
+  
+
+    //cart
+    const [cart,setCart] = useCart()
+    const [wishlist,setWishlist] = useWishlist()
+
+
+    const navigate  =useNavigate()
     //get total count 
+
+    
+
+
     const getAllCategory = async() => {
       try {
         const {data} = await axios.get('http://localhost:8080/category/categories')
@@ -115,9 +134,9 @@ function HomePage() {
   <Layout>
       <div className="mt-3 p-6 flex flex-wrap md:flex-nowrap">
         <div className="w-full md:w-1/4 bg-gray-100 p-4 rounded-lg shadow-md">
-         <div className="flex justify-center">
-          <Button className="p-4 h-14 font-bold mb-4 text-xl rounded-md text-white bg-gray-600" onClick={() => window.location.reload()}> Reset Filters</Button>
-         </div>
+        <div className="flex justify-center">
+          <Button className="p-4 h-14 font-bold mb-4 text-xl rounded-md text-white bg-gray-600" onClick={() => window.location.reload()}>Reset Filters</Button>
+        </div>
           <h1 className="text-center text-3xl font-bold text-gray-700 mb-4">
             Filter by Category
           </h1>
@@ -156,6 +175,7 @@ function HomePage() {
               <div
                 key={product._id}
                 className="hover:z-50"
+                
               >
                 <div
                   className="card bg-white border-2 border-gray-800 shadow-lg rounded-lg flex flex-col justify-between p-4 gap-4 h-full transform transition-transform duration-300 hover:scale-110 hover:z-10"
@@ -179,10 +199,36 @@ function HomePage() {
                   </div>
                   <div className="card-footer flex justify-between items-center mt-auto">
                     <div className="card-price text-xl font-semibold text-gray-800">
-                      <span className="text-gray-600">Rs</span>
+                      <span className="text-gray-600">₹ </span>
                       {` ${product.price}`}
                     </div>
-                    <button className="card-btn border-2 hover:scale-110 border-gray-800 rounded p-2 transition-all duration-300 hover:border-blue-500">
+                    <button className="w-36 h-10 rounded-md p-6 py-2  border-2 border-black font-sm text-gray-800 bg-transparent cursor-pointer transition-all duration-300 relative  shadow-inner shadow-gray-300 hover:shadow-none focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500"
+                    onClick={()=>navigate(`/product/${product.slug}`)}>
+                      More Details
+                    </button>
+                   
+                    <div className="inline-block" key={product._id}>
+                      <FontAwesomeIcon
+                      icon={ faHeart }
+                      className={`cursor-pointer  `}
+                      size="2xl"
+                      onClick={()=>{
+                                
+                                setWishlist([...wishlist,product])
+                              localStorage.setItem('wishlist',JSON.stringify([...wishlist,product]))
+                              toast.success(` "${product.name}" added to the wishlist`)
+                             }}
+                       />
+                    </div>
+                    
+                    {auth?.user?.role !== 1 && 
+                    <button 
+                    onClick={()=>{
+                      setCart([...cart,product])
+                      localStorage.setItem('cart',JSON.stringify([...cart,product]))
+                      toast.success(` "${product.name}" added to the cart`)
+                    }}
+                    className="card-btn border-2 hover:scale-110 border-gray-800 rounded p-2 transition-all duration-300 hover:border-blue-500">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 512 512"
@@ -202,6 +248,7 @@ function HomePage() {
                         ></path>
                       </svg>
                     </button>
+                    }
                   </div>
                 </div>
               </div>
@@ -222,6 +269,7 @@ function HomePage() {
           </div>
         </div>
       </div>
+     
     </Layout>
 </>
   )
