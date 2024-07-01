@@ -65,7 +65,7 @@ function SellProduct() {
     <Layout>
       <div className="flex flex-col md:flex-row justify-around items-start w-full min-h-screen">
         <div className="md:w-1/4 w-full">
-          <UserMenu /> {/* Place UserMenu component here */}
+          <UserMenu />
         </div>
         <div className="flex flex-col justify-center items-center border w-full md:w-3/4">
           <div className="text-center w-full max-w-4xl">
