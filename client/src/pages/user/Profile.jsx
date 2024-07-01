@@ -1,28 +1,3 @@
-<<<<<<< Updated upstream
-import React from 'react'
-import UserMenu from '../../components/UserMenu'
-import Layout from '../../components/Layout'
-
-
-
-function Profile() {
-  return (
-    <>
-    <Layout>
-    <div className='flex justify-around items-center'>
-    <div>
-
-        <UserMenu/>
-    </div>
-    <div className='border w-1/2 h-96 '>
-      <h1 className='text-3xl w-full mt-10'>Profile</h1>
-     
-    </div>
-  </div>
-    </Layout>
-</>
-  )
-=======
 import React, { useEffect, useState } from 'react';
 import UserMenu from '../../components/UserMenu';
 import Layout from '../../components/Layout';
@@ -83,10 +58,9 @@ function Profile() {
             <UserMenu />
           </div>
           <div className="flex flex-col justify-center items-center border w-full md:w-3/4">
-            <h1 className="text-3xl mt-4 text-center">Profile</h1>
             <div className="flex flex-col items-center justify-center w-full light">
-              <div className="w-2/3 bg-white rounded-lg shadow-md p-6">
-                <h2 className="text-2xl font-bold text-gray-800 mb-4 text-center">User details</h2>
+              <div className="w-2/3 bg-white rounded-lg shadow-md p-2">
+                <h1 className="text-3xl mt-4 text-center">User details</h1>
                 <form className="flex flex-col text-center">
                   <input
                     value={name}
@@ -139,7 +113,6 @@ function Profile() {
       </Layout>
     </>
   );
->>>>>>> Stashed changes
 }
 
 export default Profile;
