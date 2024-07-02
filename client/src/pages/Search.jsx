@@ -18,7 +18,7 @@ function Search() {
   return (
     <>
       <Layout>
-        <div className="text-center mb-6 mt-10">
+        <div className="text-center mb-6 ">
           <h1 className="text-4xl font-bold text-gray-700">Search Results</h1>
           <h1 className="text-3xl text-gray-600 mt-2">
             {values?.results.length < 1
@@ -29,7 +29,7 @@ function Search() {
         <div className="ml-4 flex flex-wrap gap-10 justify-center mb-4">
           {values.results.map((product) => (
             <div key={product._id} className="hover:z-50 w-96 ">
-              <div className="card bg-white border-2 border-gray-800 shadow-lg rounded-lg flex flex-col justify-between p-4 gap-4 h-full transform transition-transform duration-300 hover:scale-110 hover:z-10">
+              <div className="card bg-gradient-to-tr from-rose-100 to-teal-100 bg-white border-2 border-gray-800 shadow-lg rounded-lg flex flex-col justify-between p-4 gap-4 h-full transform transition-transform duration-300 hover:scale-110 hover:z-10">
                 <div className="card-img transition-all duration-500 flex justify-center">
                   <img
                     src={`http://localhost:8080/product/product-photo/${product._id}`}

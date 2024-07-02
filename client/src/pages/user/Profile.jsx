@@ -56,14 +56,14 @@ function Profile() {
     <>
       <Layout>
         <div className="flex justify-around items-center">
-          <div className=" w-1/3">
-            <UserMenu />
+          <div className=" w-1/4 flex justify-center">
+            <UserMenu style={{position: 'absolute',top: '160px', width: '100%',}} />
           </div>
-          <div className=" w-2/3 min-h-full ">
+          <div className=" w-3/4 min-h-full ">
             <h1 className="text-3xl w-full mt-10 text-center font-semibold">PROFILE</h1>
             <div class="flex flex-col items-center justify-center  w-full light">
-              <div class="w-2/3 bg-white rounded-lg shadow-md p-6">
-                <h2 class="text-2xl font-bold text-gray-800 mb-4 text-center">
+              <div class="w-2/3 bg-white rounded-lg shadow-md p-6 bg-gradient-to-tr from-rose-100 to-teal-100 ">
+                <h2 class="text-2xl font-bold text-gray-800 mb-4 text-center ">
                   User details
                 </h2>
 

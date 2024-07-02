@@ -1,3 +1,4 @@
+import express from 'express'
 import slugify from 'slugify'
 import productModel from '../models/productModel.js'
 import categoryModel from '../models/categoryModel.js'
@@ -5,9 +6,10 @@ import fs from 'fs'
 import braintree from 'braintree'
 import orderModel from '../models/orderModel.js'
 import dotenv from 'dotenv'
-
+import cors from 'cors'
+const app = express();
 dotenv.config();
-
+app.use(cors());
 
 var gateway = new braintree.BraintreeGateway({
     environment: braintree.Environment.Sandbox, // or braintree.Environment.Production

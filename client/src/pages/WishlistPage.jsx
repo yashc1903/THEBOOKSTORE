@@ -43,7 +43,7 @@ function WishlistPage() {
             <h1 className="text-4xl font-bold mb-4">wishlist Items</h1>
                 <div>
                     {wishlist?.map(item => (
-                        <div className="flex flex-col md:flex-row items-center justify-between p-4 mb-4 rounded-md shadow-2xl w-full bg-white" key={item._id}>
+                        <div className="flex flex-col md:flex-row items-center justify-between p-4 mb-4 rounded-md shadow-2xl w-full bg-white bg-opacity-60" key={item._id}>
                             <img src={`http://localhost:8080/product/product-photo/${item._id}`} alt={item.name} className="h-48 w-full md:w-1/3 rounded-md mb-4 md:mb-0 mr-0 md:mr-4 object-contain" />
                             <div className="flex flex-col text-start w-full md:w-2/3">
                                 <ul>

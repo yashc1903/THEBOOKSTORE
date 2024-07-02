@@ -35,7 +35,7 @@ function CategoryProduct() {
   return (
     <>
       <Layout>
-        <div className="text-4xl text-center font-semibold text-black mt-10 mb-4">
+        <div className="text-4xl text-center font-semibold text-black  mb-4">
           {category?.name}
         </div>
         <div className="text-center text-xl text-gray-600 mb-6">
@@ -44,7 +44,7 @@ function CategoryProduct() {
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mx-4">
           {products?.map((product) => (
             <div key={product._id} className="hover:z-50">
-              <div className="card bg-white border-2 border-gray-800 shadow-lg rounded-lg flex flex-col justify-between p-4 gap-4 h-full transform transition-transform duration-300 hover:scale-110 hover:z-10">
+              <div className="card bg-gradient-to-tr from-rose-100 to-teal-100 bg-white border-2 border-gray-800 shadow-lg rounded-lg flex flex-col justify-between p-4 gap-4 h-full transform transition-transform duration-300 hover:scale-110 hover:z-10">
                 <div className="card-img transition-all duration-500 flex justify-center">
                   <img
                     src={`http://localhost:8080/product/product-photo/${product._id}`}

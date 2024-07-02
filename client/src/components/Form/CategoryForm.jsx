@@ -3,14 +3,14 @@ import React from "react";
 function CategoryForm({ handleSubmit, value, setValue }) {
   return (
     <>
-      <div className="flex flex-col items-center justify-center  dark">
-        <div className="w-full max-w-md bg-gray-300 rounded-lg shadow-md p-6">
-          <form className="flex flex-col" onSubmit={handleSubmit}>
+      <div className="flex flex-col items-center justify-center ">
+        <div className="w-full max-w-md bg-gray-300 rounded-lg shadow-md p-6 bg-gradient-to-tr from-rose-100 to-teal-100">
+          <form className="flex flex-col text-black " onSubmit={handleSubmit}>
             <input
               placeholder="ENTER NEW CATEGORY"
               value={value}
               onChange={(e) => setValue(e.target.value)}
-              className="bg-gray-700 text-gray-200 border-0 rounded-md p-2 mb-4 focus:bg-gray-600 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150"
+              className=" text-black border-0 rounded-md p-2 mb-4  focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150"
               type="text"
             />
 

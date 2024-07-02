@@ -70,12 +70,12 @@ function SellProduct() {
     <>
       <Layout>
         <div className="flex justify-around items-center w-full min-h-screen ">
-          <div className=" w-1/3  ">
-            <UserMenu className="" />
+          <div className=" w-1/4 flex justify-center   ">
+            <UserMenu style={{position: 'absolute',top: '160px', width: '100%',}}  />
           </div>
-          <div className="flex justify-center items-center -mt-32 flex-col w-2/3 ">
-          <h1 className="text-3xl  font-semibold text-center -mt-10">SELL YOUR BOOK</h1>
-            <div className="text-center  w-full">
+          <div className="flex justify-center items-center  flex-col w-3/4  -mt-32">
+          <h1 className="text-3xl  font-semibold text-center ">SELL YOUR BOOK</h1>
+            <div className="text-center  w-2/3 bg-gradient-to-tr from-rose-100 to-teal-100 p-6 rounded-xl">
               
 
               <div className="mt-10 ">
@@ -178,7 +178,7 @@ function SellProduct() {
                   placeholder="SELECT SHIPPING"
                   size="large"
                   showSearch
-                  className=" text-xl w-full text-center mt-4 border-4 h-14  text-black"
+                  className=" text-xl w-full text-center mt-4 bg-white border-4 h-14  text-black"
                   onChange={(value) => {
                     setShipping(value);
                   }}

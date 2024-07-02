@@ -69,14 +69,14 @@ function CreateProduct() {
     <>
       <Layout>
         <div className="flex justify-around items-center w-full min-h-screen ">
-          <div className=" w-1/3  static">
-            <AdminMenu className="" />
+          <div className=" w-1/4  flex justify-center">
+            <AdminMenu  style={{position: 'absolute',top: '160px', width: '100%',}}  />
           </div>
-          <div className="flex justify-center items-center border w-2/3 h-screen">
-            <div className="text-center  w-full">
+          <div className="flex justify-center items-center w-3/4 h-screen">
+            <div className="text-center  w-2/3 bg-gradient-to-tr from-rose-100 to-teal-100 p-6  rounded-xl">
               <h1 className="text-3xl mt-4">Create Product</h1>
 
-              <div className="mt-2 ">
+              <div className="mt-2  ">
                 <Select
                   variant={false}
                   placeholder="SELECT A CATEGORY"

@@ -43,8 +43,9 @@ function Register() {
     <>
       <Layout>
         
-          <div className=" min-w-full flex flex-col justify-center items-center ">
-            <div className="text-center w-full  mt-10">
+          <div className=" min-w-full flex flex-col justify-center items-center  ">
+            <div className="w-1/3 mt-10 rounded-xl bg-gradient-to-tr from-rose-100 to-teal-100">
+            <div className="text-center w-full  mt-10 ">
               <h1 className="text-5xl text-purple-900 font-semibold ">
                 Register
               </h1>
@@ -350,6 +351,8 @@ function Register() {
                 </div>
               </form>
             </div>
+            </div>
+            
           </div>
         
       </Layout>
