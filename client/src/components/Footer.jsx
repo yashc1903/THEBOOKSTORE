@@ -1,10 +1,20 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
+
+
 function Footer() {
+
+  const headerStyle = {
+    backgroundImage: 'url("https://images.unsplash.com/photo-1457369804613-52c61a468e7d?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")', // Replace with your image path
+    backgroundSize: 'cover', // Adjusts image to cover the whole background
+  // Prevents repeating the image
+    backgroundPosition: 'center', // Centers the background image
+     // Ensures the background covers the full height of the viewport
+  };
   return (
     <>
-      <footer className="bg-white dark:bg-gray-900 bottom-0">
+      <footer className=" dark:bg-gray-900  bg-opacity-70" style={headerStyle}>
         <div className="container px-4 py-1 mx-auto">
           <div className="flex flex-col items-center text-center">
             <Link to="/">
@@ -14,7 +24,7 @@ function Footer() {
                   src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS8f2qlmQft8PNyJKr6YWqN9X7tz_c3ev5cqQ&s"
                   alt=""
                 />
-                <h1 className='my-2 text-gray-700 text-3xl transition-colors duration-300 transform dark:text-gray-200 hover:text-blue-500 dark:hover:text-blue-400 md:mx-4 md:my-0"'>
+                <h1 className='my-2 text-black text-3xl transition-colors duration-300 transform font-bold hover:text-blue-500 dark:hover:text-blue-400 md:mx-4 md:my-0"'>
                   {" "}
                   THE BOOK STORE
                 </h1>
@@ -24,7 +34,7 @@ function Footer() {
             <div className="flex flex-wrap justify-center mt-1">
               <Link
                 to="/about"
-                className="mx-1 text-sm text-gray-600 transition-colors duration-300 hover:text-blue-500 dark:text-gray-300 dark:hover:text-blue-400"
+                className="mx-1 text-lg text-black transition-colors duration-300 hover:text-blue-500  dark:hover:text-blue-400"
                 aria-label="About"
               >
                 About
@@ -32,7 +42,7 @@ function Footer() {
 
               <Link
                 to="/contact"
-                className="mx-1 text-sm text-gray-600 transition-colors duration-300 hover:text-blue-500 dark:text-gray-300 dark:hover:text-blue-400"
+                className="mx-1 text-lg text-black transition-colors duration-300 hover:text-blue-500  dark:hover:text-blue-400"
                 aria-label="Contact"
               >
                 Contact
@@ -40,7 +50,7 @@ function Footer() {
 
               <Link
                 to="/privacy"
-                className="mx-1 text-sm text-gray-600 transition-colors duration-300 hover:text-blue-500 dark:text-gray-300 dark:hover:text-blue-400"
+                className="mx-1 text-lg text-black transition-colors duration-300 hover:text-blue-500  dark:hover:text-blue-400"
                 aria-label="Privacy"
               >
                 Privacy Policy
@@ -51,18 +61,18 @@ function Footer() {
           <hr className="my-1 border-gray-200 dark:border-gray-700" />
 
           <div className="flex flex-col items-center sm:flex-row sm:justify-between">
-            <p className="text-sm text-gray-500 dark:text-gray-300">
+            <p className="text-lg text-black">
               © Copyright 2024. All Rights Reserved.
             </p>
 
             <div className="flex -mx-1">
               <a
                 href="#"
-                className="mx-1 text-gray-600 transition-colors duration-300 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400"
+                className="mx-1  transition-colors duration-300 text-lg text-black hover:text-blue-500 dark:hover:text-blue-400"
                 aria-label="Reddit"
               >
                 <svg
-                  className="w-5 h-5 fill-current"
+                  className="w-10 h-10 fill-current"
                   viewBox="0 0 24 24"
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"
@@ -73,11 +83,11 @@ function Footer() {
 
               <a
                 href="#"
-                className="mx-1 text-gray-600 transition-colors duration-300 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400"
+                className="mx-1  transition-colors duration-300  hover:text-blue-500 dark:hover:text-blue-400"
                 aria-label="Facebook"
               >
                 <svg
-                  className="w-5 h-5 fill-current"
+                  className="w-10 h-10 fill-current"
                   viewBox="0 0 24 24"
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"
@@ -88,11 +98,11 @@ function Footer() {
 
               <a
                 href="#"
-                className="mx-1 text-gray-600 transition-colors duration-300 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400"
+                className="mx-1  transition-colors duration-300 text-black hover:text-blue-500 dark:hover:text-blue-400"
                 aria-label="Github"
               >
                 <svg
-                  className="w-5 h-5 fill-current"
+                  className="w-10 h-10 fill-current"
                   viewBox="0 0 24 24"
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"

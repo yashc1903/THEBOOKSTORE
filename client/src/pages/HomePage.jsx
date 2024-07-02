@@ -123,17 +123,21 @@ function HomePage() {
     loadMore();
   }, [page]);
 
+  
+
   return (
     <>
       <Layout>
-        <div className="mt-3 p-6 flex flex-wrap md:flex-nowrap">
-          <div className="w-full md:w-1/4 bg-gray-100 p-4 rounded-lg shadow-md">
+        <div className=" p-6 flex flex-wrap md:flex-nowrap" >
+          <div className="w-full md:w-1/4 h-2/3 bg-gray-100 p-4 rounded-lg shadow-md bg-gradient-to-tr from-rose-100 to-teal-100">
+          <div className="flex justify-center ">
             <Button
-              className=" p-4 h-14 font-bold ml-36 mb-4 text-xl rounded-md text-white bg-gray-600 "
+              className=" p-4 h-14 font-bold  mb-4 text-xl rounded-md text-white bg-gray-600 "
               onClick={() => window.location.reload()}
             >
               Reset Filters
             </Button>
+            </div>
             <h1 className="text-center text-3xl font-bold text-gray-700 mb-4">
               Filter by Category
             </h1>
@@ -166,14 +170,15 @@ function HomePage() {
           </div>
 
           <div className="w-full md:w-3/4 mt-6 md:mt-0 md:ml-6">
-            <h1 className="text-center text-6xl font-semibold text-gray-700 mb-4">
+            <h1 className="text-center text-6xl font-semibold bg-gradient-to-l bg-clip-text  from-fuchsia-500 to-cyan-500 text-transparent mb-4">
               All Products
+            
             </h1>
             <div className="grid   grid-cols-3  gap-4">
               {products?.map((product) => (
-                <div key={product._id} className="hover:z-50">
-                  <div className="card bg-white border-2 border-gray-800 shadow-lg rounded-lg flex flex-col justify-between p-4 gap-4 h-full transform transition-transform duration-300 hover:scale-110 hover:z-10">
-                    <div className="card-img transition-all duration-500 flex justify-center">
+                <div key={product._id} className="hover:z-50 ">
+                  <div className="card bg-gradient-to-tr from-rose-100 to-teal-100  border-2 border-gray-800 shadow-lg rounded-lg flex flex-col justify-between p-4 gap-4 h-full transform transition-transform duration-300 hover:scale-110 hover:z-10">
+                    <div className="card-img transition-all duration-500 flex justify-center ">
                       <img
                         src={`http://localhost:8080/product/product-photo/${product._id}`}
                         alt="Product"

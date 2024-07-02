@@ -66,10 +66,10 @@ function Products() {
     <>
       <Layout>
         <div className="flex  justify-center items-center  min-w-full min-h-screen">
-          <div className="w-1/3 p-4">
-            <AdminMenu />
+          <div className="w-1/4 p-4 flex justify-center">
+            <AdminMenu  style={{position: 'absolute',top: '160px', width: '100%',}} />
           </div>
-          <div className=" w-2/3 p-4 border h-full overflow-auto">
+          <div className=" w-3/4 p-4 h-full  overflow-auto">
             <div className="text-center">
               <h1 className="text-3xl w-full mt-10">ALL PRODUCTS LIST</h1>
               <div className="mt-4 grid md:grid-cols-3   gap-4 overflow-y-auto h-[calc(100vh-150px)]">
@@ -78,7 +78,7 @@ function Products() {
                     to={`/dashboard/admin/product/${product.slug}`}
                     key={product._id}
                   >
-                    <div className="bg-white rounded-lg shadow-md p-4 h-96">
+                    <div className="bg-white rounded-lg border-2 bg-gradient-to-tr from-rose-100 to-teal-100 shadow-md p-4 h-96">
                       <img
                         src={`http://localhost:8080/product/product-photo/${product._id}`}
                         alt="Product Image"

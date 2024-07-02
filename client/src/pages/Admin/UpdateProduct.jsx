@@ -112,13 +112,14 @@ function UpdateProduct() {
   return (
     <>
       <Layout>
-        <div className="flex justify-center items-center min-h-screen min-w-full">
-          <div className=" w-1/3">
-            <AdminMenu />
+        <div className="flex justify-center items-center min-h-screen min-w-full ">
+          <div className=" w-1/4 p-4 flex justify-center">
+            <AdminMenu  style={{position: 'absolute',top: '160px', width: '100%',}} />
           </div>
-          <div className="flex justify-center items-center border w-2/3 h-screen">
+          <div className="flex justify-center items-center  w-3/4 ">
             <div className="text-center  w-full">
-              <h1 className="text-3xl mt-4">Update Product</h1>
+              <h1 className="text-3xl mt-4 ">Update Product</h1>
+              <div className="text-center mx-auto mb-4 w-2/3 bg-gradient-to-tr from-rose-100 to-teal-100 p-6 rounded-xl">
 
               <div className="mt-2 h-10 ">
                 <Select
@@ -126,7 +127,7 @@ function UpdateProduct() {
                   placeholder="SELECT A CATEGORY"
                   size="large"
                   showSearch
-                  className="w-full px-4 py-2 bg-white border-4 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-2xl h-full"
+                  className="w-2/3 px-4 py-2 bg-white border-4 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-2xl h-full"
                   onChange={(value) => {
                     setCategory(value);
                   }}
@@ -141,7 +142,7 @@ function UpdateProduct() {
               </div>
 
               <div className="flex justify-center items-center w-full mt-4">
-                <label className="w-full max-w-xs flex flex-col items-center px-4 py-2 bg-gray-200 text-blue-500 rounded-md shadow-sm tracking-wide uppercase border border-blue-500 cursor-pointer hover:bg-blue-500 hover:text-white">
+                <label className="w-2/3 max-w-xs flex flex-col items-center px-4 py-2 bg-gray-200 text-blue-500 rounded-md shadow-sm tracking-wide uppercase border border-blue-500 cursor-pointer hover:bg-blue-500 hover:text-white">
                   <svg
                     className="w-6 h-6 mb-1"
                     fill="currentColor"
@@ -169,13 +170,13 @@ function UpdateProduct() {
                 </label>
               </div>
 
-              <div className="flex justify-center mt-4">
+              <div className="flex justify-center mt-2">
                 {photo ? (
                   <div>
                     <img
                       src={URL.createObjectURL(photo)}
                       alt=""
-                      className="mt-4"
+                      className="mt-2"
                       height={"100px"}
                     />
                   </div>
@@ -184,7 +185,7 @@ function UpdateProduct() {
                     <img
                       src={`http://localhost:8080/product/product-photo/${id}`}
                       alt=""
-                      className="mt-4"
+                      className="mt-2"
                       height={"100px"}
                     />
                   </div>
@@ -195,34 +196,34 @@ function UpdateProduct() {
                   type="text"
                   value={name}
                   placeholder="BOOK NAME"
-                  className=" text-xl  w-full text-center mt-4 border-4 h-14  text-black"
+                  className=" text-xl  w-2/3 text-center mt-4 border-4 h-14  text-black"
                   onChange={(e) => setName(e.target.value)}
                 />
                 <textarea
                   value={description}
                   placeholder="DESCRIPTION"
-                  className=" text-xl  w-full p-4 text-center mt-4 border-4 h-14  text-black"
+                  className=" text-xl  w-2/3 p-4 text-center mt-4 border-4 h-14  text-black"
                   onChange={(e) => setDescription(e.target.value)}
                 />
                 <input
                   type="text"
                   value={author}
                   placeholder="AUTHOR'S NAME"
-                  className=" text-xl  w-full text-center mt-4 border-4 h-14  text-black"
+                  className=" text-xl  w-2/3 text-center mt-4 border-4 h-14  text-black"
                   onChange={(e) => setAuthor(e.target.value)}
                 />
                 <input
                   type="number"
                   value={price}
                   placeholder="PRICE"
-                  className=" text-xl  w-full text-center mt-4 border-4 h-14  text-black"
+                  className=" text-xl  w-2/3 text-center mt-4 border-4 h-14  text-black"
                   onChange={(e) => setPrice(e.target.value)}
                 />
                 <input
                   type="number"
                   value={quantity}
                   placeholder="QUANTITY"
-                  className=" text-xl  w-full text-center mt-4 border-4 h-14  text-black"
+                  className=" text-xl  w-2/3 text-center mt-4 border-4 h-14  text-black"
                   onChange={(e) => setQuantity(e.target.value)}
                 />
                 <Select
@@ -230,7 +231,7 @@ function UpdateProduct() {
                   placeholder="SELECT SHIPPING"
                   size="large"
                   showSearch
-                  className=" text-xl w-full text-center mt-4 border-4 h-14  text-black"
+                  className=" text-xl w-2/3 text-center mt-4 border-4 h-14  text-black"
                   onChange={(value) => {
                     setShipping(value);
                   }}
@@ -245,6 +246,7 @@ function UpdateProduct() {
                     Yes{" "}
                   </Option>
                 </Select>
+                <div>
                 <button
                   className=" mt-2 border-2 rounded-lg bg-emerald-600 hover:bg-emerald-800 text-white p-4 text-2xl"
                   onClick={handleUpdate}
@@ -257,7 +259,11 @@ function UpdateProduct() {
                 >
                   DELETE PRODUCT{" "}
                 </button>
+                </div>
+                
               </div>
+              </div>
+
             </div>
           </div>
         </div>

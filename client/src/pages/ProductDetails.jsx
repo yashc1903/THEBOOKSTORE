@@ -52,7 +52,7 @@ function ProductDetails() {
 
   return (
     <Layout>
-      <div className="text-center text-5xl underline font-bold my-6 text-gray-700">
+      <div className="text-center text-5xl font-bold  text-gray-700">
         Product Details
       </div>
       <div className="min-w-screen flex flex-col md:flex-row p-4">
@@ -63,7 +63,7 @@ function ProductDetails() {
             alt={product.name}
           />
         </div>
-        <div className="w-full md:w-1/2 p-6 bg-gray-100 rounded-lg shadow-lg">
+        <div className="w-full md:w-1/2 p-6 bg-gradient-to-tr from-rose-100 to-teal-100 bg-gray-100 rounded-lg shadow-lg">
           <h1 className="text-6xl font-semibold mb-4 text-gray-800">
             <span className=" font-bold"> Name:</span> {product.name}
           </h1>
@@ -135,10 +135,10 @@ function ProductDetails() {
       {relatedProducts.length < 1 && (
         <p className="text-3xl text-gray-700">No Similar products found</p>
       )}
-      <div className="ml-4 flex flex-wrap gap-10 justify-center mb-4 mt-4">
+      <div className="ml-4 flex flex-wrap gap-10 justify-center  p-4 mt-4">
         {relatedProducts.map((product) => (
           <div key={product._id} className="hover:z-50 w-96 ">
-            <div className="card bg-white border-2 border-gray-800 shadow-lg rounded-lg flex flex-col justify-between p-4 gap-4 h-full transform transition-transform duration-300 hover:scale-110 hover:z-10">
+            <div className="card bg-gradient-to-tr from-rose-100 to-teal-100 bg-white border-2 border-gray-800 shadow-lg rounded-lg flex flex-col justify-between p-4 gap-4 h-full transform transition-transform duration-300 hover:scale-110 hover:z-10">
               <div className="card-img transition-all duration-500 flex justify-center">
                 <img
                   src={`http://localhost:8080/product/product-photo/${product._id}`}

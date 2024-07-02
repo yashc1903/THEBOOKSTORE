@@ -26,9 +26,17 @@ function Header() {
     toast.success("Logged Out Successfullt");
   };
 
+  const headerStyle = {
+    backgroundImage: 'url("https://images.unsplash.com/photo-1457369804613-52c61a468e7d?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")', // Replace with your image path
+    backgroundSize: 'cover', // Adjusts image to cover the whole background
+  // Prevents repeating the image
+    backgroundPosition: 'center', // Centers the background image
+     // Ensures the background covers the full height of the viewport
+  };
+
   return (
     <>
-      <nav className="relative bg-white h-28 dark:bg-gray-800 flex items-center justify-between px-8">
+      <nav className="relative bg-white h-28 dark:bg-gray-800 flex items-center justify-between px-8 " style={headerStyle}> 
         <Link to="/">
           <div className="flex justify-center items-center">
             <img
@@ -36,7 +44,7 @@ function Header() {
               src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS8f2qlmQft8PNyJKr6YWqN9X7tz_c3ev5cqQ&s"
               alt="Logo"
             />
-            <h1 className="my-2 ml-4 text-gray-700 text-3xl transition-colors duration-300 transform dark:text-gray-200 hover:text-blue-500 dark:hover:text-blue-400 md:mx-2 md:my-0">
+            <h1 className="my-2 ml-4 font-bold text-3xl transition-colors duration-300 transform text-black hover:text-blue-500 dark:hover:text-blue-400 md:mx-2 md:my-0">
               THE BOOK STORE
             </h1>
           </div>
@@ -47,7 +55,7 @@ function Header() {
         </div>
 
         <div className="flex items-center justify-center space-x-2 md:space-x-4 ">
-          <li className="inline-block text-white text-3xl  transition-colors duration-300 transform dark:text-white hover:text-blue-500 dark:hover:text-blue-400 md:mx-4 md:my-0">
+          <li className="inline-block text-black text-3xl  transition-colors duration-300 transform  hover:text-blue-500 dark:hover:text-blue-400 md:mx-4 md:my-0">
             <NavLink to="/" exact="true">
               Home
             </NavLink>
@@ -56,7 +64,7 @@ function Header() {
           <div className="relative inline-block">
             <button
               onClick={() => setCategoryIsOpen(!categoryIsOpen)}
-              className="text-white text-3xl transition-colors duration-300 transform dark:text-white hover:text-blue-500 dark:hover:text-blue-400 md:mx-2 md:my-0"
+              className="text-3xl transition-colors duration-300 transform text-black hover:text-blue-500 dark:hover:text-blue-400 md:mx-2 md:my-0"
             >
               Categories
               <svg
@@ -73,7 +81,7 @@ function Header() {
             </button>
 
             {categoryIsOpen && (
-              <div className="absolute right-0 mt-10 w-48 bg-white dark:bg-gray-800 rounded-md shadow-xl z-10">
+              <div className="absolute right-0 mt-10 w-56 h-96 overflow-auto bg-white dark:bg-gray-800 rounded-md shadow-xl z-10 ">
                 <Link
                   to={`/categories`}
                   className="block px-4 py-2 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
@@ -112,7 +120,7 @@ function Header() {
             <div className="relative inline-block">
               <button
                 onClick={() => setIsOpen(!isOpen)}
-                className="text-white text-3xl transition-colors duration-300 transform dark:text-white hover:text-blue-500 dark:hover:text-blue-400"
+                className="text-black text-3xl transition-colors duration-300 transform  hover:text-blue-500 dark:hover:text-blue-400"
               >
                 {auth?.user?.name}
                 <svg
@@ -129,19 +137,19 @@ function Header() {
               </button>
 
               {isOpen && (
-                <div className="absolute right-0 mt-10 w-48 bg-white dark:bg-gray-800 rounded-md shadow-xl z-10">
+                <div className="absolute right-0 mt-10 w-48 text-black dark:bg-gray-800 rounded-md shadow-xl z-10">
                   <NavLink
                     to={`/dashboard/${
                       auth?.user?.role === 1 ? "admin" : "user"
                     }`}
-                    className="block px-4 py-2 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
+                    className="block px-4 py-2 text-white hover:bg-gray-100 dark:hover:bg-gray-700"
                   >
                     Dashboard
                   </NavLink>
                   <NavLink
                     to="/login"
                     onClick={handleLogout}
-                    className="block px-4 py-2 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
+                    className="block px-4 py-2 text-white hover:bg-gray-100 dark:hover:bg-gray-700"
                   >
                     Logout
                   </NavLink>
@@ -152,7 +160,7 @@ function Header() {
           {auth?.user?.role !== 1 && (
             <Badge count={wishlist.length} showZero>
               <NavLink to={"/wishlist"}>
-                <CiHeart className="w-10 h-10 text-white" />
+                <CiHeart className="w-10 h-10 text-black font-bold bg" />
               </NavLink>
             </Badge>
           )}
@@ -160,7 +168,7 @@ function Header() {
           {auth?.user?.role !== 1 && (
             <Badge count={cart.length} showZero>
               <NavLink to={"/cart"}>
-                <CiShoppingCart className="w-10 h-10 text-white" />
+                <CiShoppingCart className="w-10 h-10 text-black" />
               </NavLink>
             </Badge>
           )}

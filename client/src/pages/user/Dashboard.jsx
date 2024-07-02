@@ -8,11 +8,11 @@ function Dashboard() {
   return (
     <>
       <Layout>
-        <div className="flex justify-around items-center">
-          <div>
-            <UserMenu />
+        <div className="flex justify-around items-center w-full ">
+          <div className="w-1/4  flex justify-center">
+            <UserMenu  style={{position: 'absolute',top: '160px', width: '100%',}} />
           </div>
-          <div className="border w-1/2 h-96 ">
+          <div className="border w-3/4 h-96  bg-white bg-opacity-60 px-8 text-center rounded-xl mt-36 mr-4  ">
             <h1 className="text-3xl w-full mt-10">
               USER NAME : {auth?.user?.name}
             </h1>

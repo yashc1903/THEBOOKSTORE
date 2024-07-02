@@ -96,13 +96,13 @@ function CreateCategory() {
     <>
       <Layout>
         <div className="flex flex-col md:flex-row justify-center items-center md:items-center">
-          <div className="w-1/3 p-4 ">
-            <AdminMenu className="mx-auto" />
+          <div className="w-1/4 p-4  flex justify-center">
+            <AdminMenu  style={{position: 'absolute',top: '160px', width: '100%',}} />
           </div>
-          <div className="flex flex-col justify-center items-center border w-2/3 p-6">
+          <div className="flex flex-col justify-center items-center  w-3/4 p-6">
             <div className="text-center w-full">
               <h1 className="text-3xl mt-10">Manage Category</h1>
-              <div className="mt-4">
+              <div className="mt-4 ">
                 <CategoryForm
                   handleSubmit={handleSubmit}
                   value={name}
@@ -110,29 +110,29 @@ function CreateCategory() {
                 />
               </div>
 
-              <div className="mt-4 max-h-screen overflow-y-auto w-full">
-                <table className="min-w-full divide-y divide-gray-200 rounded-lg">
-                  <thead className="bg-gray-300">
+              <div className="mt-4 mb-10  max-h-screen w-2/3 mx-auto overflow-y-auto h-96 rounded-xl ">
+                <table className="min-w-full divide-y divide-gray-200 rounded-xl  ">
+                  <thead className="bg-gray-300  ">
                     <tr>
                       <th
                         scope="col"
-                        className="px-6 py-3 text-left text-4xl font-medium text-gray-500 uppercase tracking-wider"
+                        className="px-6 py-3 text-left text-4xl font-medium text-black uppercase tracking-wider"
                       >
                         Name
                       </th>
                       <th
                         scope="col"
-                        className="px-6 py-3 text-left text-4xl font-medium text-gray-500 uppercase tracking-wider"
+                        className="px-6 py-3 text-left text-4xl font-medium text-black uppercase tracking-wider"
                       >
                         Actions
                       </th>
                     </tr>
                   </thead>
-                  <tbody className="bg-white divide-y divide-gray-200">
+                  <tbody className="bg-white divide-y divide-gray-200 ">
                     {categories?.map((category) => (
                       <tr key={category._id}>
-                        <td className="px-6 py-4 whitespace-nowrap">
-                          <div className="text-3xl text-gray-900">
+                        <td className="px-6 py-4 whitespace-nowrap ">
+                          <div className="text-3xl text-left text-gray-900">
                             {category.name}
                           </div>
                         </td>
