@@ -1,18 +1,18 @@
-import React, { useState } from "react";
-import { NavLink, Link } from "react-router-dom";
+import React, { useState } from 'react';
+import { NavLink, Link } from 'react-router-dom';
 import { CiShoppingCart, CiHeart } from "react-icons/ci";
-import { useAuth } from "../context/auth";
-import toast from "react-hot-toast";
-import SearchInput from "./Form/SearchInput";
-import useCategory from "../hooks/useCategory";
-import { useCart } from "../context/cart";
-import { Badge } from "antd";
-import { useWishlist } from "../context/wishllist";
+import { useAuth } from '../context/auth';
+import toast from 'react-hot-toast';
+import SearchInput from './Form/SearchInput';
+import useCategory from '../hooks/useCategory';
+import { useCart } from '../context/cart';
+import { Badge } from 'antd';
+import { useWishlist } from '../context/wishllist'; 
 
 function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const [cart] = useCart();
-  const [wishlist] = useWishlist();
+  const [wishlist] = useWishlist(); 
   const [categoryIsOpen, setCategoryIsOpen] = useState(false);
   const categories = useCategory();
   const [auth, setAuth] = useAuth();
@@ -20,10 +20,10 @@ function Header() {
     setAuth({
       ...auth,
       user: null,
-      token: "",
+      token: ''
     });
-    localStorage.removeItem("auth");
-    toast.success("Logged Out Successfullt");
+    localStorage.removeItem('auth');
+    toast.success('Logged Out Successfully');
   };
 
   const headerStyle = {
@@ -33,9 +33,10 @@ function Header() {
     backgroundPosition: 'center', // Centers the background image
      // Ensures the background covers the full height of the viewport
   };
-
+  
   return (
     <>
+     <>
       <nav className="relative bg-white h-28 dark:bg-gray-800 flex items-center justify-between px-8 " style={headerStyle}> 
         <Link to="/">
           <div className="flex justify-center items-center">
