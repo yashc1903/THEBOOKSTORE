@@ -72,8 +72,8 @@ function CreateProduct() {
           <div className=" w-1/4  flex justify-center">
             <AdminMenu  style={{position: 'absolute',top: '160px', width: '100%',}}  />
           </div>
-          <div className="flex justify-center items-center w-3/4 h-screen">
-            <div className="text-center  w-2/3 bg-gradient-to-tr from-rose-100 to-teal-100 p-6  rounded-xl">
+          <div className="flex justify-center items-center w-3/4 h-full mb-5 overflow-y-auto mt-10">
+            <div className="text-center  w-2/3 bg-gradient-to-tr from-rose-100 to-teal-100 p-6    rounded-xl">
               <h1 className="text-3xl mt-4">Create Product</h1>
 
               <div className="mt-2  ">
@@ -176,7 +176,7 @@ function CreateProduct() {
                   placeholder="SELECT SHIPPING"
                   size="large"
                   showSearch
-                  className=" text-xl w-full text-center mt-4 border-4 h-14  text-black"
+                  className=" text-xl w-full text-center bg-white mt-4 border-4 h-14  text-black"
                   onChange={(value) => {
                     setShipping(value);
                   }}

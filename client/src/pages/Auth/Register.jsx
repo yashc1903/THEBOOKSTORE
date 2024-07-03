@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Layout from "../../components/Layout";
 import { Link } from "react-router-dom";
 import { useState } from "react";
@@ -14,11 +14,32 @@ function Register() {
   const [phone, setPhone] = useState("");
   const [address, setAddress] = useState("");
   const [answer, setAnswer] = useState("");
+  const [showModal, setShowModal] = useState(false);
+	const [remainingTime, setRemainingTime] = useState(120);
+	const [userOtp, setUserOtp] = useState("");
+
+  useEffect(() => {
+		if (showModal) {
+			const timer = setTimeout(() => {
+				setShowModal(false);
+			}, 120000); // Close modal after 2 minutes
+
+			const interval = setInterval(() => {
+				setRemainingTime((prevTime) => prevTime - 1);
+			}, 1000); // Update remaining time every second
+
+			return () => {
+				clearTimeout(timer);
+				clearInterval(interval);
+			};
+		}
+	}, [showModal]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
+      if (!name || !email || !password ||!phone || !address ||!answer) return toast.warning("All fields are required");
       const res = await axios.post(`http://localhost:8080/register`, {
         name,
         email,
@@ -27,10 +48,17 @@ function Register() {
         address,
         answer,
       });
-      if (res && res.data.success) {
+      console.log(res.data)
+      if (res.data.error) return toast.error(res.data.error);
+      if (
+        res.data.message ===
+        "Enter the otp sent to your email to verify yourself"
+      ) {
         toast.success(res.data.message);
-        navigate("/login");
-      } else {
+        // Open the modal and reset remaining time
+        setShowModal(true);
+        setRemainingTime(120);
+      }else {
         toast.error(res.data.message);
       }
     } catch (error) {
@@ -38,6 +66,43 @@ function Register() {
       toast.error("something went wrong");
     }
   };
+
+  const handleOtpSubmit = async () => {
+		if (!userOtp)
+			return toast.warning(
+				`Please enter your otp which you have recieved in ${email}`,
+			);
+		const res = await axios.post(`http://localhost:8080/emailVerification`, {
+			email,
+			userOtp,
+		});
+
+		// for wrong otp submission
+		if (res.data.error) {
+			toast.error(res.data.error);
+
+			setTimeout(() => {
+				setShowModal(false);
+				navigate("/");
+			}, 1200);
+		} else {
+			// if user submits the correct otp
+			toast.success(res.data.message);
+
+			setTimeout(() => {
+				setShowModal(false);
+				navigate("/login");
+			}, 1200);
+		}
+	};
+  const formatTime = (seconds) => {
+		const mins = Math.floor(seconds / 60);
+		const secs = seconds % 60;
+		return `${mins.toString().padStart(2, "0")}:${secs
+			.toString()
+			.padStart(2, "0")}`;
+	};
+
 
   return (
     <>
@@ -350,6 +415,43 @@ function Register() {
                   </p>
                 </div>
               </form>
+              {showModal && (
+					<div className="fixed inset-0 z-50 flex items-center justify-center">
+						<div className="absolute inset-0 bg-gray-800 bg-opacity-50"></div>
+						<div className="relative  bg-gradient-to-tr from-rose-100 to-teal-100  rounded-xl w-80 p-6 bg-white ">
+							<h2 className="mb-4 text-xl font-bold">
+								Enter OTP
+							</h2>
+							<input
+								type="number"
+								className="w-full px-3 py-2 rounded"
+								placeholder="OTP"
+								value={userOtp}
+								onChange={(e) => setUserOtp(e.target.value)}
+							/>
+							<p className="mt-4">
+								Time remaining: {formatTime(remainingTime)}
+							</p>
+							<button
+								type="submit"
+								className="px-4 py-2 ml-12 mt-4 mr-2 font-bold text-white transition-all duration-300 bg-red-500 rounded hover:bg-red-700"
+								onClick={() => {
+									setShowModal(false);
+                  window.location.reload()
+								}}
+							>
+								Cancel
+							</button>
+							<button
+								type="submit"
+								className="px-4 py-2 mt-4 font-bold text-white transition-all duration-300 bg-blue-500 rounded hover:bg-blue-700"
+								onClick={handleOtpSubmit}
+							>
+								Submit
+							</button>
+						</div>
+					</div>
+				)}
             </div>
             </div>
             

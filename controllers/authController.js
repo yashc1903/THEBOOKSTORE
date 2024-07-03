@@ -6,6 +6,7 @@ import JWT from 'jsonwebtoken'
 //register
 export const registerController = async(req,res) =>{
     try {
+        const otp = req.otp;
         const {name,email,password,phone,answer,address} = req.body
         //validation
         if(!name){
@@ -39,11 +40,11 @@ export const registerController = async(req,res) =>{
         //register user
         const hashedPassword = await hashPassword(password);
 
-        const user =await new userModel({name ,email,phone,address,answer,password:hashedPassword}).save()
+        const user =  (await userModel.create({name ,email,phone,address,answer,password:hashedPassword,otp}))
 
         res.status(201).send({
             success:true,
-            message:"user registered successfully",
+            message:"Enter the otp sent to your email to verify yourself",
             user,
         })
 
@@ -57,6 +58,28 @@ export const registerController = async(req,res) =>{
         })
     }
 }
+
+//verify email
+export const verifyEmailController = async (req,res) => {
+    try {
+		const { email, userOtp } = req.body;
+		const numberedOtp = Number(userOtp);
+
+		const userToBeVerified = await userModel.findOne({
+			email,
+			otp: numberedOtp,
+		});
+		if (!userToBeVerified) {
+			await userModel.deleteOne({ email });
+			return res.send({
+				error: "Invalid otp, Please try signing up again",
+			});
+		} else return res.send({ message: "Registration successfull" });
+
+	} catch (error) {
+		return res.send({ error: error.message });
+	}
+};
 
 //post login
 export const loginController = async(req,res)=>{

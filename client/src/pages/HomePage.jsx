@@ -170,7 +170,7 @@ function HomePage() {
           </div>
 
           <div className="w-full md:w-3/4 mt-6 md:mt-0 md:ml-6">
-            <h1 className="text-center text-6xl font-semibold bg-gradient-to-l bg-clip-text  from-fuchsia-500 to-cyan-500 text-transparent mb-4">
+            <h1 className="text-center text-6xl font-semibold text-black  mb-4">
               All Products
             
             </h1>
