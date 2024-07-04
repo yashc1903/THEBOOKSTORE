@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Layout from "../../components/Layout";
 import UserMenu from "../../components/UserMenu";
 import axios from "axios";
-import { useAuth } from "../../context/auth";
+import { useAuth } from "../../context/auth.jsx";
 import moment from "moment";
 import { Select } from "antd";
 import emptyBoxImage from "../Admin/emptybox.png"; 
@@ -77,7 +77,7 @@ function Orders() {
           </div>
           <div className="flex flex-col justify-center items-center  w-3/4">
             <div className="flex items-center justify-around w-full px-4 py-2">
-              <h1 className="text-3xl font-bold text-gray-800 mb-4 text-center mt-10">ORDERS</h1>
+              <h1 className="text-3xl font-bold text-black bg-white bg-opacity-60 p-2 rounded-full mb-4 text-center mt-10">ORDERS</h1>
               <Select value={filter} onChange={handleFilterChange} style={{ width: 200 }} className="h-14 " placeholder="Filter">
                 <Option value="All-Orders">All Orders</Option>
                 <Option value="1-month">Last Month</Option>

@@ -3,8 +3,8 @@ import Layout from "../components/Layout";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import toast from "react-hot-toast";
-import { useCart } from "../context/cart";
-import { useAuth } from "../context/auth";
+import { useCart } from "../context/cart.jsx";
+import { useAuth } from "../context/auth.jsx";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-regular-svg-icons";
 import { useWishlist } from "../context/wishllist.jsx";
@@ -35,15 +35,18 @@ function CategoryProduct() {
   return (
     <>
       <Layout>
-        <div className="text-4xl text-center font-semibold text-black  mb-4">
-          {category?.name}
+        <div className=" pt-4">
+          <h1 className="text-center text-4xl mx-auto font-semibold text-black  bg-white rounded-full bg-opacity-60 w-96  mb-4">
+
+          {category?.name} 
+          </h1>
         </div>
-        <div className="text-center text-xl text-gray-600 mb-6">
+        <div className="text-center text-xl text-purple-600 mb-6 bg-white bg-opacity-80 w-56  mx-auto rounded-full ">
           {products?.length} Results Found
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mx-4">
           {products?.map((product) => (
-            <div key={product._id} className="hover:z-50">
+            <div key={product._id} className="hover:z-50 mb-4">
               <div className="card bg-gradient-to-tr from-rose-100 to-teal-100 bg-white border-2 border-gray-800 shadow-lg rounded-lg flex flex-col justify-between p-4 gap-4 h-full transform transition-transform duration-300 hover:scale-110 hover:z-10">
                 <div className="card-img transition-all duration-500 flex justify-center">
                   <img

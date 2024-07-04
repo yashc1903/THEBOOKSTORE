@@ -101,7 +101,7 @@ function CreateCategory() {
           </div>
           <div className="flex flex-col justify-center items-center  w-3/4 p-6">
             <div className="text-center w-full">
-              <h1 className="text-3xl mt-10">Manage Category</h1>
+              <h1 className="text-center text-4xl mx-auto font-semibold text-black  bg-white rounded-full bg-opacity-60 w-96  mb-4">Manage Category</h1>
               <div className="mt-4 ">
                 <CategoryForm
                   handleSubmit={handleSubmit}

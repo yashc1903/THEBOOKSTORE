@@ -95,7 +95,7 @@ function AdminOrders() {
         </div>
         <div className="w-3/4  min-h-full p-4 overflow-y-auto">
           <div className="flex justify-around items-center mb-4 ">
-            <h1 className="text-3xl mt-4 mb-8 text-center">All Orders</h1>
+            <h1 className="text-center text-4xl  font-semibold text-black  bg-white rounded-full bg-opacity-60 w-56  mb-4">All Orders</h1>
             <Select value={filter} onChange={handleFilterChange} className="w-56 mt-4 h-14 mb-8 text-center">
                 <Option value="All-Orders"  >All Orders</Option>
                 <Option value="1-month">Last Month</Option>
@@ -110,15 +110,15 @@ function AdminOrders() {
               <section key={o._id} className="overflow-auto">
                 <div className="overflow-hidden border rounded-lg mb-8">
                   <table className="min-w-full divide-y divide-gray-700">
-                  <thead className="bg-gray-50 dark:bg-gray-800">
+                  <thead className="bg-gray-50 ">
                       <tr>
-                        <th className="py-3.5 px-4 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">Order No:</th>
-                        <th className="py-3.5 px-4 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">Status</th>
-                        <th className="py-3.5 px-4 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">Buyer</th>
-                        <th className="py-3.5 px-4 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">Date</th>
-                        <th className="py-3.5 px-4 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">Time</th>
-                        <th className="py-3.5 px-4 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">Payment</th>
-                        <th className="py-3.5 px-4 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">Quantity</th>
+                        <th className="py-3.5 px-4 text-sm font-normal text-left rtl:text-right text-black">Order No:</th>
+                        <th className="py-3.5 px-4 text-sm font-normal text-left rtl:text-right text-black">Status</th>
+                        <th className="py-3.5 px-4 text-sm font-normal text-left rtl:text-right text-black">Buyer</th>
+                        <th className="py-3.5 px-4 text-sm font-normal text-left rtl:text-right text-black">Date</th>
+                        <th className="py-3.5 px-4 text-sm font-normal text-left rtl:text-right text-black">Time</th>
+                        <th className="py-3.5 px-4 text-sm font-normal text-left rtl:text-right text-black">Payment</th>
+                        <th className="py-3.5 px-4 text-sm font-normal text-left rtl:text-right text-black">Quantity</th>
                         <th className="px-4 py-3"></th>
                       </tr>
                     </thead>
@@ -126,7 +126,7 @@ function AdminOrders() {
                       <tr>
                         <td className="px-4 py-4 whitespace-nowrap">
                           <div>
-                            <h2 className="font-medium text-gray-800">{i + 1}</h2>
+                            <h2 className="font-medium text-white">{i + 1}</h2>
                           </div>
                         </td>
                         <td className="px-4 py-4 whitespace-nowrap">
@@ -142,26 +142,26 @@ function AdminOrders() {
                         </td>
                         <td className="px-4 py-4 whitespace-nowrap">
                           <div>
-                            <h4 className="text-gray-700">{o.buyer.name}</h4>
+                            <h4 className="text-white">{o.buyer.name}</h4>
                           </div>
                         </td>
                         <td className="px-4 py-4 whitespace-nowrap">
                           <div>
-                            <h4 className="text-gray-700">{moment(o.createdAt).format('MMMM Do YYYY')}</h4>
+                            <h4 className="text-white">{moment(o.createdAt).format('MMMM Do YYYY')}</h4>
                           </div>
                         </td>
                         <td className="px-4 py-4 whitespace-nowrap">
                           <div>
-                            <h4 className="text-gray-700">{moment(o.createdAt).format('h:mm:ss a')}</h4>
+                            <h4 className="text-white">{moment(o.createdAt).format('h:mm:ss a')}</h4>
                           </div>
                         </td>
                         <td className="px-4 py-4 whitespace-nowrap">
                           <div>
-                            <h4 className="text-gray-700">{o.payment.success ? "Successful" : "Failed"}</h4>
+                            <h4 className="text-white">{o.payment.success ? "Successful" : "Failed"}</h4>
                           </div>
                         </td>
                         <td className="px-4 py-4 whitespace-nowrap">
-                          <button className="px-1 py-1 text-gray-500 rounded-lg hover:bg-gray-100">{o.products.length}</button>
+                          <button className="px-1 py-1 text-white rounded-lg hover:bg-gray-100">{o.products.length}</button>
                         </td>
                         <td className="px-4 py-4"></td>
                       </tr>

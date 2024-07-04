@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import UserMenu from "../../components/UserMenu";
 import Layout from "../../components/Layout";
-import { useAuth } from "../../context/auth";
+import { useAuth } from "../../context/auth.jsx";
 import toast from "react-hot-toast";
 import axios from "axios";
 import { parse } from "dotenv";
@@ -59,8 +59,8 @@ function Profile() {
           <div className=" w-1/4 flex justify-center">
             <UserMenu style={{position: 'absolute',top: '160px', width: '100%',}} />
           </div>
-          <div className=" w-3/4 min-h-full ">
-            <h1 className="text-3xl w-full mt-10 text-center font-semibold">PROFILE</h1>
+          <div className=" w-3/4 min-h-full  ">
+            <h1 className="text-center text-4xl mx-auto font-semibold text-black mt-8 bg-white rounded-full bg-opacity-60 w-96  mb-4">PROFILE</h1>
             <div class="flex flex-col items-center justify-center  w-full light">
               <div class="w-2/3 bg-white rounded-lg shadow-md p-6 bg-gradient-to-tr from-rose-100 to-teal-100 ">
                 <h2 class="text-2xl font-bold text-gray-800 mb-4 text-center ">

@@ -170,9 +170,8 @@ function HomePage() {
           </div>
 
           <div className="w-full md:w-3/4 mt-6 md:mt-0 md:ml-6">
-            <h1 className="text-center text-6xl font-semibold text-black  mb-4">
+            <h1 className="text-center text-6xl mx-auto font-semibold text-black  bg-white rounded-full bg-opacity-60 w-96  mb-4">
               All Products
-            
             </h1>
             <div className="grid   grid-cols-3  gap-4">
               {products?.map((product) => (
@@ -262,7 +261,7 @@ function HomePage() {
             <div className=" w-full flex justify-center mt-4 text-white text-2xl  font-bold">
               {products && products.length < total && (
                 <button
-                  className=" p-4 bg-gray-500 rounded-full border-2 border-black  w-56 "
+                  className=" p-4 bg-indigo-500 bg-opacity-80 rounded-full border-2 border-white  w-56 "
                   onClick={(e) => {
                     e.preventDefault();
                     setPage(page + 1);
