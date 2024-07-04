@@ -1,10 +1,10 @@
 import React from 'react'
 import Layout from '../components/Layout'
-import { useAuth } from '../context/auth'
+import { useAuth } from '../context/auth.jsx'
 import { useNavigate } from 'react-router-dom'
 import { useWishlist } from '../context/wishllist'
 import '../components/wishlist.css'
-import { useCart } from '../context/cart'
+import { useCart } from '../context/cart.jsx'
 import toast from 'react-hot-toast'
 
 
@@ -31,16 +31,16 @@ function WishlistPage() {
     <>
     <Layout>
         <div className="min-w-full text-center p-4">
-            <h1 className="text-4xl font-bold mb-4">Your Wishlist</h1>
-            <h1 className="text-2xl mb-4">
-               <span className=' text-emerald-600 text-3xl'>{auth?.token && auth?.user?.name} </span>  {wishlist?.length >= 1 ? `You have ${wishlist.length} items in the wishlist` : 'Your wishlist is empty'}
+            <h1 className="text-center text-4xl mx-auto font-semibold text-black  bg-white rounded-full bg-opacity-60 w-96  mb-4">Your Wishlist</h1>
+            <h1 className="text-center text-xl text-purple-600 mb-6 bg-white bg-opacity-80 w-80  mx-auto rounded-full">
+               <span className=' text-emerald-600 text-2xl'> "{auth?.token && auth?.user?.name}"  </span>  {wishlist?.length >= 1 ? `You have ${wishlist.length} items in the wishlist` : 'Your wishlist is empty'}
             </h1>
             
         </div>
 
         <div className="min-w-full flex min-h-screen p-4">
             <div className="w-full text-center p-4">
-            <h1 className="text-4xl font-bold mb-4">wishlist Items</h1>
+            <h1 className="text-center text-4xl mx-auto font-semibold text-black  bg-white rounded-full bg-opacity-60 w-96  mb-4">wishlist Items</h1>
                 <div>
                     {wishlist?.map(item => (
                         <div className="flex flex-col md:flex-row items-center justify-between p-4 mb-4 rounded-md shadow-2xl w-full bg-white bg-opacity-60" key={item._id}>
@@ -64,7 +64,7 @@ function WishlistPage() {
                                     setCart([...cart,item])
                                     localStorage.setItem('cart',JSON.stringify([...cart,item]))
                                     toast.success(` "${item.name}" added to the cart`)
-                                    removeWishlistItem(item._id)
+                                   
                                   }}
                                 className=" relative px-8 py-2 w-40  ml-2 h-10 rounded-md bg-white isolation-auto z-10 border-2 border-blue-700 before:absolute before:w-full before:transition-all before:duration-700 before:hover:w-full hover:text-white before:-right-full before:hover:right-0 before:rounded-full before:bg-[#355ac0] before:-z-10 before:aspect-square before:hover:scale-150 overflow-hidden before:hover:duration-700 inline-flex items-center justify-center text-sm font-semibold text-black bg-white border border-gray-200 rounded-lg shadow-sm gap-x-2 hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none"
                                 >

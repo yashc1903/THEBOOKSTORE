@@ -5,7 +5,7 @@ function AdminMenu( {style}) {
   return (
     <>
       <div className="max-w-4xl mx-auto py-8 my-auto  top-10" style={style}>
-        <h2 className="text-2xl font-bold mb-4 text-center">ADMIN PANEL</h2>
+        <h2 className="text-2xl font-bold mb-4 text-white text-center">ADMIN PANEL</h2>
         <div className="flex justify-center">
           <ul className=" space-y-4">
             <li className="py-4 ">

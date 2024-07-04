@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Layout from "../components/Layout";
-import { useCart } from "../context/cart";
-import { useAuth } from "../context/auth";
+import { useCart } from "../context/cart.jsx";
+import { useAuth } from "../context/auth.jsx";
 import { useNavigate } from "react-router-dom";
 import DropIn from "braintree-web-drop-in-react";
 import axios from "axios";
@@ -81,11 +81,11 @@ function CartPage() {
     <>
       <Layout>
         <div className="min-w-full text-center p-4">
-          <h1 className="text-4xl font-bold mb-4">Your Cart</h1>
-          <h1 className="text-2xl mb-4">
-            <span className=" text-emerald-600 text-3xl">
-              {auth?.token && auth?.user?.name}{" "}
-            </span>{" "}
+          <h1 className="text-center text-4xl mx-auto font-semibold text-black  bg-white rounded-full bg-opacity-60 w-96  mb-4">Your Cart</h1>
+          <h1 className="text-center text-xl text-purple-600 mb-6 bg-white bg-opacity-80 w-80  mx-auto rounded-full">
+            <span className=" text-emerald-600 text-2xl">" 
+              {auth?.token && auth?.user?.name}"
+            </span>
             {cart?.length >= 1
               ? `You have ${cart.length} items in the cart`
               : "Your cart is empty"}
@@ -94,7 +94,7 @@ function CartPage() {
 
         <div className="min-w-full flex min-h-screen p-4">
           <div className="w-full md:w-1/2 text-center p-4">
-            <h1 className="text-4xl font-bold mb-4">Cart Items</h1>
+            <h1 className="text-center text-4xl mx-auto font-semibold text-black  bg-white rounded-full bg-opacity-60 w-96  mb-4">Cart Items</h1>
             <div>
               {cart?.map((item) => (
                 <div

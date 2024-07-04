@@ -71,7 +71,7 @@ function Products() {
           </div>
           <div className=" w-3/4 p-4 h-full  overflow-auto">
             <div className="text-center">
-              <h1 className="text-3xl w-full mt-10">ALL PRODUCTS LIST</h1>
+              <h1 className="text-center text-4xl mx-auto font-semibold text-black  bg-white rounded-full bg-opacity-60 w-96  mb-4">ALL PRODUCTS LIST</h1>
               <div className="mt-4 grid md:grid-cols-3   gap-4 overflow-y-auto h-[calc(100vh-150px)]">
                 {products?.map((product) => (
                   <Link
@@ -103,7 +103,7 @@ function Products() {
             <div className=" w-full flex justify-center mt-4 text-white text-2xl  font-bold">
               {products && products.length < total && (
                 <button
-                  className=" p-4 bg-gray-500 rounded-full border-2 border-black  w-56 "
+                  className=" p-4 bg-opacity-80 bg-indigo-500 rounded-full border-2 border-white  w-56 "
                   onClick={(e) => {
                     e.preventDefault();
                     setPage(page + 1);

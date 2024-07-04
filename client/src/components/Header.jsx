@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { NavLink, Link } from "react-router-dom";
 import { CiShoppingCart, CiHeart } from "react-icons/ci";
-import { useAuth } from "../context/auth";
+import { useAuth } from "../context/auth.jsx";
 import toast from "react-hot-toast";
 import SearchInput from "./Form/SearchInput";
 import useCategory from "../hooks/useCategory";
-import { useCart } from "../context/cart";
+import { useCart } from "../context/cart.jsx";
 import { Badge } from "antd";
 import { useWishlist } from "../context/wishllist";
 
@@ -87,7 +87,7 @@ function Header() {
             </>
           ) : (
             <div className="relative inline-block">
-              <button  onClick={() => setIsOpen(!isOpen)}  className="text-black text-3xl transition-colors duration-300 transform  hover:text-blue-500 dark:hover:text-blue-400"  >
+              <button  onClick={() => setIsOpen(!isOpen)}  className="text-black text-3xl  font-semibold transition-colors duration-300 transform  hover:text-blue-500 dark:hover:text-blue-400"  >
                 {auth?.user?.name}
                 <svg  className="w-6 h-6 inline ml-1"  viewBox="0 0 24 24"  fill="none"  xmlns="http://www.w3.org/2000/svg"  >
                   <path  d="M12 15.713L18.01 9.70299L16.597 8.28799L12 12.888L7.40399 8.28799L5.98999 9.70199L12 15.713Z"  fill="currentColor"  ></path>

@@ -76,7 +76,7 @@ export const sendEmailMiddleware = async (req, res, next) => {
 
 		// Email data
 		const mailOptions = {
-			from: process.env.user,
+			from: process.env.GMAIL_USER,
 			to: email,
 			subject: "Verify your email",
 			text: `Your one time password is ${otp}`,

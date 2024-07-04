@@ -1,6 +1,6 @@
 import React from "react";
 import Layout from "../../components/Layout";
-import { useAuth } from "../../context/auth";
+import { useAuth } from "../../context/auth.jsx";
 import UserMenu from "../../components/UserMenu";
 
 function Dashboard() {

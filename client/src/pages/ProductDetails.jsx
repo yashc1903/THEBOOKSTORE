@@ -3,8 +3,8 @@ import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
 import Layout from "../components/Layout"; // Ensure Layout is properly imported
 import toast from "react-hot-toast";
-import { useCart } from "../context/cart";
-import { useAuth } from "../context/auth";
+import { useCart } from "../context/cart.jsx";
+import { useAuth } from "../context/auth.jsx";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-regular-svg-icons";
 import { useWishlist } from "../context/wishllist.jsx";
@@ -52,8 +52,11 @@ function ProductDetails() {
 
   return (
     <Layout>
-      <div className="text-center text-5xl font-bold  text-gray-700">
+      <div className="pt-4">
+
+      <h1 className="text-center text-4xl mx-auto font-semibold text-black  bg-white rounded-full bg-opacity-60 w-96  mb-4">
         Product Details
+      </h1>
       </div>
       <div className="min-w-screen flex flex-col md:flex-row p-4">
         <div className="w-full md:w-1/2 flex justify-center items-center mb-6 md:mb-0">
@@ -127,9 +130,9 @@ function ProductDetails() {
           )}
         </div>
       </div>
-      <hr className=" border-t-4  border-black ml-4 mr-4 mt-4" />
-      <div className=" w-full text-center text-6xl mt-10 text-gray-500 font-semibold  underline mb-10">
-        {" "}
+      <hr className=" border-t-4  border-white ml-4 mr-4 mt-4 mb-4" />
+      <div className="text-center text-4xl mx-auto font-semibold text-black  bg-white rounded-full bg-opacity-60 w-96  mb-4">
+        
         Similar Products
       </div>
       {relatedProducts.length < 1 && (

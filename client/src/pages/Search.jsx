@@ -4,7 +4,7 @@ import { useSearch } from "../context/search";
 import { useCart } from "../context/cart";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
-import { useAuth } from "../context/auth";
+import { useAuth } from "../context/auth.jsx";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-regular-svg-icons";
 import { useWishlist } from "../context/wishllist.jsx";
@@ -18,17 +18,17 @@ function Search() {
   return (
     <>
       <Layout>
-        <div className="text-center mb-6 ">
-          <h1 className="text-4xl font-bold text-gray-700">Search Results</h1>
-          <h1 className="text-3xl text-gray-600 mt-2">
+        <div className="text-center  pt-4 ">
+          <h1 className="text-center text-4xl mx-auto font-semibold text-black  bg-white rounded-full bg-opacity-60 w-96  mb-4">Search Results</h1>
+          <h1 className="text-center text-xl text-purple-600 mb-6 bg-white bg-opacity-80 w-56  mx-auto rounded-full">
             {values?.results.length < 1
               ? "No products found"
               : `Found ${values?.results.length} products`}
           </h1>
         </div>
-        <div className="ml-4 flex flex-wrap gap-10 justify-center mb-4">
+        <div className="ml-4 flex flex-wrap gap-10 justify-center ">
           {values.results.map((product) => (
-            <div key={product._id} className="hover:z-50 w-96 ">
+            <div key={product._id} className="hover:z-50 w-96  mb-4">
               <div className="card bg-gradient-to-tr from-rose-100 to-teal-100 bg-white border-2 border-gray-800 shadow-lg rounded-lg flex flex-col justify-between p-4 gap-4 h-full transform transition-transform duration-300 hover:scale-110 hover:z-10">
                 <div className="card-img transition-all duration-500 flex justify-center">
                   <img
