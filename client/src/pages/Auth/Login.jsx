@@ -167,7 +167,7 @@ function Login() {
                     type="submit"
                   >
                     {" "}
-                    Sign In{" "}
+                    Login{" "}
                   </button>
                 </div>
                 
