@@ -268,7 +268,7 @@ function HomePage() {
             <div className=" w-full flex justify-center mt-4 text-white text-2xl  font-bold">
               {products && products.length < total && (
                 <button
-                  className=" p-4 bg-indigo-500 bg-opacity-80 rounded-full border-2 border-white  w-56 "
+                  className=" p-4 bg-indigo-500 bg-opacity-100 rounded-full border-2 border-white  w-56 "
                   onClick={(e) => {
                     e.preventDefault();
                     setPage(page + 1);
