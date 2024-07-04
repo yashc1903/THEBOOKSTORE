@@ -74,7 +74,7 @@ function ProductDetails() {
   return (
     <Layout>
       <div className="pt-4">
-        <h1 className="text-center text-4xl mx-auto font-semibold text-black bg-white rounded-full bg-opacity-60 w-96 mb-4">
+        <h1 className="text-center text-4xl mx-auto font-semibold text-black bg-white rounded-full bg-opacity-80 w-96 mb-4">
           Product Details
         </h1>
       </div>
