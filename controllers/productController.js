@@ -1,7 +1,22 @@
+import express from 'express'
 import slugify from 'slugify'
 import productModel from '../models/productModel.js'
+import categoryModel from '../models/categoryModel.js'
 import fs from 'fs'
-import { send } from 'process'
+import braintree from 'braintree'
+import orderModel from '../models/orderModel.js'
+import dotenv from 'dotenv'
+import cors from 'cors'
+const app = express();
+dotenv.config();
+app.use(cors());
+
+var gateway = new braintree.BraintreeGateway({
+    environment: braintree.Environment.Sandbox, // or braintree.Environment.Production
+    merchantId: process.env.BRAINTREE_MERCHANT_ID,
+    publicKey: process.env.BRAINTREE_PUBLIC_KEY,
+    privateKey: process.env.BRAINTREE_PRIVATE_KEY
+});
 
 
 export const createProductController = async (req,res) => {
@@ -81,7 +96,7 @@ export const getSingleProductController = async (req,res) => {
         res.status(200).send({
             success:true,
             message:"got the product",
-            product,
+            product
         })
     } catch (error) {
         console.log(error)
@@ -236,50 +251,146 @@ export const productListController = async (req,res) => {
             message:"something went wrong"
         })
     }
-};
+}
 
-// search product 
-export const searchProductController = async (req, res) => {
-    try{
-        const { keyword } = req
-        const resutls = await productModel.find({
-            $or: [
-                { name: { $regex: keyword, $options: "i" } },
-                { description: { $regex: keyword, $options: "i" } },
-                ],
-        })
-        .select("-photo");
-    res.josn(resutls);
-
-    } catch (error){
+export const searchController  = async (req,res) =>{
+    try {
+        const {keyword} = req.params
+        const results = await productModel.find({
+            $or:[
+                {name:{ $regex: keyword, $options: "i" }},
+                {description:{ $regex: keyword, $options: "i" }}
+            ]
+        }).select("-photo");
+        
+     res.json(results)
+        
+        
+    
+    } catch (error) {
         console.log(error)
-        res.status(400).send({
+        res.status(500).send({
             success:false,
-            message: 'Eroor In Search Product API',
-            error
+            error,
+            message :"something went wrong"
         })
     }
 }
 
-// similar books
-export const relatedBooksController = async (req, res) => {
+export const relatedProductsController = async(req,res) => {
     try {
         const {pid,cid} = req.params
         const products = await productModel.find({
             category:cid,
-            _id:{$ne:pid}
-        }).select("-photo").limit(2).populate("category")
+            _id: {$ne:pid}
+        }).select('-photo').limit(6).populate('category')
+
         res.status(200).send({
             success:true,
-            products,
+            products
         })
-    } catch(error) {
-        console.log(error)
-        res.status(400).send({
-            success:false,
-            message :'Error while getting related books',
-            error
 
+    } catch (error) {
+        console.log(error)
+        res.st(500).send({
+            success:false,
+            error,
+            message:"something went wrong"
         })
     }
 }
+
+export const productCategoryController  =async(req,res) => {
+    try {
+        const category = await categoryModel.findOne({slug:req.params.slug})
+        const products  = await productModel.find({category}).populate('category')
+        res.status(200).send({
+            success:true,
+            category,
+            products
+        })
+    } catch (error) {
+        console.log(error)
+        res.status(500).send({
+            success:true,
+            error,
+            message:"something went wrong"
+        })
+    }
+}
+ //
+export const braintreeTokenContoller = async(req,res)=> {
+    try {
+        gateway.clientToken.generate({}, function (err, response) {
+          if (err) {
+            res.status(500).send(err);
+          } else {
+            res.send(response);
+          }
+        });
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    
+
+
+
+    export const braintreePaymentController = async (req, res) => {
+        try {
+            const { nonce, cart } = req.body;
+            let total = 0;
+            
+            // Calculate total amount
+            cart.forEach((item) => {
+                total += item.price;
+            });
+            
+            // Perform transaction
+            let newTransaction = gateway.transaction.sale(
+                {
+                    amount: total,
+                    paymentMethodNonce: nonce,
+                    options: {
+                        submitForSettlement: true,
+                    },
+                },
+                async function (error, result) {
+                    if (result) {
+                        // Create new order entry
+                        const order = new orderModel({
+                            products: cart,
+                            payment: result,
+                            buyer: req.user._id,
+                        });
+                        
+                        // Save the order
+                        await order.save();
+                        
+                        // Decrease the quantity of purchased products and delete if quantity is 0
+                        for (const item of cart) {
+                            const product = await productModel.findById(item._id);
+                            if (product) {
+                                product.quantity -= 1;
+                                if (product.quantity <= 0) {
+                                    // Delete the product if quantity is zero
+                                    await productModel.findByIdAndDelete(product._id);
+                                } else {
+                                    // Save the updated product
+                                    await product.save();
+                                }
+                            }
+                        }
+    
+                        res.json({ ok: true });
+                    } else {
+                        res.status(500).send(error);
+                    }
+                }
+            );
+        } catch (error) {
+            console.log(error);
+            res.status(500).send(error);
+        }
+    };
+    
