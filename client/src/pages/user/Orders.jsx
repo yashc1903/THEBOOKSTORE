@@ -104,49 +104,54 @@ function Orders() {
                             <table className="min-w-full divide-y divide-gray-200">
                               <thead className="bg-gray-50 dark:bg-gray-800">
                                 <tr>
-                                  <th className="py-3.5 px-4 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">Order No:</th>
-                                  <th className="py-3.5 px-4 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">Status</th>
-                                  <th className="py-3.5 px-4 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">Buyer</th>
-                                  <th className="py-3.5 px-4 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">Date</th>
-                                  <th className="py-3.5 px-4 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">Time</th>
-                                  <th className="py-3.5 px-4 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">Payment</th>
-                                  <th className="py-3.5 px-4 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">Quantity</th>
-                                  <th className="px-4 py-3"></th>
+                                  <th className="py-3.5 px-4 text-xl font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">Order No:</th>
+                                  <th className="py-3.5 px-4 text-xl font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">Status</th>
+                                  <th className="py-3.5 px-4 text-xl font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">Buyer</th>
+                                  <th className="py-3.5 px-4 text-xl font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">Date</th>
+                                  <th className="py-3.5 px-4 text-xl font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">Time</th>
+                                  <th className="py-3.5 px-4 text-xl font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">Payment</th>
+                                  <th className="py-3.5 px-4 text-xl font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">Quantity</th>
+                                  <th className="px-4 py-3 text-xl font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400"> Total</th>
                                 </tr>
                               </thead>
                               <tbody>
                                 <tr className="bg-white">
-                                  <td className="px-4 py-4 text-sm font-medium whitespace-nowrap">
+                                  <td className="px-4 py-4 text-lg font-medium whitespace-nowrap">
                                     <div>
                                       <h2 className="font-medium text-black">{i + 1}</h2>
                                     </div>
                                   </td>
-                                  <td className="px-4 py-4 text-sm font-medium whitespace-nowrap">
+                                  <td className="px-4 py-4 text-lg font-medium whitespace-nowrap">
                                     <div className={`inline px-3 py-3 text-sm font-normal rounded-full  text-green-300 bg-emerald-900 `}>
                                       {o?.status }
                                     </div>
                                   </td>
-                                  <td className="px-4 py-4 text-sm whitespace-nowrap">
+                                  <td className="px-4 py-4 text-lg whitespace-nowrap">
                                     <div>
                                       <h4 className="text-gray-700">{o.buyer.name}</h4>
                                     </div>
                                   </td>
-                                  <td className="px-4 py-4 text-sm whitespace-nowrap">
+                                  <td className="px-4 py-4 text-lg whitespace-nowrap">
                                     <div>
                                       <h4 className="text-gray-700">{moment(o.createdAt).format('MMMM Do YYYY')}</h4>
                                     </div>
                                   </td>
-                                  <td className="px-4 py-4 text-sm whitespace-nowrap">
+                                  <td className="px-4 py-4 text-lg whitespace-nowrap">
                                     <div>
                                       <h4 className="text-gray-700">{moment(o.createdAt).format('h:mm A')}</h4>
                                     </div>
                                   </td>
-                                  <td className="px-4 py-4 text-sm whitespace-nowrap">
+                                  <td className="px-4 py-4 text-lg whitespace-nowrap">
                                     <div className="text-gray-700">{o.payment.success ? 'Successful' : 'Failed'}</div>
                                   </td>
-                                  <td className="px-4 py-4 text-sm whitespace-nowrap">
+                                  <td className="px-4 py-4 text-lg whitespace-nowrap">
                                     <div>
                                       <span className="px-2 py-1 text-gray-500 bg-gray-100 rounded-md">{o.products.length}</span>
+                                    </div>
+                                  </td>
+                                  <td className="px-4 py-4 text-lg whitespace-nowrap">
+                                    <div>
+                                      <span className="px-2 py-1 text-gray-500 bg-gray-100 rounded-md">{o?.payment?.transaction?.amount}</span>
                                     </div>
                                   </td>
                                 </tr>
