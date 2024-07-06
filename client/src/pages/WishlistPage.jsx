@@ -30,13 +30,7 @@ function WishlistPage() {
   return (
     <>
     <Layout>
-        <div className="min-w-full text-center p-4">
-            <h1 className="text-center text-4xl mx-auto font-semibold text-black  bg-white rounded-full bg-opacity-60 w-96  mb-4">Your Wishlist</h1>
-            <h1 className="text-center text-xl text-purple-600 mb-6 bg-white bg-opacity-80 w-80  mx-auto rounded-full">
-               <span className=' text-emerald-600 text-2xl'> "{auth?.token && auth?.user?.name}"  </span>  {wishlist?.length >= 1 ? `You have ${wishlist.length} items in the wishlist` : 'Your wishlist is empty'}
-            </h1>
-            
-        </div>
+        
 
         <div className="min-w-full flex min-h-screen p-4">
             <div className="w-full text-center p-4">

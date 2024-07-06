@@ -110,7 +110,7 @@ function AdminOrders() {
               <section key={o._id} className="overflow-auto">
                 <div className="overflow-hidden border rounded-lg mb-8">
                   <table className="min-w-full divide-y divide-gray-700">
-                  <thead className="bg-gray-50 ">
+                  <thead className="bg-gray-500 ">
                       <tr>
                         <th className="py-3.5 px-4 text-sm font-normal text-left rtl:text-right text-black">Order No:</th>
                         <th className="py-3.5 px-4 text-sm font-normal text-left rtl:text-right text-black">Status</th>
@@ -122,11 +122,11 @@ function AdminOrders() {
                         <th className="px-4 py-3"></th>
                       </tr>
                     </thead>
-                    <tbody className="divide-y divide-gray-200">
+                    <tbody className="divide-y divide-gray-200 bg-white">
                       <tr>
                         <td className="px-4 py-4 whitespace-nowrap">
                           <div>
-                            <h2 className="font-medium text-white">{i + 1}</h2>
+                            <h2 className="font-medium text-black">{i + 1}</h2>
                           </div>
                         </td>
                         <td className="px-4 py-4 whitespace-nowrap">
@@ -142,26 +142,26 @@ function AdminOrders() {
                         </td>
                         <td className="px-4 py-4 whitespace-nowrap">
                           <div>
-                            <h4 className="text-white">{o.buyer.name}</h4>
+                            <h4 className="text-black">{o.buyer.name}</h4>
                           </div>
                         </td>
                         <td className="px-4 py-4 whitespace-nowrap">
                           <div>
-                            <h4 className="text-white">{moment(o.createdAt).format('MMMM Do YYYY')}</h4>
+                            <h4 className="text-black">{moment(o.createdAt).format('MMMM Do YYYY')}</h4>
                           </div>
                         </td>
                         <td className="px-4 py-4 whitespace-nowrap">
                           <div>
-                            <h4 className="text-white">{moment(o.createdAt).format('h:mm:ss a')}</h4>
+                            <h4 className="text-black">{moment(o.createdAt).format('h:mm:ss a')}</h4>
                           </div>
                         </td>
                         <td className="px-4 py-4 whitespace-nowrap">
                           <div>
-                            <h4 className="text-white">{o.payment.success ? "Successful" : "Failed"}</h4>
+                            <h4 className="text-black">{o.payment.success ? "Successful" : "Failed"}</h4>
                           </div>
                         </td>
                         <td className="px-4 py-4 whitespace-nowrap">
-                          <button className="px-1 py-1 text-white rounded-lg hover:bg-gray-100">{o.products.length}</button>
+                          <button className="px-1 py-1 text-black rounded-lg hover:bg-gray-100">{o.products.length}</button>
                         </td>
                         <td className="px-4 py-4"></td>
                       </tr>
@@ -169,7 +169,7 @@ function AdminOrders() {
                   </table>
                   <div>
                     {o.products.map((p) => (
-                      <div key={p._id} className="flex flex-col md:flex-row bg-opacity-45 items-center justify-between p-4 mb-4 rounded-md shadow-lg bg-white">
+                      <div key={p._id} className="flex flex-col md:flex-row bg-opacity-80 items-center justify-between p-4 mb-4 rounded-md shadow-lg bg-white">
                         <img
                           src={`http://localhost:8080/product/product-photo/${p._id}`}
                           alt={p.name}

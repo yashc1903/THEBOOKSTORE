@@ -23,6 +23,14 @@ function AdminMenu( {style}) {
                   </NavLink>
               </div>
             </li>
+            <li className="py-4">
+              <div className="flex space-x-4 w-56">
+                  <NavLink to="/dashboard/admin/users">
+                   
+                    <button className="text-xl  bg-white bg-opacity-60 text-black rounded-full w-56 font-semibold border p-4">Users</button>
+                  </NavLink>
+              </div>
+            </li>
             {/* <li className="py-4 ">
               <div className="flex w-56 space-x-4">               
                   <NavLink to="/dashboard/admin/users"> <button className="text-xl  active:bg-indigo-500 w-56 font-semibold border p-4">Users</button></NavLink>
