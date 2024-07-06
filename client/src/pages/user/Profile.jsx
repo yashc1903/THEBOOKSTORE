@@ -53,7 +53,7 @@ function Profile() {
   }, [auth?.user]);
 
   return (
-    <>
+    <> 
       <Layout>
         <div className="flex justify-around items-center">
           <div className=" w-1/4 flex justify-center">

@@ -71,9 +71,9 @@ function Orders() {
   return (
     <>
       <Layout>
-        <div className="flex flex-col md:flex-row justify-between items-start w-full min-h-screen">
-          <div className="w-1/4 p-4 lg:p-6 flex justify-center">
-            <UserMenu style={{position: 'absolute',top: '160px', width: '100%',}} />
+        <div className="flex flex-row justify-around items-center">
+          <div className="w-1/4  flex justify-center">
+            <UserMenu style={{position: 'absolute',top: '160px', width: '100',}} />
           </div>
           <div className="flex flex-col justify-center items-center  w-3/4">
             <div className="flex items-center justify-around w-full px-4 py-2">

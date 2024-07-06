@@ -9,6 +9,7 @@ import { useCart } from "../context/cart.jsx";
 import { Badge } from "antd";
 import { useWishlist } from "../context/wishllist";
 
+
 function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const [cart] = useCart();

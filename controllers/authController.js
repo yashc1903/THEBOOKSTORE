@@ -235,7 +235,7 @@ export const getOrdersController = async(req,res) => {
 
 export const getAllOrdersController = async(req,res) => {
     try {
-        const orders = await orderModel.find({}).populate("products","-photo").populate("buyer","name").sort()
+        const orders = await orderModel.find({}).populate("products","-photo").populate("buyer","name").sort({createdAt: -1})
         res.json(orders) 
     } catch (error) {
         console.log(error)
@@ -260,6 +260,50 @@ export const orderStatusController  = async(req,res) => {
             success:false,
             error,
             message:"something went wrong"
+        })
+    }
+}
+
+export const getUserController = async (req,res) => {
+    try {
+        const users = await userModel.find({}).sort({createdAt: -1})
+
+        res.status(200).send({
+            success:true,
+            countTotal : users.length, 
+            message:"All Users",
+            users,
+        })
+    } catch (error) {
+        console.log(error)
+        res.status(500).send({
+            success:false,
+            error,
+            message:"error in getting the products"
+        })
+    }
+}
+
+export const getProductController = async (req,res)=>{
+    try {
+        const products = await productModel.find({})
+        .populate('category')
+        .select('-photo')
+        .limit(12)
+        .sort({createdAt:-1})
+        
+        res.status(200).send({
+            success:true,
+            countTotal : products.length, 
+            message:"All Products",
+            products,
+        })
+    } catch (error) {
+        console.log(error)
+        res.status(500).send({
+            success:false,
+            error,
+            message:"error in getting the products"
         })
     }
 }
