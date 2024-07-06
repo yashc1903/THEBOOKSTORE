@@ -2,12 +2,13 @@ import React, { useEffect, useState } from "react";
 import Layout from "../../components/Layout";
 import UserMenu from "../../components/UserMenu";
 import axios from "axios";
-import { useAuth } from "../../context/auth";
+import { useAuth } from "../../context/auth.jsx";
 import moment from "moment";
 import { Select } from "antd";
-import emptyBoxImage from "./emptybox.png"; 
+import emptyBoxImage from "../Admin/emptybox.png"; 
 
 const { Option } = Select;
+
 
 function Orders() {
   const [orders, setOrders] = useState([]);
@@ -71,13 +72,13 @@ function Orders() {
     <>
       <Layout>
         <div className="flex flex-col md:flex-row justify-between items-start w-full min-h-screen">
-          <div className="md:w-1/4 w-full">
-            <UserMenu />
+          <div className="w-1/4 p-4 lg:p-6 flex justify-center">
+            <UserMenu style={{position: 'absolute',top: '160px', width: '100%',}} />
           </div>
-          <div className="flex flex-col justify-center items-center border w-full md:w-3/4">
-            <div className="flex items-center justify-between w-full px-4 py-2">
-              <h1 className="text-3xl font-bold text-gray-800 mb-4 text-center mt-10">ORDERS</h1>
-              <Select value={filter} onChange={handleFilterChange} style={{ width: 200 }} placeholder="Filter">
+          <div className="flex flex-col justify-center items-center  w-3/4">
+            <div className="flex items-center justify-around w-full px-4 py-2">
+              <h1 className="text-3xl font-bold text-black bg-white bg-opacity-60 p-2 rounded-full mb-4 text-center mt-10">ORDERS</h1>
+              <Select value={filter} onChange={handleFilterChange} style={{ width: 200 }} className="h-14 " placeholder="Filter">
                 <Option value="All-Orders">All Orders</Option>
                 <Option value="1-month">Last Month</Option>
                 <Option value="6-months">Last 6 Months</Option>
@@ -88,10 +89,10 @@ function Orders() {
             </div>
             <div className="flex flex-col items-center justify-center w-full">
               {filteredOrders.length === 0 ? (
-                <div className="text-center mt-10">
-                  <img src={emptyBoxImage} alt="Empty Box" className="mx-auto mb-1" style={{ width: '400px' }} />
-                  <p className="text-lg font-medium text-gray-600">Sorry! Orders not found.</p>
-                  <p className="text-sm text-gray-500">Try using a different filter or go back to orders.</p>
+                <div className="text-center mt-8 bg-white p-4 rounded-lg shadow-md">
+                  <img src={emptyBoxImage} alt="Empty Box" className="mx-auto mb-1" style={{ width: "40vw", height:"25vw"}} />
+                  <p className="text-xl font-bold text-gray-600">Sorry! Orders not found.</p>
+                  <p className="text-lg font-semibold text-gray-500"> Try using a different filter or go back to orders.  </p>
                 </div>
               ) : (
                 filteredOrders.map((o, i) => (
@@ -121,8 +122,8 @@ function Orders() {
                                     </div>
                                   </td>
                                   <td className="px-4 py-4 text-sm font-medium whitespace-nowrap">
-                                    <div className={`inline px-3 py-1 text-sm font-normal rounded-full ${o.payment.success ? 'text-green-500 bg-green-100' : 'text-red-500 bg-red-100'}`}>
-                                      {o.payment.success ? 'Successful' : 'Failed'}
+                                    <div className={`inline px-3 py-3 text-sm font-normal rounded-full  text-green-300 bg-emerald-900 `}>
+                                      {o?.status }
                                     </div>
                                   </td>
                                   <td className="px-4 py-4 text-sm whitespace-nowrap">
@@ -148,16 +149,17 @@ function Orders() {
                                       <span className="px-2 py-1 text-gray-500 bg-gray-100 rounded-md">{o.products.length}</span>
                                     </div>
                                   </td>
+                                  <th className="px-4 py-3"></th>
                                 </tr>
                               </tbody>
                             </table>
                             <div>
                               {o.products.map((p) => (
-                                <div key={p._id} className="flex items-center justify-between p-4 mb-4 rounded-md shadow-2xl bg-white">
-                                  <img src={`http://localhost:8080/product/product-photo/${p._id}`} alt={p.name} className="h-48 w-full md:w-1/3 rounded-md mb-4 md:mb-0 mr-0 md:mr-4" />
+                                <div key={p._id} className="flex items-center bg-opacity-80 justify-between p-4 mb-4 rounded-md shadow-2xl bg-white">
+                                  <img src={`http://localhost:8080/product/product-photo/${p._id}`} alt={p.name} className="h-48 w-full md:w-1/3 rounded-md object-contain mb-4 md:mb-0 mr-0 md:mr-4" />
                                   <div className="flex flex-col w-full md:w-2/3 text-start">
                                     <div className="text-3xl font-bold mb-4">{p.name}</div>
-                                    <div className="text-indigo-500 text-xl mb-4"><span className="text-black">By:</span> {p.author}</div>
+                                    <div className="text-indigo-900 text-xl mb-4"><span className="text-black">By:</span> {p.author}</div>
                                     <div className="text-2xl font-bold text-red-500 mb-4">₹ {p.price}</div>
                                   </div>
                                 </div>
