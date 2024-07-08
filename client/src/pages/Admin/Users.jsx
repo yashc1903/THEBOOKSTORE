@@ -35,7 +35,7 @@ function Users() {
             { 
             
               <section  className="overflow-auto">
-                <div className="overflow-hidden  rounded-lg mb-8 m-4">
+                <div className="overflow-auto  rounded-lg mb-8 m-4">
                   <table className="min-w-full divide-y divide-gray-700 ">
                   <thead className="bg-gray-500 bg-opacity-100 ">
                       <tr>
@@ -69,7 +69,7 @@ function Users() {
                   </td>
                     <td className="px-4 py-4 whitespace-nowrap">
                     <div>
-                      <h2 className="font-medium text-xl text-black">{user.address}</h2>
+                      <h2 className="font-medium text-xl text-black capitalize">{user.address}</h2>
                     </div>
                   </td>
                     <td className="px-4 py-4 whitespace-nowrap">
