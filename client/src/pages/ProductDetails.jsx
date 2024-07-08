@@ -6,7 +6,8 @@ import toast from "react-hot-toast";
 import { useCart } from "../context/cart.jsx";
 import { useAuth } from "../context/auth.jsx";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHeart } from "@fortawesome/free-regular-svg-icons";
+import { faHeart as solidHeart } from "@fortawesome/free-solid-svg-icons";
+import { faHeart as regularHeart } from "@fortawesome/free-regular-svg-icons";
 import { useWishlist } from "../context/wishllist.jsx";
 
 function ProductDetails() {
@@ -49,6 +50,22 @@ function ProductDetails() {
   if (!product) {
     return <div className="text-center">Loading...</div>;
   }
+
+  const isInWishlist = (productId) => wishlist.some((item) => item._id === productId);
+
+  const toggleWishlist = (product) => {
+    const index = wishlist.findIndex((item) => item._id === product._id);
+    if (index === -1) {
+      setWishlist([...wishlist, product]);
+      localStorage.setItem("wishlist", JSON.stringify([...wishlist, product]));
+      toast.success(`${product.name} added to the wishlist`);
+    } else {
+      const updatedWishlist = wishlist.filter((item) => item._id !== product._id);
+      setWishlist(updatedWishlist);
+      localStorage.setItem("wishlist", JSON.stringify(updatedWishlist));
+      toast.success(`${product.name} removed from the wishlist`);
+    }
+  };
 
   return (
     <Layout>
@@ -112,21 +129,16 @@ function ProductDetails() {
           )}
           {auth?.user?.role !==1 && (
           
-          <div className="inline-block ml-4" key={product._id}>
-            <FontAwesomeIcon
-              icon={faHeart}
-              className={`cursor-pointer  `}
-              size="3x"
-              onClick={() => {
-                setWishlist([...wishlist, product]);
-                localStorage.setItem(
-                  "wishlist",
-                  JSON.stringify([...wishlist, product])
-                );
-                toast.success(` "${product.name}" added to the wishlist`);
-              }}
-            />
-          </div>
+          <div className="inline-block" key={product._id}>
+                          <FontAwesomeIcon
+                        icon={isInWishlist(product._id) ? solidHeart : regularHeart}
+                        className={`cursor-pointer ${isInWishlist(product._id) ? 'text-red-500' : ''} mx-5 border-2`}
+                        size="3x"
+                        onClick={() => {
+                          toggleWishlist(product)
+                        }}
+                      />
+                        </div>
           )}
         </div>
       </div>
@@ -172,22 +184,15 @@ function ProductDetails() {
                 </button>
                 {auth?.user?.role !== 1 && (
                   <div className="inline-block" key={product._id}>
-                    <FontAwesomeIcon
-                      icon={faHeart}
-                      className={`cursor-pointer  `}
-                      size="2xl"
-                      onClick={() => {
-                        setWishlist([...wishlist, product]);
-                        localStorage.setItem(
-                          "wishlist",
-                          JSON.stringify([...wishlist, product])
-                        );
-                        toast.success(
-                          ` "${product.name}" added to the wishlist`
-                        );
-                      }}
-                    />
-                  </div>
+                  <FontAwesomeIcon
+                icon={isInWishlist(product._id) ? solidHeart : regularHeart}
+                className={`cursor-pointer ${isInWishlist(product._id) ? 'text-red-500' : ''}`}
+                size="2x"
+                onClick={() => {
+                  toggleWishlist(product)
+                }}
+              />
+                </div>
                 )}
 
                 {auth?.user?.role !== 1 && (
