@@ -21,7 +21,7 @@ var gateway = new braintree.BraintreeGateway({
 
 export const createProductController = async (req,res) => {
     try {
-        const {name,slug,description,author,price,category,quantity,shipping} = req.fields
+        const {name,slug,description,author,price,category,quantity,shipping,isRentable,rentPrice} = req.fields
         const {photo} = req.files
         //validation
         switch(true){
@@ -37,6 +37,10 @@ export const createProductController = async (req,res) => {
                 return res.status(500).send({error:"Category is required"})
             case !quantity:
                 return res.status(500).send({error:"Quantity is required"})
+            case !isRentable:
+                return res.status(500).send({error:"product available for rent  is required"})
+            case !rentPrice:
+                return res.status(500).send({error:"Rent Price is required"})
             case photo && photo.size >1000000:
                 return res.status(500).send({error:"Photo is required and should be less than 1 mb"})
         }
@@ -69,7 +73,7 @@ export const getProductController = async (req,res)=>{
         .populate('category')
         .select('-photo')
         .limit(12)
-        .sort({createdAt:-1})
+        .sort()
         
         res.status(200).send({
             success:true,
@@ -333,9 +337,6 @@ export const braintreeTokenContoller = async(req,res)=> {
       }
     };
     
-
-
-
 export const braintreePaymentController = async (req,res) => {
     try {
         const { nonce, cart } = req.body;
@@ -368,4 +369,28 @@ export const braintreePaymentController = async (req,res) => {
         console.log(error);
       }
     
+}
+
+export const getRentableProductController  =async (req,res) => {
+    try {
+        const products = await productModel.find({isRentable: true})
+        .populate('category')
+        .select('-photo')
+        .limit(12)
+        .sort({createdAt:-1})
+        
+        res.status(200).send({
+            success:true,
+            countTotal : products.length, 
+            message:"All Products",
+            products,
+        })
+    } catch (error) {
+        console.log(error)
+        res.status(500).send({
+            success:false,
+            error,
+            message:"error in getting the products"
+        })
+    }
 }

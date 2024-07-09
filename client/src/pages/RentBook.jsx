@@ -13,18 +13,19 @@ import { faHeart as solidHeart } from "@fortawesome/free-solid-svg-icons";
 import { faHeart as regularHeart } from "@fortawesome/free-regular-svg-icons";
 import { useWishlist } from "../context/wishllist.jsx";
 
-function HomePage() {
-  const [products, setProducts] = useState([]);
-  const [categories, setCategories] = useState([]);
-  const [checked, setChecked] = useState([]);
-  const [radio, setRadio] = useState([]);
-  const [total, setTotal] = useState(0);
-  const [page, setPage] = useState(1);
-  const [loading, setLoading] = useState(false);
-  const [auth, setAuth] = useAuth();
 
-  //cart
-  const [cart, setCart] = useCart();
+function RentBook() {
+    const [products, setProducts] = useState([]);
+    const [categories, setCategories] = useState([]);
+    const [checked, setChecked] = useState([]);
+    const [radio, setRadio] = useState([]);
+    const [total, setTotal] = useState(0);
+    const [page, setPage] = useState(1);
+    const [loading, setLoading] = useState(false);
+    const [auth, setAuth] = useAuth();
+
+
+    const [cart, setCart] = useCart();
   const [wishlist, setWishlist] = useWishlist();
 
   const navigate = useNavigate();
@@ -42,18 +43,6 @@ function HomePage() {
       console.log(error);
     }
   };
-
-  const getTotal = async () => {
-    try {
-      const { data } = await axios.get(
-        `http://localhost:8080/product/product-count`
-      );
-      setTotal(data?.total);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
   const handleFilter = (value, id) => {
     let all = [...checked];
     if (value) {
@@ -76,7 +65,7 @@ function HomePage() {
     try {
       setLoading(true);
       const { data } = await axios.get(
-        `http://localhost:8080/product/product-list/${page}`
+        `http://localhost:8080/product/get-rentable-products`
       );
       setLoading(false);
       setProducts(data.products);
@@ -86,6 +75,23 @@ function HomePage() {
     }
   };
 
+  const getTotal = async () => {
+    try {
+      const { data } = await axios.get(
+        `http://localhost:8080/product/product-count`
+      );
+      setTotal(data?.total);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    getAllProducts();
+    getTotal();
+  }, []);
+
+  
   useEffect(() => {
     getAllProducts();
     getTotal();
@@ -139,60 +145,16 @@ function HomePage() {
       toast.success(`${product.name} removed from the wishlist`);
     }
   };
-
-  
-
   return (
     <>
-      <Layout>
-        <div className=" p-6 flex flex-wrap md:flex-nowrap" >
-          <div className="w-full md:w-1/4 h-2/3 bg-gray-100 p-4 rounded-lg shadow-md bg-gradient-to-tr from-rose-100 to-teal-100">
-          <div className="flex justify-center ">
-            <Button
-              className=" p-4 h-14 font-bold  mb-4 text-xl rounded-md text-white bg-gray-600 "
-              onClick={() => window.location.reload()}
-            >
-              Reset Filters
-            </Button>
-            </div>
-            <h1 className="text-center text-3xl font-bold text-gray-700 mb-4">
-              Filter by Category
-            </h1>
-            {categories?.map((category) => (
-              <Checkbox
-                key={category._id}
-                className="flex text-xl"
-                onChange={(e) => {
-                  handleFilter(e.target.checked, category._id);
-                }}
-              >
-                {category.name}
-              </Checkbox>
-            ))}
-            <h1 className="text-center text-3xl font-bold text-gray-700 mb-4 mt-10">
-              Filter by price
-            </h1>
-            <Radio.Group
-              className=""
-              onChange={(e) => setRadio(e.target.value)}
-            >
-              {Prices?.map((p) => (
-                <div key={p._id}>
-                  <Radio className="text-xl" value={p.array}>
-                    {p.name}
-                  </Radio>
-                </div>
-              ))}
-            </Radio.Group>
-          </div>
-
-          <div className="w-full md:w-3/4 mt-6 md:mt-0 md:ml-6">
-            <h1 className="text-center text-6xl mx-auto font-semibold text-black  bg-white rounded-full bg-opacity-60 w-96  mb-4">
-              All Products
+    <Layout>
+    <div className="w-full  mt-6 md:mt-0 md:ml-6">
+            <h1 className="text-center text-6xl mx-auto font-semibold text-black py-10 rounded-full bg-opacity-60 w-full  mb-4">
+               Products Available for Rent
             </h1>
             <div className="grid   grid-cols-3  gap-4">
               {products?.map((product) => (
-                <div key={product._id} className="hover:z-50 ">
+                <div key={product._id} className="hover:z-50 w-96 ">
                   <div className="card bg-gradient-to-tr from-rose-100 to-teal-100  border-2 border-gray-800 shadow-lg rounded-lg flex flex-col justify-between p-4 gap-4 h-full transform transition-transform duration-300 hover:scale-110 hover:z-10">
                     <div className="card-img transition-all duration-500 flex justify-center ">
                       <img
@@ -216,7 +178,7 @@ function HomePage() {
                     <div className="card-footer flex justify-between items-center mt-auto">
                       <div className="card-price text-xl font-semibold text-gray-800">
                         <span className="text-gray-600">₹ </span>
-                        {` ${product.price}`}
+                        {` ${product.rentPrice}`} per day
                       </div>
                       <button
                         className="w-36 h-10 rounded-md p-6 py-2  border-2 border-black font-sm text-gray-800 bg-transparent cursor-pointer transition-all duration-300 relative  shadow-inner shadow-gray-300 hover:shadow-none focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500"
@@ -269,7 +231,7 @@ function HomePage() {
               ))}
             </div>
             <div className=" w-full flex justify-center mt-4 text-white text-2xl  font-bold">
-              {products && products.length < total && (
+              {products && products.length>0 && products.length < total && (
                 <button
                   className=" p-4 bg-indigo-500 bg-opacity-80 rounded-full border-2 border-white  w-56 "
                   onClick={(e) => {
@@ -282,10 +244,9 @@ function HomePage() {
               )}
             </div>
           </div>
-        </div>
-      </Layout>
+    </Layout>
     </>
-  );
+  )
 }
 
-export default HomePage;
+export default RentBook

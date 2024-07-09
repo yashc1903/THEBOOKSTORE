@@ -29,6 +29,8 @@ import CartPage from "./pages/CartPage";
 import SellProduct from "./pages/user/SellProduct";
 import WishlistPage from "./pages/WishlistPage";
 import AdminOrders from "./pages/Admin/AdminOrders";
+import RentBook from "./pages/RentBook";
+
 
 function App() {
   return (
@@ -36,7 +38,8 @@ function App() {
       <Toaster position=" top-center" toastOptions={{ duration: 3000 }} />
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path="/" element={<HomePage />} />
+        <Route path="/rent" element={<RentBook />} />
+        
         <Route path="/product/:slug" element={<ProductDetails />} />
         <Route path="/search" element={<Search />} />
         <Route path="/categories" element={<Categories />} />

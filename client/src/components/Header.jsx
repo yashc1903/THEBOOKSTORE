@@ -59,6 +59,10 @@ function Header() {
           <li className="inline-block text-black text-3xl font-semibold  transition-colors duration-300 transform  hover:text-blue-500 dark:hover:text-blue-400 md:mx-4 md:my-0">
             <NavLink to="/" exact="true">Home</NavLink>
           </li>
+          <li className="inline-block text-black text-3xl font-semibold  transition-colors duration-300 transform  hover:text-blue-500 dark:hover:text-blue-400 md:mx-4 md:my-0">
+            <NavLink to="/rent" exact="true">Rent</NavLink>
+          </li>
+          
 
           <div className="relative inline-block">
             <button
@@ -80,6 +84,7 @@ function Header() {
               </div>
             )}
           </div>
+         
 
           {!auth.user ? (
             <>

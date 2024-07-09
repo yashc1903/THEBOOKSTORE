@@ -99,6 +99,9 @@ function ProductDetails() {
           <h1 className="text-4xl font-semibold mb-4 text-gray-800">
             <span className=" font-bold"> Price:</span> ₹ {product.price}
           </h1>
+          <h1 className="text-4xl font-semibold mb-4 text-gray-800">
+            <span className=" font-bold"> Rent Price:</span> ₹ {product.rentPrice}
+          </h1>
           <h1 className="text-3xl text-gray-700">
             <span className=" font-bold"> Category:</span>{" "}
             {product.category?.name}

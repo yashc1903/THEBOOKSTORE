@@ -16,6 +16,8 @@ function UpdateProduct() {
   const [category, setCategory] = useState("");
   const [quantity, setQuantity] = useState("");
   const [shipping, setShipping] = useState("");
+  const [isRentable, setIsRentable] = useState("");
+  const [rentPrice, setRentPrice] = useState("");
   const [id, setId] = useState("");
   const navigate = useNavigate();
   const params = useParams();
@@ -32,6 +34,8 @@ function UpdateProduct() {
       photo && productData.append("photo", photo);
       productData.append("quantity", quantity);
       productData.append("shipping", shipping);
+      productData.append("isRentable", isRentable);
+      productData.append("rentPrice", rentPrice);
       const { data } = axios.put(
         `http://localhost:8080/product//update-product/${id}`,
         productData
@@ -221,6 +225,13 @@ function UpdateProduct() {
                 />
                 <input
                   type="number"
+                  value={rentPrice}
+                  placeholder="RENT PRICE"
+                  className=" text-xl  w-2/3 text-center mt-4 border-4 h-14  text-black"
+                  onChange={(e) => setRentPrice(e.target.value)}
+                />
+                <input
+                  type="number"
                   value={quantity}
                   placeholder="QUANTITY"
                   className=" text-xl  w-2/3 text-center mt-4 border-4 h-14  text-black"
@@ -236,6 +247,25 @@ function UpdateProduct() {
                     setShipping(value);
                   }}
                   value={shipping ? "Yes" : "No"}
+                >
+                  <Option value="0" className="text-2xl">
+                    {" "}
+                    No
+                  </Option>
+                  <Option value="1" className="text-2xl">
+                    {" "}
+                    Yes{" "}
+                  </Option>
+                </Select>
+                <Select
+                  variant={false}
+                  placeholder="AVAILABLE FOR RENT"
+                  size="large"
+                  showSearch
+                  className=" text-xl w-2/3 text-center mt-4 border-4 h-14  text-black"
+                  onChange={(value) => {
+                    setIsRentable(value);
+                  }}
                 >
                   <Option value="0" className="text-2xl">
                     {" "}
