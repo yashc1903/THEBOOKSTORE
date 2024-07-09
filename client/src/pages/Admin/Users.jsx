@@ -31,7 +31,6 @@ function Users() {
           </div>
           <div className=" w-3/4  min-h-full  ">
             
-          <h1 className="text-center text-4xl  mx-auto mt-8 font-semibold text-black  bg-white rounded-full bg-opacity-60 w-56  mb-4">All Orders</h1>
             { 
             
               <section  className="overflow-auto">
@@ -51,7 +50,7 @@ function Users() {
                     </thead>
                     <tbody className="divide-y divide-gray-200 bg-white  overflow-y-auto">
                     {users.length >= 0 && users.map((user,i) => (
-                      <tr className=""> 
+                      <tr className="" key={user._id}> 
                       <td className="px-4 py-4 whitespace-nowrap">
                       <div>
                         <h2 className="font-medium  text-xl text-black">{i+1}</h2>
