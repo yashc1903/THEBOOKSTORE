@@ -142,7 +142,7 @@ function AdminOrders() {
                         </td>
                         <td className="px-4 py-4 whitespace-nowrap">
                           <div>
-                            <h4 className="text-black">{o.buyer.name}</h4>
+                            <h4 className="text-black">{o?.buyer?.name}</h4>
                           </div>
                         </td>
                         <td className="px-4 py-4 whitespace-nowrap">
