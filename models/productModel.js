@@ -38,7 +38,15 @@ const productSchema = new mongoose.Schema({
     shipping:{
         type:Boolean,
         
+    },
+    isRentable:{
+        type:Boolean,
+        default:false
+    },
+    rentPrice:{
+        type:Number
     }
+
 
 },{timestamps:true})
 
