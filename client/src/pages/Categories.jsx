@@ -11,7 +11,7 @@ function Categories() {
       <Layout>
         <div className="p-4  shadow-md">
           <div className="text-center text-4xl mx-auto font-semibold text-black  bg-white rounded-full bg-opacity-60 w-1/3  mb-10">
-            All categories
+            All Categories
           </div>
           <div className="grid grid-cols-4 gap-4   items-center justify-center">
             {categories.map((c) => (
