@@ -373,10 +373,9 @@ export const braintreePaymentController = async (req,res) => {
 
 export const getRentableProductController  =async (req,res) => {
     try {
-        const products = await productModel.find({isRentable: true})
+        const products = await productModel.find({isRentable: true,rentPrice: { $gt: 0 } })
         .populate('category')
         .select('-photo')
-        .limit(12)
         .sort({createdAt:-1})
         
         res.status(200).send({

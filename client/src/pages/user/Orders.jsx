@@ -6,6 +6,9 @@ import { useAuth } from "../../context/auth.jsx";
 import moment from "moment";
 import { Select } from "antd";
 import emptyBoxImage from "../Admin/emptybox.png"; 
+import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
+
 
 const { Option } = Select;
 
@@ -14,6 +17,7 @@ function Orders() {
   const [orders, setOrders] = useState([]);
   const [filteredOrders, setFilteredOrders] = useState([]);
   const [filter, setFilter] = useState("Filter");
+  const navigate = useNavigate()
   const [auth] = useAuth();
 
   const getOrders = async () => {
@@ -22,6 +26,7 @@ function Orders() {
       const sortedData = data.sort((a, b) => moment(b.createdAt) - moment(a.createdAt)); 
       setOrders(sortedData);
       setFilteredOrders(sortedData); 
+
     } catch (error) {
       console.log(error);
     }
@@ -67,6 +72,7 @@ function Orders() {
 
     setFilteredOrders(filtered);
   };
+  
 
   return (
     <>
@@ -96,11 +102,12 @@ function Orders() {
                 </div>
               ) : (
                 filteredOrders.map((o, i) => (
-                  <section className="container px-4 mx-auto" key={o._id}>
+                  <section className="container px-4 mx-auto mb-4" key={o._id}>
                     <div className="flex flex-col mt-6">
+                      
                       <div className="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                         <div className="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
-                          <div className="overflow-hidden border border-gray-200 md:rounded-lg">
+                          <div className="overflow-hidden border-2 border-black md:rounded-lg">
                             <table className="min-w-full divide-y divide-gray-200">
                               <thead className="bg-gray-50 dark:bg-gray-800">
                                 <tr>
@@ -168,6 +175,30 @@ function Orders() {
                                   </div>
                                 </div>
                               ))}
+                              <div className="flex justify-center">
+                              <button
+                  className=" my-2 border-2 bg-red-500  hover:bg-red-700  rounded-full text-white p-4 text-xl"
+                  onClick={async (e) => {
+                    e.preventDefault();
+                    try {
+                      let answer = window.prompt(`Are You Sure,
+                         You want to cancle the order`);
+                      if (!answer) return;
+                      const { data } = await axios.delete(
+                        `http://localhost:8080/delete-order/${o._id}`
+                      );
+                      toast.success("Order cancelled successfully");
+                      navigate("/dashboard/user/orders");
+                      window.location.reload()
+                    } catch (error) {
+                      console.log(error);
+                      toast.error("something went wrong");
+                    }
+                  }}
+                >
+                  CANCLE ORDER
+                </button>
+                              </div>
                             </div>
                           </div>
                         </div>

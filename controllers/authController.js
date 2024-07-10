@@ -232,7 +232,6 @@ export const getOrdersController = async(req,res) => {
     }
 }
 
-
 export const getAllOrdersController = async(req,res) => {
     try {
         const orders = await orderModel.find({}).populate("products","-photo").populate("buyer","name").sort({createdAt: -1})
@@ -306,4 +305,23 @@ export const getProductController = async (req,res)=>{
             message:"error in getting the products"
         })
     }
+}
+
+export const deleteOrderController = async (req,res) => {
+    
+        try {
+            await orderModel.findByIdAndDelete(req.params.oid).select('-photo')
+            res.status(200).send({
+                success:true,
+                message:"order cancelled successfully"
+            })
+        } catch (error) {
+            console.log(error)
+            res.status(500).send({
+                success:false,
+                error,
+                message:"failed to cancel order"
+            })
+        }
+    
 }

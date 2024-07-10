@@ -89,10 +89,7 @@ function CartPage() {
     <Layout>
       <div className="min-w-full text-center p-4">
         <h1 className="text-center text-4xl mx-auto font-semibold text-black bg-white rounded-full bg-opacity-60 w-96 mb-4">Your Cart</h1>
-        <h1 className="text-center text-xl text-purple-600 mb-6 bg-white bg-opacity-80 w-80 mx-auto rounded-full">
-          <span className="text-emerald-600 text-2xl">"{auth?.token && auth?.user?.name}"</span>
-          {cart?.length >= 1 ? `You have ${cart.length} items in the cart` : "Your cart is empty"}
-        </h1>
+        
       </div>
 
       <div className="min-w-full flex min-h-screen p-4">
