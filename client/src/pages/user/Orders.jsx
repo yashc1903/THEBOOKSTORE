@@ -182,7 +182,7 @@ function Orders() {
                     e.preventDefault();
                     try {
                       let answer = window.prompt(`Are You Sure,
-                         You want to cancle the order`);
+                         You want to cancel the order`);
                       if (!answer) return;
                       const { data } = await axios.delete(
                         `http://localhost:8080/delete-order/${o._id}`
@@ -196,7 +196,7 @@ function Orders() {
                     }
                   }}
                 >
-                  CANCLE ORDER
+                  CANCEL ORDER
                 </button>
                               </div>
                             </div>

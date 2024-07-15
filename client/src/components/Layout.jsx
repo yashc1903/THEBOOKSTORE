@@ -4,7 +4,8 @@ import Footer from "./Footer";
 
 function Layout(props, title, description, keywords, author ) {
   const pageStyle = {
-    backgroundImage: 'url("https://plus.unsplash.com/premium_photo-1669652639356-f5cb1a086976?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8Ym9vayUyMHN0b3JlfGVufDB8fDB8fHww")', // Replace with your image path
+    backgroundImage: " linear-gradient(to right, #DAE2F8 , #D6A4A4)",
+     // Replace with your image path
     backgroundSize: 'contain',
     backgroundOpacity : "0.6",
      // Adjusts image to cover the whole background

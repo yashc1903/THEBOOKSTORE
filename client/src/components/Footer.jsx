@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 function Footer() {
 
   const headerStyle = {
-    backgroundImage: 'url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS2NHembQ-fDEWR0hg6E66SEX3AMnRS-HiAmw&s")', // Replace with your image path
+    backgroundImage: 'linear-gradient(to right, #757F9A , #D6A4A1)', // Replace with your image path
     backgroundSize: 'cover', // Adjusts image to cover the whole background
   // Prevents repeating the image
     backgroundPosition: 'center', // Centers the background image
