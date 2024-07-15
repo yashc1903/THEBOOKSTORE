@@ -45,7 +45,7 @@ function UpdateProduct() {
       );
       
       if (data?.success) {
-        toast.error(data?.message);
+        toast.success(data?.message);
       } else {
         toast.success("Product updated successfully");
         navigate("/dashboard/admin/products");
