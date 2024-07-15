@@ -30,7 +30,7 @@ router.get('/search/:keyword',searchController)//searchbar
 
 router.get(`/related-product/:pid/:cid`,relatedProductsController)
 
-router.get('/product-category/:slug',productCategoryController)
+router.get('/product-category/:slug',productCategoryController) 
 
 //payments route
 //token
