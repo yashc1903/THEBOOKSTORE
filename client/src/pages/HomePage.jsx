@@ -140,7 +140,7 @@ function HomePage() {
     <Layout>
       <div className="p-6 flex flex-wrap md:flex-nowrap">
         {/* Filter Section */}
-        <div className="w-full md:w-1/4 bg-gray-100 p-4 rounded-lg shadow-md bg-gradient-to-tr from-rose-100 to-teal-100">
+        <div className="w-full h-1/2 md:w-1/4 bg-gray-100 p-4 rounded-lg shadow-md bg-gradient-to-tr from-rose-100 to-teal-100">
           <div className="flex justify-center mb-4">
             <Button
               className="p-4 h-14 font-bold text-xl rounded-md text-white bg-gray-600"

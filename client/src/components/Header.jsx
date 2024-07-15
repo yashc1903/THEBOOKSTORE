@@ -42,7 +42,7 @@ function Header() {
             src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS8f2qlmQft8PNyJKr6YWqN9X7tz_c3ev5cqQ&s"
             alt="Logo"
           />
-          <h1 className="ml-4 text-2xl sm:text-3xl font-bold text-black transition-colors duration-300 transform hover:text-blue-500 dark:hover:text-blue-400 md:mx-2 md:my-0">
+          <h1 className="ml-4 text-2xl sm:text-3xl font-bold text-black transition-colors duration-300 transform hover:text-teal-500  md:mx-2 md:my-0">
             THE BOOK STORE
           </h1>
         </Link>
@@ -55,14 +55,14 @@ function Header() {
           <NavLink
             to="/"
             exact={true}
-            className="text-xl sm:text-3xl font-semibold text-black transition-colors duration-300 transform hover:text-blue-500 dark:hover:text-blue-400"
+            className="text-xl sm:text-3xl font-semibold text-black transition-colors duration-300 transform hover:text-gray-700"
           >
             Home
           </NavLink>
           <NavLink
             to="/rent"
             exact={true}
-            className="text-xl sm:text-3xl font-semibold text-black transition-colors duration-300 transform hover:text-blue-500 dark:hover:text-blue-400"
+            className="text-xl sm:text-3xl font-semibold text-black transition-colors duration-300 transform hover:text-gray-700"
           >
             Rent
           </NavLink>
@@ -70,7 +70,7 @@ function Header() {
           <div className="relative inline-block">
             <button
               onClick={() => setCategoryIsOpen(!categoryIsOpen)}
-              className="text-xl sm:text-3xl font-semibold text-black transition-colors duration-300 transform hover:text-blue-500 dark:hover:text-blue-400"
+              className="text-xl sm:text-3xl font-semibold text-black transition-colors duration-300 transform hover:text-gray-700"
             >
               Categories
               <svg className="w-6 h-6 sm:w-8 sm:h-8 inline ml-1" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -80,11 +80,11 @@ function Header() {
 
             {categoryIsOpen && (
               <div className="absolute right-0 mt-10 w-56 sm:w-72 h-auto max-h-80 overflow-y-auto bg-white dark:bg-gray-800 rounded-md shadow-xl z-10">
-                <Link to={`/categories`} className="block px-4 py-2 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">
+                <Link to={`/categories`} className="block px-4 py-2 font-semibold text-white hover:bg-gray-100 dark:hover:bg-gray-700">
                   All Categories
                 </Link>
                 {categories.map((c) => (
-                  <Link key={c.name} to={`/category/${c.slug}`} className="block px-4 py-2 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">
+                  <Link key={c.name} to={`/category/${c.slug}`} className="block px-4 py-2 font-semibold text-white hover:bg-gray-100 dark:hover:bg-gray-700">
                     {c.name}
                   </Link>
                 ))}
@@ -94,10 +94,10 @@ function Header() {
 
           {!auth.user ? (
             <>
-              <NavLink to="/register" className="text-xl sm:text-3xl font-bold transition-colors duration-300 transform dark:text-black hover:text-blue-500 dark:hover:text-blue-400">
-                SignUp
+              <NavLink to="/register" className="text-xl sm:text-3xl font-bold transition-colors duration-300 transform dark:text-black hover:text-gray-700">
+                Register
               </NavLink>
-              <NavLink to="/login" className="text-xl sm:text-3xl font-bold transition-colors duration-300 transform dark:text-black hover:text-blue-500 dark:hover:text-blue-400">
+              <NavLink to="/login" className="text-xl sm:text-3xl font-bold transition-colors duration-300 transform dark:text-black hover:text-gray-700">
                 Login
               </NavLink>
             </>
@@ -105,7 +105,7 @@ function Header() {
             <div className="relative inline-block">
               <button
                 onClick={() => setIsOpen(!isOpen)}
-                className="text-xl sm:text-3xl text-black font-semibold transition-colors duration-300 transform hover:text-blue-500 dark:hover:text-blue-400"
+                className="text-xl sm:text-3xl text-black font-semibold transition-colors duration-300 transform hover:text-gray-700"
               >
                 {auth?.user?.name}
                 <svg className="w-6 h-6 sm:w-8 sm:h-8 inline ml-1" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
