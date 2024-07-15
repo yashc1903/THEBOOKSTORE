@@ -15,9 +15,9 @@ function Layout(props, title, description, keywords, author ) {
   };
   return (
     <>
-      <div className="relative">
+      <div className="relative min-w-full">
         <Header />
-        <main className=" min-h-screen " style={pageStyle}>{props.children}</main>
+        <main className=" min-h-screen min-w-full " style={pageStyle}>{props.children}</main>
         <Footer />
       </div>
     </>

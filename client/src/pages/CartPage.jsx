@@ -89,10 +89,9 @@ function CartPage() {
     <Layout>
       <div className="min-w-full text-center p-4">
         <h1 className="text-center text-4xl mx-auto font-semibold text-black bg-white rounded-full bg-opacity-60 w-96 mb-4">Your Cart</h1>
-        
       </div>
 
-      <div className="min-w-full flex min-h-screen p-4">
+      <div className="min-w-full flex flex-col md:flex-row">
         <div className="w-full md:w-1/2 text-center p-4">
           <h1 className="text-center text-4xl mx-auto font-semibold text-black bg-white rounded-full bg-opacity-60 w-96 mb-4">Cart Items</h1>
           <div>
@@ -121,25 +120,24 @@ function CartPage() {
                       {item.renting ? "Switch to Buy" : "Switch to Rent"}
                     </button>
                     {item.renting && (
-                      
-                      <label>
+                      <div className="flex items-center">
                         <input
-                        type="number"
-                        value={item.rentDays}
-                        onChange={(e) => updateRentDays(index, e.target.value)}
-                        min="1"
-                        className="px-2 py-2 border rounded-lg w-16 h-9 bg-blue-300 text-xl"
-                        placeholder="Days"
-                      />Days
-
-                      </label>
+                          type="number"
+                          value={item.rentDays}
+                          onChange={(e) => updateRentDays(index, e.target.value)}
+                          min="1"
+                          className="px-2 py-2 border rounded-lg w-16 h-9 bg-blue-300 text-xl"
+                          placeholder="Days"
+                        />
+                        <span className="ml-2">Days</span>
+                      </div>
                     )}
                   </div>
                 </div>
                 <div className="flex justify-center md:justify-start items-center mt-4 md:mt-0">
                   <button
                     onClick={() => removeCartItem(item._id)}
-                    className="relative px-8 py-2 rounded-md bg-white isolation-auto z-10 border-2 border-red-700 before:absolute before:w-full before:transition-all before:duration-700 before:hover:w-full hover:text-white before:-right-full before:hover:right-0 before:rounded-full before:bg-[#A12347] before:-z-10 before:aspect-square before:hover:scale-150 overflow-hidden before:hover:duration-700 inline-flex items-center justify-center text-sm font-semibold text-black bg-white border border-gray-200 rounded-lg shadow-sm gap-x-2 hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none"
+                    className="relative px-8 py-2 rounded-md bg-white border-2 border-red-700 hover:text-white before:absolute before:w-full before:transition-all before:duration-700 before:hover:w-full hover:text-white before:-right-full before:hover:right-0 before:rounded-full before:bg-[#A12347] before:-z-10 before:aspect-square before:hover:scale-150 overflow-hidden before:hover:duration-700 inline-flex items-center justify-center text-sm font-semibold text-black bg-white border border-gray-200 rounded-lg shadow-sm gap-x-2 hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none"
                   >
                     Remove
                   </button>
@@ -192,7 +190,6 @@ function CartPage() {
               ""
             ) : (
               <>
-           
                 <DropIn
                   options={{
                     authorization: clientToken,

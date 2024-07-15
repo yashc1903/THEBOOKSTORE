@@ -5,28 +5,25 @@ import axios from "axios";
 import { useAuth } from "../../context/auth.jsx";
 import moment from "moment";
 import { Select } from "antd";
-import emptyBoxImage from "../Admin/emptybox.png"; 
+import emptyBoxImage from "../Admin/emptybox.png";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 
-
 const { Option } = Select;
-
 
 function Orders() {
   const [orders, setOrders] = useState([]);
   const [filteredOrders, setFilteredOrders] = useState([]);
   const [filter, setFilter] = useState("Filter");
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const [auth] = useAuth();
 
   const getOrders = async () => {
     try {
       const { data } = await axios.get("http://localhost:8080/orders");
-      const sortedData = data.sort((a, b) => moment(b.createdAt) - moment(a.createdAt)); 
+      const sortedData = data.sort((a, b) => moment(b.createdAt) - moment(a.createdAt));
       setOrders(sortedData);
-      setFilteredOrders(sortedData); 
-
+      setFilteredOrders(sortedData);
     } catch (error) {
       console.log(error);
     }
@@ -72,19 +69,18 @@ function Orders() {
 
     setFilteredOrders(filtered);
   };
-  
 
   return (
     <>
       <Layout>
-        <div className="flex flex-row justify-around items-center">
-          <div className="w-1/4  flex justify-center">
-            <UserMenu style={{position: 'absolute',top: '160px', width: '100',}} />
+        <div className="flex flex-col md:flex-row ">
+          <div className="w-full md:w-1/4  mb-6 md:mb-0">
+            <UserMenu style={{ position: 'sticky', top: '160px', width: '100%' }} />
           </div>
-          <div className="flex flex-col justify-center items-center  w-3/4">
-            <div className="flex items-center justify-around w-full px-4 py-2">
-              <h1 className="text-3xl font-bold text-black bg-white bg-opacity-60 p-2 rounded-full mb-4 text-center mt-10">ORDERS</h1>
-              <Select value={filter} onChange={handleFilterChange} style={{ width: 200 }} className="h-14 " placeholder="Filter">
+          <div className="w-full md:w-3/4 px-2 md:px-4 ">
+            <div className="flex items-center justify-between w-full mb-4">
+            <h1 className="text-3xl font-bold bg-white bg-opacity-60 p-2 rounded-full mb-4 mt-10  w-56 text-center">ORDERS</h1>
+              <Select value={filter} onChange={handleFilterChange} style={{ width: 200 }} className="h-14" placeholder="Filter">
                 <Option value="All-Orders">All Orders</Option>
                 <Option value="1-month">Last Month</Option>
                 <Option value="6-months">Last 6 Months</Option>
@@ -93,10 +89,10 @@ function Orders() {
                 <Option value="payment-failed">Payment Failed</Option>
               </Select>
             </div>
-            <div className="flex flex-col items-center justify-center w-full">
+            <div className="w-full">
               {filteredOrders.length === 0 ? (
                 <div className="text-center mt-10">
-                  <img src={emptyBoxImage} alt="Empty Box" className="mx-auto mb-1" style={{ width: '50vw' }} />
+                  <img src={emptyBoxImage} alt="Empty Box" className="mx-auto mb-1" style={{ maxWidth: '50vw' }} />
                   <p className="text-lg font-medium text-gray-600">Sorry! Orders not found.</p>
                   <p className="text-sm text-gray-500">Try using a different filter or go back to orders.</p>
                 </div>
@@ -104,7 +100,6 @@ function Orders() {
                 filteredOrders.map((o, i) => (
                   <section className="container px-4 mx-auto mb-4" key={o._id}>
                     <div className="flex flex-col mt-6">
-                      
                       <div className="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                         <div className="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
                           <div className="overflow-hidden border-2 border-black md:rounded-lg">
@@ -118,7 +113,7 @@ function Orders() {
                                   <th className="py-3.5 px-4 text-xl font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">Time</th>
                                   <th className="py-3.5 px-4 text-xl font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">Payment</th>
                                   <th className="py-3.5 px-4 text-xl font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">Quantity</th>
-                                  <th className="px-4 py-3 text-xl font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400"> Total</th>
+                                  <th className="px-4 py-3 text-xl font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">Total</th>
                                 </tr>
                               </thead>
                               <tbody>
@@ -129,8 +124,8 @@ function Orders() {
                                     </div>
                                   </td>
                                   <td className="px-4 py-4 text-lg font-medium whitespace-nowrap">
-                                    <div className={`inline px-3 py-3 text-sm font-normal rounded-full  text-green-300 bg-emerald-900 `}>
-                                      {o?.status }
+                                    <div className={`inline px-3 py-3 text-sm font-normal rounded-full  text-green-300 bg-emerald-900`}>
+                                      {o?.status}
                                     </div>
                                   </td>
                                   <td className="px-4 py-4 text-lg whitespace-nowrap">
@@ -176,28 +171,27 @@ function Orders() {
                                 </div>
                               ))}
                               <div className="flex justify-center">
-                              <button
-                  className=" my-2 border-2 bg-red-500  hover:bg-red-700  rounded-full text-white p-4 text-xl"
-                  onClick={async (e) => {
-                    e.preventDefault();
-                    try {
-                      let answer = window.prompt(`Are You Sure,
-                         You want to cancel the order`);
-                      if (!answer) return;
-                      const { data } = await axios.delete(
-                        `http://localhost:8080/delete-order/${o._id}`
-                      );
-                      toast.success("Order cancelled successfully");
-                      navigate("/dashboard/user/orders");
-                      window.location.reload()
-                    } catch (error) {
-                      console.log(error);
-                      toast.error("something went wrong");
-                    }
-                  }}
-                >
-                  CANCEL ORDER
-                </button>
+                                <button
+                                  className="my-2 border-2 bg-red-500 hover:bg-red-700 rounded-full text-white p-4 text-xl"
+                                  onClick={async (e) => {
+                                    e.preventDefault();
+                                    try {
+                                      let answer = window.prompt(`Are You Sure, You want to cancel the order`);
+                                      if (!answer) return;
+                                      const { data } = await axios.delete(
+                                        `http://localhost:8080/delete-order/${o._id}`
+                                      );
+                                      toast.success("Order cancelled successfully");
+                                      navigate("/dashboard/user/orders");
+                                      window.location.reload();
+                                    } catch (error) {
+                                      console.log(error);
+                                      toast.error("something went wrong");
+                                    }
+                                  }}
+                                >
+                                  CANCEL ORDER
+                                </button>
                               </div>
                             </div>
                           </div>

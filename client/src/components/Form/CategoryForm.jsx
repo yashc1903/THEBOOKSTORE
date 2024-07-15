@@ -3,7 +3,7 @@ import React from "react";
 function CategoryForm({ handleSubmit, value, setValue }) {
   return (
     <>
-      <div className="flex flex-col items-center justify-center ">
+      <div className="flex flex-col items-center justify-center sm:p-6 lg:p-8">
         <div className="w-full max-w-md bg-gray-300 rounded-lg shadow-md p-6 bg-gradient-to-tr from-rose-100 to-teal-100">
           <form className="flex flex-col text-black " onSubmit={handleSubmit}>
             <input

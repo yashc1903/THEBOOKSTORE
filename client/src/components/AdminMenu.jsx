@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 function AdminMenu( {style}) {
   return (
     <>
-      <div className="max-w-4xl mx-auto py-8 my-auto  top-10" style={style}>
+      <div className="max-w-4xl mx-auto py-8 my-auto  top-10 sm:px-6 lg:px-8" style={style}>
         <h2 className="text-2xl font-bold mb-4 text-black text-center">ADMIN PANEL</h2>
         <div className="flex justify-center">
           <ul className=" space-y-4">
