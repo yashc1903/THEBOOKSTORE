@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { NavLink, Link } from "react-router-dom";
+import React, { useState } from 'react';
+import { NavLink, Link } from 'react-router-dom';
 import { CiShoppingCart, CiHeart } from "react-icons/ci";
 import { useAuth } from "../context/auth.jsx";
 import toast from "react-hot-toast";
@@ -12,7 +12,7 @@ import { useWishlist } from "../context/wishllist";
 function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const [cart] = useCart();
-  const [wishlist] = useWishlist();
+  const [wishlist] = useWishlist(); 
   const [categoryIsOpen, setCategoryIsOpen] = useState(false);
   const categories = useCategory();
   const [auth, setAuth] = useAuth();
@@ -21,7 +21,7 @@ function Header() {
     setAuth({
       ...auth,
       user: null,
-      token: "",
+      token: ''
     });
     localStorage.removeItem("auth");
     toast.success("Logged Out Successfully");
@@ -32,8 +32,8 @@ function Header() {
     backgroundSize: 'cover',
     backgroundPosition: 'center',
   };
-
-  return (
+  
+  return (  
     <>
       <nav className="relative bg-white dark:bg-gray-800 h-28 flex items-center justify-between px-4 md:px-8" style={headerStyle}>
         <Link to="/" className="flex items-center">
