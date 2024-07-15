@@ -114,7 +114,7 @@ function CartPage() {
                       <span className="text-black">By:</span> {item.author}
                     </li>
                     <li className="text-2xl font-bold text-red-500 mb-4">
-                      ₹ {item.renting ? item.rentPrice * item.rentDays : item.price}
+                       {item.renting ? (!item.rentPrice ? "not available for rent " : `₹ ${item.rentPrice * item.rentDays}` ) : `₹ ${item.price}`}
                     </li>
                   </ul>
                   <div className="flex items-center gap-2">

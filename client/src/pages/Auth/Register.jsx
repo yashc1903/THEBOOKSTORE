@@ -379,20 +379,7 @@ function Register() {
                   </div>
                 </div>
 
-                <div className=" text-lg">
-                  <input
-                    type="checkbox"
-                    id="conditions"
-                    className="mr-2 w-4 h-4"
-                  />
-                  <label htmlFor="conditions">
-                    Accept terms and conditions.
-                  </label>
-                  <Link className="ml-2 text-purple-600 hover:underline">
-                    {" "}
-                    Click here
-                  </Link>
-                </div>
+               
                 <div className="w-full">
                   <button
                     type="submit"
