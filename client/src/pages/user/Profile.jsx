@@ -55,7 +55,7 @@ function Profile() {
   return (
     <> 
       <Layout>
-        <div className="flex justify-around items-center">
+        <div className="flex flex-col md:flex-row ">
           <div className=" w-1/4 flex justify-center">
             <UserMenu style={{position: 'absolute',top: '160px', width: '100%',}} />
           </div>

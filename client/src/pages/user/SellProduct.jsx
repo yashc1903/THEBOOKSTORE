@@ -77,7 +77,7 @@ function SellProduct() {
           <div className=" w-1/4 flex justify-center   ">
             <UserMenu style={{position: 'absolute',top: '160px', width: '100%',}}  />
           </div>
-          <div className="flex justify-center items-center  flex-col w-3/4  -mt-56">
+          <div className="flex justify-center items-center  flex-col w-3/4  ">
           <h1 className="text-center text-4xl mx-auto font-semibold text-black  bg-white rounded-full bg-opacity-60 w-96  mb-4 ">SELL YOUR BOOK</h1>
             <div className="text-center  w-2/3 bg-gradient-to-tr from-rose-100 to-teal-100 p-6 rounded-xl">
               

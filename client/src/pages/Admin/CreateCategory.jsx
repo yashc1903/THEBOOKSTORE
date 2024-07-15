@@ -13,8 +13,6 @@ function CreateCategory() {
   const [selected, setSelected] = useState(null);
   const [updatedName, setUpdatedName] = useState("");
 
-  //handle form
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -30,7 +28,7 @@ function CreateCategory() {
       }
     } catch (error) {
       console.log(error);
-      toast.error("something went wrong in adding the category");
+      toast.error("Something went wrong in adding the category");
     }
   };
 
@@ -42,7 +40,7 @@ function CreateCategory() {
         { name: updatedName }
       );
       if (data.success) {
-        toast.success(` the updated category is ${updatedName}`);
+        toast.success(`The updated category is ${updatedName}`);
         setSelected(null);
         setUpdatedName("");
         setVisible(false);
@@ -52,25 +50,24 @@ function CreateCategory() {
       }
     } catch (error) {
       console.log(error);
-      toast.error("something went wrong while updating the category");
+      toast.error("Something went wrong while updating the category");
     }
   };
-  //delete category
+
   const handleDelete = async (id) => {
     try {
       const { data } = await axios.delete(
-        `http://localhost:8080/category/delete-category/${id}`,
-        { name: updatedName }
+        `http://localhost:8080/category/delete-category/${id}`
       );
       if (data.success) {
-        toast.success(` category is deleted`);
+        toast.success(`Category is deleted`);
         getAllCategory();
       } else {
         toast.error(data.message);
       }
     } catch (error) {
       console.log(error);
-      toast.error("something went wrong while updating the category");
+      toast.error("Something went wrong while deleting the category");
     }
   };
 
@@ -84,7 +81,7 @@ function CreateCategory() {
       }
     } catch (error) {
       console.log(error);
-      toast.error("something went wrong");
+      toast.error("Something went wrong");
     }
   };
 
@@ -93,90 +90,84 @@ function CreateCategory() {
   }, []);
 
   return (
-    <>
-      <Layout>
-        <div className="flex flex-col md:flex-row justify-center items-center md:items-center">
-          <div className="w-1/4 p-4  flex justify-center">
-            <AdminMenu  style={{position: 'absolute',top: '160px', width: '100%',}} />
-          </div>
-          <div className="flex flex-col justify-center items-center  w-3/4 p-6">
-            <div className="text-center w-full">
-              <h1 className="text-center text-4xl mx-auto font-semibold text-black  bg-white rounded-full bg-opacity-60 w-96  mb-4">Manage Category</h1>
-              <div className="mt-4 ">
-                <CategoryForm
-                  handleSubmit={handleSubmit}
-                  value={name}
-                  setValue={setName}
-                />
-              </div>
-
-              <div className="mt-4 mb-10  max-h-screen w-2/3 mx-auto overflow-y-auto h-96 rounded-xl ">
-                <table className="min-w-full divide-y divide-gray-200 rounded-xl  ">
-                  <thead className="bg-gray-300  ">
-                    <tr>
-                      <th
-                        scope="col"
-                        className="px-6 py-3 text-left text-4xl font-medium text-black uppercase tracking-wider"
-                      >
-                        Name
-                      </th>
-                      <th
-                        scope="col"
-                        className="px-6 py-3 text-left text-4xl font-medium text-black uppercase tracking-wider"
-                      >
-                        Actions
-                      </th>
-                    </tr>
-                  </thead>
-                  <tbody className="bg-white divide-y divide-gray-200 ">
-                    {categories?.map((category) => (
-                      <tr key={category._id}>
-                        <td className="px-6 py-4 whitespace-nowrap ">
-                          <div className="text-3xl text-left text-gray-900">
-                            {category.name}
-                          </div>
-                        </td>
-                        <td className="px-6 py-4 whitespace-nowrap flex gap-4">
-                          <button
-                            className="text-white border p-4 rounded-xl shadow-lg bg-indigo-600 hover:bg-indigo-900"
-                            onClick={() => {
-                              setVisible(true);
-                              setUpdatedName(category.name);
-                              setSelected(category);
-                            }}
-                          >
-                            Edit
-                          </button>
-                          <button
-                            className="text-white border p-4 rounded-xl shadow-lg bg-red-600 hover:bg-red-900"
-                            onClick={() => {
-                              handleDelete(category._id);
-                            }}
-                          >
-                            Delete
-                          </button>
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-            </div>
-            <Modal
-              onCancel={() => setVisible(false)}
-              footer={null}
-              open={visible}
-            >
-              <CategoryForm
-                value={updatedName}
-                setValue={setUpdatedName}
-                handleSubmit={handleUpdate}
-              />
-            </Modal>
-          </div>
+    <Layout>
+      <div className="flex flex-col md:flex-row  ">
+        {/* AdminMenu Section */}
+        <div className="w-full md:w-1/4 p-4 lg:p-6">
+          <AdminMenu style={{ position: "sticky", top: "160px", width: "100%" }} />
         </div>
-      </Layout>
-    </>
+        {/* Content Section */}
+        <div className="w-full md:w-3/4 p-6">
+          <div className="text-center w-full">
+            <h1 className="text-center text-4xl mx-auto font-semibold text-black bg-white rounded-full bg-opacity-60 w-full md:w-96 mb-4">
+              Manage Category
+            </h1>
+            {/* CategoryForm Component */}
+            <div className="mt-4">
+              <CategoryForm
+                handleSubmit={handleSubmit}
+                value={name}
+                setValue={setName}
+              />
+            </div>
+            {/* Table Section */}
+            <div className="mt-4 mb-10 max-h-screen w-full md:w-2/3 mx-auto overflow-y-auto rounded-xl">
+              <table className="min-w-full divide-y divide-gray-200 rounded-xl">
+                <thead className="bg-gray-300">
+                  <tr>
+                    <th className="px-6 py-3 text-left text-2xl md:text-4xl font-medium text-black uppercase tracking-wider">
+                      Name
+                    </th>
+                    <th className="px-6 py-3 text-left text-2xl md:text-4xl font-medium text-black uppercase tracking-wider">
+                      Actions
+                    </th>
+                  </tr>
+                </thead>
+                <tbody className="bg-white divide-y divide-gray-200">
+                  {categories?.map((category) => (
+                    <tr key={category._id}>
+                      <td className="px-6 py-4 whitespace-nowrap">
+                        <div className="text-xl md:text-3xl text-left text-gray-900">
+                          {category.name}
+                        </div>
+                      </td>
+                      <td className="px-6 py-4 whitespace-nowrap flex gap-4">
+                        <button
+                          className="text-white border p-2 md:p-4 rounded-lg shadow-lg bg-indigo-600 hover:bg-indigo-900"
+                          onClick={() => {
+                            setVisible(true);
+                            setUpdatedName(category.name);
+                            setSelected(category);
+                          }}
+                        >
+                          Edit
+                        </button>
+                        <button
+                          className="text-white border p-2 md:p-4 rounded-lg shadow-lg bg-red-600 hover:bg-red-900"
+                          onClick={() => {
+                            handleDelete(category._id);
+                          }}
+                        >
+                          Delete
+                        </button>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+          {/* Modal for Edit Category */}
+          <Modal onCancel={() => setVisible(false)} footer={null} visible={visible}>
+            <CategoryForm
+              value={updatedName}
+              setValue={setUpdatedName}
+              handleSubmit={handleUpdate}
+            />
+          </Modal>
+        </div>
+      </div>
+    </Layout>
   );
 }
 

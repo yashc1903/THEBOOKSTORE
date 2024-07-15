@@ -24,13 +24,13 @@ function Loader({ path = "login" }) {
 
   return (
     <>
-      <div className="min-h-screen flex flex-col justify-center items-center">
-        <div className="flex gap-x-2 justify-center items-center">
-          <div className="w-5 bg-[#d991c2] animate-pulse h-5 rounded-full animate-bounce"></div>
-          <div className="w-5 animate-pulse h-5 bg-[#9869b8] rounded-full animate-bounce"></div>
-          <div className="w-5 h-5 animate-pulse bg-[#6756cc] rounded-full animate-bounce"></div>
+      <div className="min-h-screen flex flex-col justify-center items-center bg-gray-100 dark:bg-gray-800">
+        <div className="flex gap-2 justify-center items-center mb-4">
+          <div className="w-3 h-3 bg-[#d991c2] animate-pulse rounded-full animate-bounce"></div>
+          <div className="w-3 h-3 bg-[#9869b8] animate-pulse rounded-full animate-bounce"></div>
+          <div className="w-3 h-3 bg-[#6756cc] animate-pulse rounded-full animate-bounce"></div>
         </div>
-        <h1 className="mt-4 text-center text-3xl">
+        <h1 className="text-center text-2xl sm:text-3xl lg:text-4xl">
           Redirecting you in {count}
         </h1>
       </div>

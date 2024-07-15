@@ -36,7 +36,7 @@ function CreateProduct() {
       productData.append("shipping", shipping);
       productData.append("isRentable", isRentable);
       productData.append("rentPrice", rentPrice);
-      const { data } = axios.post(
+      const { data } = await axios.post(
         "http://localhost:8080/product/create-product",
         productData
       );
@@ -48,7 +48,7 @@ function CreateProduct() {
       }
     } catch (error) {
       console.log(error);
-      toast.error("something went wrong");
+      toast.error("Something went wrong");
     }
   };
 
@@ -62,31 +62,33 @@ function CreateProduct() {
       }
     } catch (error) {
       console.log(error);
-      toast.error("something went wrong");
+      toast.error("Something went wrong");
     }
   };
 
   useEffect(() => {
     getAllCategory();
   }, []);
-  return (
-    <>
-      <Layout>
-        <div className="flex justify-around items-center w-full min-h-screen ">
-          <div className=" w-1/4  flex justify-center">
-            <AdminMenu  style={{position: 'absolute',top: '160px', width: '100%',}}  />
-          </div>
-          <div className="flex flex-col justify-center items-center w-3/4 h-full mb-5 overflow-y-auto -mt-48 ">
-              <h1 className="text-center text-4xl mx-auto font-semibold text-black  bg-white rounded-full bg-opacity-60 w-96  mb-4">Create Product</h1>
-            <div className="text-center  w-2/3 bg-gradient-to-tr from-rose-100 to-teal-100 p-6    rounded-xl">
 
-              <div className="mt-2  ">
+  return (
+    <Layout>
+      <div className="flex flex-col md:flex-row ">
+        {/* AdminMenu Section */}
+        <div className="w-full md:w-1/4 p-4">
+          <AdminMenu style={{ position: "sticky", top: "160px", width: "100%" }} />
+        </div>
+        {/* Content Section */}
+        <div className="w-full md:w-3/4 p-6">
+          <div className="text-center">
+            <h1 className="text-4xl font-semibold text-black bg-white rounded-full bg-opacity-60 w-96 mx-auto mb-4">Create Product</h1>
+            <div className="bg-gradient-to-tr from-rose-100 to-teal-100 p-6 rounded-xl">
+              {/* Category Select */}
+              <div className="mt-4">
                 <Select
-                  variant={false}
                   placeholder="SELECT A CATEGORY"
                   size="large"
                   showSearch
-                  className="w-full px-4 py-2 bg-white border-4 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  className="w-full"
                   onChange={(value) => {
                     setCategory(value);
                   }}
@@ -99,7 +101,8 @@ function CreateProduct() {
                 </Select>
               </div>
 
-              <div className="flex justify-center items-center w-full mt-4">
+              {/* Upload Image */}
+              <div className="flex justify-center items-center mt-4">
                 <label className="w-full max-w-xs flex flex-col items-center px-4 py-2 bg-gray-200 text-blue-500 rounded-md shadow-sm tracking-wide uppercase border border-blue-500 cursor-pointer hover:bg-blue-500 hover:text-white">
                   <svg
                     className="w-6 h-6 mb-1"
@@ -128,110 +131,108 @@ function CreateProduct() {
                 </label>
               </div>
 
-              <div className="flex justify-center mt-4">
-                {photo && (
-                  <div>
-                    <img
-                      src={URL.createObjectURL(photo)}
-                      alt=""
-                      className="mt-4"
-                      height={"100px"}
-                    />
-                  </div>
-                )}
-              </div>
-              <div>
+              {/* Display Uploaded Image */}
+              {photo && (
+                <div className="flex justify-center mt-4">
+                  <img
+                    src={URL.createObjectURL(photo)}
+                    alt=""
+                    className="h-96"
+                  />
+                </div>
+              )}
+
+              {/* Form Inputs */}
+              <div className="mt-4 space-y-4">
                 <input
                   type="text"
                   value={name}
                   placeholder="BOOK NAME"
-                  className=" text-xl  w-full text-center mt-4 border-4 h-14  text-black"
+                  className="w-full p-2 border-2 rounded-md text-xl text-center"
                   onChange={(e) => setName(e.target.value)}
                 />
                 <textarea
                   value={description}
                   placeholder="DESCRIPTION"
-                  className=" text-xl  w-full p-4 text-center mt-4 border-4 h-14  text-black"
+                  className="w-full p-2 border-2 rounded-md text-xl text-center"
                   onChange={(e) => setDescription(e.target.value)}
                 />
                 <input
                   type="text"
                   value={author}
                   placeholder="AUTHOR'S NAME"
-                  className=" text-xl  w-full text-center mt-4 border-4 h-14  text-black"
+                  className="w-full p-2 border-2 rounded-md text-xl text-center"
                   onChange={(e) => setAuthor(e.target.value)}
                 />
                 <input
                   type="number"
                   value={price}
                   placeholder="PRICE"
-                  className=" text-xl  w-full text-center mt-4 border-4 h-14  text-black"
+                  className="w-full p-2 border-2 rounded-md text-xl text-center"
                   onChange={(e) => setPrice(e.target.value)}
                 />
                 <input
                   type="number"
                   value={rentPrice}
                   placeholder="RENT PRICE PER DAY"
-                  className=" text-xl  w-full text-center mt-4 border-4 h-14  text-black"
+                  className="w-full p-2 border-2 rounded-md text-xl text-center"
                   onChange={(e) => setRentPrice(e.target.value)}
                 />
                 <input
                   type="number"
                   value={quantity}
                   placeholder="QUANTITY"
-                  className=" text-xl  w-full text-center mt-4 border-4 h-14  text-black"
+                  className="w-full p-2 border-2 rounded-md text-xl text-center"
                   onChange={(e) => setQuantity(e.target.value)}
                 />
+
+                {/* Select Shipping and Rentable */}
                 <Select
-                  variant={false}
                   placeholder="SELECT SHIPPING"
                   size="large"
                   showSearch
-                  className=" text-xl w-full text-center bg-white mt-4 border-4 h-14  text-black"
+                  className="w-full"
                   onChange={(value) => {
                     setShipping(value);
                   }}
                 >
                   <Option value="0" className="text-2xl">
-                    {" "}
                     No
                   </Option>
                   <Option value="1" className="text-2xl">
-                    {" "}
-                    Yes{" "}
+                    Yes
                   </Option>
                 </Select>
                 <Select
-                  variant={false}
                   placeholder="AVAILABLE FOR RENT"
                   size="large"
                   showSearch
-                  className=" text-xl w-full text-center mt-4 bg-white border-4 h-14  text-black"
+                  className="w-full"
                   onChange={(value) => {
                     setIsRentable(value);
                   }}
                 >
                   <Option value="0" className="text-2xl">
-                    {" "}
                     No
                   </Option>
                   <Option value="1" className="text-2xl">
-                    {" "}
-                    Yes{" "}
+                    Yes
                   </Option>
                 </Select>
+
+                {/* Submit Button */}
                 <button
-                  className=" mt-2 border-2 rounded-lg bg-emerald-600 text-white p-4 text-2xl"
+                  className="mt-4 w-full p-4 text-2xl bg-emerald-600 text-white rounded-lg"
                   onClick={handleCreate}
                 >
-                  CREATE PRODUCT{" "}
+                  CREATE PRODUCT
                 </button>
               </div>
             </div>
           </div>
         </div>
-      </Layout>
-    </>
+      </div>
+    </Layout>
   );
 }
 
