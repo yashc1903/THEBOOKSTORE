@@ -89,14 +89,19 @@ function CartPage() {
     <Layout>
       <div className="min-w-full text-center p-4">
         <h1 className="text-center text-4xl mx-auto font-semibold text-black bg-white rounded-full bg-opacity-60 w-96 mb-4">Your Cart</h1>
+        {!clientToken || !cart?.length ? (
+          <h1 className="text-center text-2xl mx-auto font-semibold text-indigo-600 rounded-full  w-96 mb-4">Your Cart is Empty</h1>
+        ):("")}
       </div>
 
       <div className="min-w-full flex flex-col md:flex-row">
-        <div className="w-full md:w-1/2 text-center p-4">
-          <h1 className="text-center text-4xl mx-auto font-semibold text-black bg-white rounded-full bg-opacity-60 w-96 mb-4">Cart Items</h1>
+        <div className="w-full md:w-1/2 text-center p-4  bg-opacity-60 rounded-md ">
+          {!clientToken || !cart?.length  ? ('') :(
+            <h1 className="text-center text-4xl mx-auto font-semibold text-black  rounded-full  w-96 mb-4">Cart Items</h1>
+          )}
           <div>
             {cart?.map((item, index) => (
-              <div className="flex flex-col md:flex-row items-center bg-opacity-60 justify-between p-4 mb-4 rounded-md shadow-2xl w-full bg-white" key={item._id}>
+              <div className="flex flex-col md:flex-row items-center bg-opacity-60 justify-between p-4 mb-4 rounded-md shadow-xl w-full bg-white" key={item._id}>
                 <img
                   src={`http://localhost:8080/product/product-photo/${item._id}`}
                   alt={item.name}
@@ -126,7 +131,7 @@ function CartPage() {
                           value={item.rentDays}
                           onChange={(e) => updateRentDays(index, e.target.value)}
                           min="1"
-                          className="px-2 py-2 border rounded-lg w-16 h-9 bg-blue-300 text-xl"
+                          className="px-2 py-2 border rounded-lg w-20 h-9  text-xl"
                           placeholder="Days"
                         />
                         <span className="ml-2">Days</span>
@@ -137,7 +142,7 @@ function CartPage() {
                 <div className="flex justify-center md:justify-start items-center mt-4 md:mt-0">
                   <button
                     onClick={() => removeCartItem(item._id)}
-                    className="relative px-8 py-2 rounded-md bg-white border-2 border-red-700 hover:text-white before:absolute before:w-full before:transition-all before:duration-700 before:hover:w-full hover:text-white before:-right-full before:hover:right-0 before:rounded-full before:bg-[#A12347] before:-z-10 before:aspect-square before:hover:scale-150 overflow-hidden before:hover:duration-700 inline-flex items-center justify-center text-sm font-semibold text-black bg-white border border-gray-200 rounded-lg shadow-sm gap-x-2 hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none"
+                    className="relative px-8 py-2 rounded-md bg-white border-2 border-red-700 hover:text-red-600 before:absolute before:w-full before:transition-all before:duration-700 before:hover:w-full hover:text-white before:-right-full before:hover:right-0 before:rounded-full before:bg-[#A12347] before:-z-10 before:aspect-square before:hover:scale-150 overflow-hidden before:hover:duration-700 inline-flex items-center justify-center text-sm font-semibold text-black bg-white border border-gray-200 rounded-lg shadow-sm gap-x-2 hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none"
                   >
                     Remove
                   </button>
@@ -146,7 +151,8 @@ function CartPage() {
             ))}
           </div>
         </div>
-        <div className="w-full md:w-1/2 text-center p-4 bg-white bg-opacity-60 rounded-md shadow-md">
+        {!clientToken || !cart?.length ?(""):(
+          <div className="w-full md:w-1/2 text-center p-4 bg-white bg-opacity-60 rounded-md shadow-md">
           <h1 className="text-4xl font-bold mb-4">Cart Summary</h1>
           <p className="text-xl mb-4">TOTAL | CHECKOUT | PAYMENT</p>
           <hr className="mb-4" />
@@ -166,7 +172,7 @@ function CartPage() {
             </>
           ) : (
             <>
-              <div className="bg-white shadow-md rounded p-6">
+              <div className="bg-white bg-opacity-45 shadow-md rounded p-6">
                 {auth?.token ? (
                   <button
                     onClick={() => navigate(`/dashboard/user/profile`)}
@@ -177,7 +183,7 @@ function CartPage() {
                 ) : (
                   <button
                     onClick={() => navigate("/login", { state: "/cart" })}
-                    className="bg-yellow-500 text-white font-semibold py-2 px-4 rounded hover:bg-red-700 transition-colors"
+                    className="bg-yellow-500 text-white font-semibold py-2 px-4 rounded hover:bg-sky-500 transition-colors"
                   >
                     Please Login to Checkout
                   </button>
@@ -186,7 +192,7 @@ function CartPage() {
             </>
           )}
           <div className="mt-2">
-            {!clientToken || !cart?.length ? (
+            {!clientToken || !cart?.length || !auth.user ?  (
               ""
             ) : (
               <>
@@ -207,6 +213,7 @@ function CartPage() {
             )}
           </div>
         </div>
+        )}
       </div>
     </Layout>
   );

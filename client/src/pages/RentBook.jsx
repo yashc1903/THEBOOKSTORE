@@ -57,11 +57,11 @@ function RentBook() {
         <h1 className="text-center text-4xl font-semibold text-black mb-8">
           Products Available for Rent
         </h1>
-        <div className="flex flex-wrap justify-center gap-4">
+        <div className="w-full flex flex-wrap justify-center gap-4">
           {products.map((product) => (
             <div
               key={product._id}
-              className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5 mb-4"
+              className="w-full sm:w-1/2 md:w-1/4 lg:w-1/4 xl:w-1/5 mb-4"
             >
               <div className="card bg-gradient-to-tr from-rose-100 to-teal-100 border-2 border-gray-800 shadow-lg rounded-lg flex flex-col justify-between p-4 gap-4 h-full transform transition-transform duration-300 hover:scale-110 hover:z-10">
                 <div className="card-img">
